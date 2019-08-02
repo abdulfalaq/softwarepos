@@ -1,0 +1,74 @@
+<table id="datatable" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th width="50px;">No</th>
+      <th>Kode Terapis</th>
+      <th>Nama Terapis</th>
+      <th>Treatment</th>
+      <th>Jumlah</th>
+      <th>Nominal Insentif</th>
+      <th>Total</th>
+    </tr>
+  </thead>              
+  <tbody>
+    <?php
+    $data = $this->input->post(); 
+    $this->db->group_by('kode_terapis');
+    $this->db->join('olive_master.master_karyawan','olive_master.master_karyawan.kode_karyawan = olive_kasir.opsi_transaksi_layanan.kode_terapis','left');
+    $get_terapis = $this->db->get_where('olive_kasir.opsi_transaksi_layanan',array('kode_terapis !=' => ''));
+    $hasil_terapis = $get_terapis->result();
+    $no=1;
+    foreach ($hasil_terapis as $value) {
+
+      $this->db->group_by('olive_kasir.opsi_transaksi_layanan.kode_item');
+      $this->db->select_sum('olive_kasir.opsi_transaksi_layanan.qty');
+      $this->db->select_sum('olive_keuangan.insentif_terapis.total_withdraw');
+      $this->db->select('olive_master.master_perawatan.nama_perawatan');
+      $this->db->select('olive_master.master_perawatan.insentif_terapi');
+      $this->db->where('olive_kasir.opsi_transaksi_layanan.kode_terapis',$value->kode_terapis);
+      $this->db->where('olive_keuangan.insentif_terapis.tanggal_transaksi >=',$data['tgl_awal']);
+      $this->db->where('olive_keuangan.insentif_terapis.tanggal_transaksi <=',$data['tgl_akhir']);
+
+      $this->db->from('olive_kasir.opsi_transaksi_layanan');
+      $this->db->join('olive_master.master_perawatan', 'olive_kasir.opsi_transaksi_layanan.kode_item = olive_master.master_perawatan.kode_perawatan', 'left');
+      $this->db->join('olive_keuangan.insentif_terapis', 'olive_keuangan.insentif_terapis.kode_transaksi = olive_kasir.opsi_transaksi_layanan.kode_transaksi', 'left');
+      $get_treatment= $this->db->get();
+      $hasil_treatment = $get_treatment->result();
+      $list=1;
+      $total_terapis=0;
+      foreach ($hasil_treatment as  $treatment) {
+        $total_terapis +=$treatment->qty * $treatment->total_withdraw;
+        if($list==1){
+          ?>
+          <tr>
+            <td rowspan="<?php echo count($hasil_treatment);?>"><?php echo $no++?></td>
+            <td rowspan="<?php echo count($hasil_treatment);?>"><?php echo $value->kode_terapis;?></td>
+            <td rowspan="<?php echo count($hasil_treatment);?>"><?php echo $value->nama_karyawan;?></td>
+            <td><?php echo $treatment->nama_perawatan;?></td>
+            <td><?php echo $treatment->qty;?></td>
+            <td class="text-right"><?php echo @format_rupiah($treatment->total_withdraw);?></td>
+            <td class="text-right"><?php echo @format_rupiah($treatment->qty * $treatment->total_withdraw);?></td>
+          </tr>
+          <?php
+        }else{
+          ?>
+          <tr>
+            <td><?php echo $treatment->nama_perawatan;?></td>
+            <td><?php echo $treatment->qty;?></td>
+            <td class="text-right"><?php echo @format_rupiah($treatment->total_withdraw);?></td>
+            <td class="text-right"><?php echo @format_rupiah($treatment->qty * $treatment->total_withdraw);?></td>
+          </tr>
+          <?php
+        }
+        $list++;
+      }
+      ?>
+      <tr>
+        <th colspan="6" class="text-right">Total</th>
+        <th class="text-right"><?php echo @format_rupiah($total_terapis);?></th>
+      </tr>
+      <?php
+    }
+    ?>                
+  </tbody>
+</table>

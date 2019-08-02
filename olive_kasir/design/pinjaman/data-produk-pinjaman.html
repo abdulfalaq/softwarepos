@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Koperasi Wanita</title>
+<link rel="icon" href="../assets/images/logo.png" type="image/gif">
+
+<link href="../assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/astro.css" rel="stylesheet" type="text/css" />
+<link href="../assets/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<!--DATATABLE-->
+<link href="../assets/datatables/DataTables-1.10.16/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="../assets/datatables/Responsive-2.2.0/css/responsive.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../assets/datatables/Responsive-2.2.0/css/responsive.dataTables.css" rel="stylesheet" type="text/css" />
+<!--//DATATABLE-->
+<script src="../assets/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>	
+	<header class="header">
+		<div class="col-sm-4 logo">
+			<a href="../index.html">
+				<h2><img src="../assets/images/logo-app.png" alt="Koperasi Wanita"></h2>
+			</a>
+		</div>
+		<div class="col-sm-8">
+			<div class="logout pull-right text-center">
+				<span>Hi, Yusuf Andrias</span> <br>
+				<img src="../assets/images/icon/user-logout.png" alt="logout"> <br>
+				<a href="#">Logout</a>
+			</div>
+		</div>
+	</header>
+	<div class="push-down clearfix"></div>
+
+
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+
+		<a href="menu-pinjaman.html"><button class="button-back"></button></a>
+
+		<div class="page-title">
+			<h1>Pinjaman</h1>
+		</div>
+
+		<div class="container">			
+			<div class="col-sm-12">
+				<h3>DATA PRODUK PINJAMAN</h3>
+				<h4>Ketentuan Top Up Pinjaman</h4>
+
+				<div class="col-sm-3">
+					<label>Status Top Up Pinjaman</label>
+					<select name="" class="form-control">
+						<option value="">--Pilih</option>
+						<option value="ada">Ada</option>
+						<option value="tidak ada">Tidak Ada</option>
+					</select>
+				</div>
+
+				<div class="col-sm-3">
+					<label>Ketentuan Top Up Pinjaman </label>
+					<input type="text" name="" class="form-control">
+					<p class="help-block">(% dari sisa pinjaman)</p>
+				</div>
+
+				<div class="col-sm-5">
+					<label>&nbsp;</label><br>
+					<button type="button" class="btn btn-primary">SIMPAN</button>
+					<button type="button" class="btn btn-warning">EDIT</button>
+				</div>
+
+				<div class="col-sm-12">
+					<div class="row">
+						<button class="btn btn-lg btn-primary btn-super btn-no-radius"><i class="fa fa-plus"></i> Tambah Produk</button>
+						<button class="btn btn-lg btn-primary btn-super btn-no-radius"><i class="fa fa-list"></i> Daftar Produk</button>
+					</div>
+				</div>
+
+				<div class="clearfix" style="margin-bottom: 30px;"></div>
+
+				<table class="table-form" width="60%">
+					<tr>
+						<td colspan="2"><h4>DATA PRODUK</h4></td>
+					</tr>
+					<tr>
+						<td width="300px">Nama Produk</td>
+						<td>
+							<input type="text" name="" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Kode Produk</td>
+						<td>
+							<input type="text" name="" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Jasa Pinjaman (Tahun)</td>
+						<td>
+							<input type="text" name="" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Jasa Pinjaman (Bulan)</td>
+						<td>
+							<input type="text" name="" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Plafon</td>
+						<td>
+							<input type="text" name="" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Denda Keterlambatan</td>
+						<td>
+							<select name="" class="form-control">
+								<option value="tidak ada">Tidak Ada</option>
+								<option value="ada">Ada</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Besar Denda Keterlambatan (Jika Ada)</td>
+						<td>
+							<input type="text" name="" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Biaya Provisi</td>
+						<td>
+							<select name="" class="form-control">
+								<option value="tidak ada">Tidak Ada</option>
+								<option value="ada">Ada</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Besar Biaya Provisi (Jika Ada)</td>
+						<td>
+							<input type="text" name="" class="form-control" placeholder="% dari pinjaman">
+
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><h4>KETENTUAN AGUNAN</h4></td>
+					</tr>
+					<tr>
+						<td>Status Agunan</td>
+						<td>
+							<select name="" class="form-control">
+								<option value="tidak ada">Tidak Ada</option>
+								<option value="ada">Ada</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><h4>KETENUAN JASA PINJAMAN</h4></td>
+					</tr>
+					<tr>
+						<td>Penarikan Jasa Pinjaman</td>
+						<td>
+							<select name="" class="form-control">
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Penulasan Pinjaman Sebelum Jatuh Tempo</td>
+						<td>
+							<select name="" class="form-control">
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><h4>STATUS PINJAMAN</h4></td>
+					</tr>
+					<tr>
+						<td>Status Pinjaman (Lancar / Tidak Lancar)</td>
+						<td>
+							<select name="" class="form-control">
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<button type="button" class="btn btn-block btn-lg btn-super btn-no-radius btn-danger">SIMPAN</button>
+						</td>
+					</tr>
+				</table>
+
+				<div class="clearfix" style="margin-bottom: 30px;"></div>
+
+				<table id="datatables" class="table table-bordered table-blue">
+					<thead>
+						<tr>
+							<th rowspan="2">No</th>
+							<th rowspan="2">Nama Produk</th>
+							<th rowspan="2">Plafon</th>
+							<th colspan="2">Jasa Pinjaman</th>
+							<th rowspan="2" width="70px">Action</th>
+						</tr>
+						<tr>
+							<th>Tahun</th>
+							<th>Bulan</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Pinjaman Tanpa Agunan</td>
+							<td>Rp. 3.000.000</td>
+							<td>12%</td>
+							<td>1%</td>
+							<td align="center">
+								<a href="" class="btn btn-sm btn-success">Detail</a>
+							</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Pinjaman Konsumtif</td>
+							<td>Rp. 10.000.000</td>
+							<td>12%</td>
+							<td>1%</td>
+							<td align="center">
+								<a href="" class="btn btn-sm btn-success">Detail</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div><!--//col-sm-12-->
+		</div><!--//container-->
+
+	</div>
+	<!-- //MAIN CONTENT -->
+
+
+	<div class="clearfix" style="margin-top: 50px;"></div>
+	<footer>
+		Cloud astro &copy; 2017
+	</footer>
+
+</body>
+
+<script src="../assets/js/jquery.matchHeight-min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<!--DATATABLE-->
+<script src="../assets/datatables/DataTables-1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script src="../assets/datatables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="../assets/datatables/Responsive-2.2.0/js/dataTables.responsive.min.js"></script>
+<script src="../assets/datatables/Responsive-2.2.0/js/responsive.bootstrap.min.js"></script>
+<!--//DATATABLE-->
+
+<script>
+	$('#datatables').dataTable();
+</script>
+</html>

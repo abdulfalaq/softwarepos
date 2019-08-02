@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Koperasi Wanita</title>
+<link rel="icon" href="../../assets/images/logo.png" type="image/gif">
+
+<link href="../../assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/css/astro.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<!--DATATABLE-->
+<link href="../../assets/datatables/DataTables-1.10.16/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/datatables/Responsive-2.2.0/css/responsive.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/datatables/Responsive-2.2.0/css/responsive.dataTables.css" rel="stylesheet" type="text/css" />
+<!--//DATATABLE-->
+<script src="../../assets/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>	
+	<header class="header">
+		<div class="col-sm-4 logo">
+			<a href="../../index.html">
+				<h2><img src="../../assets/images/logo-app.png" alt="Koperasi Wanita"></h2>
+			</a>
+		</div>
+		<div class="col-sm-8">
+			<div class="logout pull-right text-center">
+				<span>Hi, Yusuf Andrias</span> <br>
+				<img src="../../assets/images/icon/user-logout.png" alt="logout"> <br>
+				<a href="#">Logout</a>
+			</div>
+		</div>
+	</header>
+	<div class="push-down clearfix"></div>
+
+
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+
+		<a href="menu-simpanan-Sukarela.html"><button class="button-back"></button></a>
+
+		<div class="page-title">
+			<h1>Simpanan Sukarela</h1>
+		</div>
+
+		<div class="container">				
+			<div class="col-sm-12">
+				<h4>Tanggungan Simpanan Sukarela</h4>
+			</div><!--//col-sm-12-->
+
+			<div class="col-sm-9" data-mh="x">
+				<div class="row">
+					<div class="col-sm-4">
+						<label>Nama Anggota</label>
+						<input type="text" name="" name="" class="form-control">
+					</div>
+					<div class="col-sm-3">
+						<label>Kode Anggota</label>
+						<input type="text" name="" name="" class="form-control">
+					</div>
+					<div class="col-sm-5">
+						<label>Data Record</label>
+						<div class="input-group">
+							<select name="" class="form-control" style="width: 50%;">
+								<option value="">--Tahun</option>
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+							</select>
+							<select name="" class="form-control" style="width: 50%;">
+								<option value="">--Bulan</option>
+								<option value="01">Januari</option>
+								<option value="02">Pebruari</option>
+								<option value="03">Maret</option>
+								<option value="04">April</option>
+								<option value="05">Mei</option>
+								<option value="06">Juni</option>
+								<option value="07">Juli</option>
+								<option value="08">Agustus</option>
+								<option value="09">September</option>
+								<option value="10">Oktober</option>
+								<option value="11">Nopember</option>
+								<option value="12">Desember</option>
+							</select>
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-primary">CARI</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="clearfix" style="margin: 20px;"></div>
+
+			<div class="col-sm-12">
+				<table id="datatables" class="table table-bordered table-blue">
+					<thead>
+						<th>NO</th>
+						<th>Nama Anggota</th>
+						<th>Kode Anggota</th>
+						<th>Total Simpanan Sukarela</th>
+						<th width="100px">Detail</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td align="center">
+								<a href="" class="btn btn-sm btn-success"><i class="fa fa-search"></i> Detail</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div><!--//container-->
+
+	</div>
+	<!-- //MAIN CONTENT -->
+
+
+	<div class="clearfix" style="margin-top: 50px;"></div>
+	<footer>
+		Cloud astro &copy; 2017
+	</footer>
+
+</body>
+
+<script src="../../assets/js/jquery.matchHeight-min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+<!--DATATABLE-->
+<script src="../../assets/datatables/DataTables-1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script src="../../assets/datatables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="../../assets/datatables/Responsive-2.2.0/js/dataTables.responsive.min.js"></script>
+<script src="../../assets/datatables/Responsive-2.2.0/js/responsive.bootstrap.min.js"></script>
+<!--//DATATABLE-->
+
+<script>
+	$('#datatables').dataTable();
+</script>
+</html>

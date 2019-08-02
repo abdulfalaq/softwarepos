@@ -1,0 +1,408 @@
+a{
+	text-decoration: none !important;
+}
+
+.form-control, input[type="search"], select{
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  border-radius: 0px;
+}
+
+.header{
+	background: #2f898e;
+	width: 100%;
+	float: left;
+	border-bottom: 3px solid #ff0000;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+	margin-bottom: 15px;
+	position: fixed;
+	z-index: 999;
+}
+
+.push-down{
+	margin-bottom: 80px;
+}
+
+.logo a{
+	color: #FFF;
+}
+.logo a img{
+	max-height: 38px;
+}
+
+.logout{
+	color: #FFF;
+	margin-top: 10px;
+}
+.logout img{
+  max-height: 32px;
+}
+.logout a{
+	color: #fb8302;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+footer{
+	background: #217377;
+	color: #FFF;
+	text-align: center;
+	font-size: 12px;
+	padding: 7px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin-top: 50px;
+  z-index: 999;
+}
+
+
+.button-menu{
+	background: #fb8302;
+	color: #FFF;
+	text-align: right;
+	padding: 10px;
+	border-radius: 6px;
+	overflow: hidden;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+	margin: 15px 0;
+	transition: 0.3s;
+}
+.button-comming-soon{
+	background: #464646;
+	color: #333;
+	text-align: right;
+	padding: 10px;
+	border-radius: 6px;
+	overflow: hidden;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+	margin: 15px 0;
+	transition: 0.3s;
+}
+.button-menu:hover{
+	background: #f1ab3f;
+	box-shadow: 0px 17px 4px -11px rgba(0, 0, 0, 0.19);
+	margin-top: 10px;
+}
+.button-menu img{
+	position: relative;
+}
+
+
+.main-content{
+	min-height: 100%;
+  margin-bottom: 50px;
+}
+
+
+.page-title{
+	border-bottom: 2px solid #000;
+	padding: 0px 30px;
+	text-transform: uppercase;
+	width: 100%;
+	float: left;
+	margin-bottom: 15px;
+}
+.page-title h1{
+	font-size: 27px;
+	font-weight: 700;
+}
+
+.table-form tr td{
+	padding-bottom: 10px;
+	vertical-align: text-top;
+}
+.setting-information{
+	padding: 20px 35px;
+	background: #fcb074;
+	border-radius: 6px;
+	font-weight: 700;
+	font-size: 16px;
+	margin-top: 48px;
+}
+
+.button-back{
+	position: fixed;
+	z-index: 9999;
+	width: 36px;
+	height: 36px;
+	background: url(../images/icon/arrow-back.png) center center no-repeat;
+  background-size: cover;
+  top: 16px;
+  right: 200px;
+  border: none;
+  border-radius: 80px;
+  opacity: 0.9;
+  transition: 0.3s;
+}
+.button-back:hover{
+	opacity: 1;
+}
+
+.table-blue thead{
+  background: rgba(64, 121, 230, 0.76);
+  color: #FFF;
+}
+
+.btn-no-radius{
+	border-radius: 0px !important;
+}
+.btn-super{
+	padding: 20px;
+}
+.select2-container--default .select2-selection--single {
+  background-color: #fff;
+  border: 1px solid #CCC !important;
+  border-radius: 0px !important;
+}
+.select2-container .select2-selection--single {
+	height: 34px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #444;
+  line-height: 34px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 34px !important;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 20px;
+}
+
+
+
+
+/*##############################################################################*/
+@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
+/* Starter CSS for Menu */
+#cssmenu {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: auto;
+}
+#cssmenu ul,
+#cssmenu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu ul {
+  position: relative;
+  z-index: 597;
+}
+#cssmenu ul li {
+  float: left;
+  min-height: 1px;
+  min-width: 200px;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+#cssmenu ul li.hover,
+#cssmenu ul li:hover {
+  position: relative;
+  z-index: 599;
+  cursor: default;
+}
+#cssmenu ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 598;
+  width: 100%;
+}
+#cssmenu ul ul li {
+  float: none;
+}
+#cssmenu ul ul ul {
+  top: 0;
+  left: 190px;
+  width: 190px;
+}
+#cssmenu ul li:hover > ul {
+  visibility: visible;
+}
+#cssmenu ul ul {
+  bottom: 0;
+  left: 0;
+}
+#cssmenu ul ul {
+  margin-top: 0;
+}
+#cssmenu ul ul li {
+  font-weight: normal;
+}
+#cssmenu a {
+  display: block;
+  line-height: 1em;
+  text-decoration: none;
+}
+/* Custom CSS Styles */
+#cssmenu {
+  font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
+  font-size: 12px;
+}
+#cssmenu > ul {
+  *display: inline-block;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 15px;
+}
+#cssmenu:after,
+#cssmenu ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+#cssmenu ul {
+  text-transform: uppercase;
+}
+#cssmenu ul ul {
+  border-top: 4px solid #fb8302;
+  text-transform: none;
+  min-width: 190px;
+}
+#cssmenu ul ul a {
+  background: #e6379c;
+  color: #ffffff;
+  border: 1px solid #fb8302;
+  border-top: 0 none;
+  line-height: 150%;
+  padding: 16px 20px;
+  font-size: 12px;
+}
+#cssmenu ul ul ul {
+  border-top: 0 none;
+}
+#cssmenu ul ul li {
+  position: relative;
+  left: -3px;
+}
+#cssmenu ul ul li:first-child > a {
+  border-top: 1px solid #fb8302;
+}
+#cssmenu ul ul li:hover > a {
+  background: #e6379c;
+  color: #ffffff;
+}
+#cssmenu ul ul li:last-child > a {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -moz-box-shadow: 0 1px 0 #fb8302;
+  -webkit-box-shadow: 0 1px 0 #fb8302;
+  box-shadow: 0 1px 0 #fb8302;
+}
+#cssmenu ul ul li:last-child:hover > a {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+#cssmenu ul ul li.has-sub > a:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -8px;
+}
+#cssmenu ul li:hover > a,
+#cssmenu ul li.active > a {
+  background: #389fa4;
+  color: #ffffff;
+}
+#cssmenu ul li.has-sub > a:after {
+  content: '';
+  margin-left: 5px;
+}
+#cssmenu ul li.last ul {
+  left: auto;
+  right: 0;
+}
+#cssmenu ul li.last ul ul {
+  left: auto;
+  right: 99.5%;
+}
+#cssmenu a {
+  background: #1d595c;
+  color: #FFF;
+  padding: 6px 20px;
+}
+#cssmenu > ul > li > a {
+  line-height: 48px;
+  font-size: 16px;
+}
+
+/*##############################################################################*/
+
+
+
+fieldset 
+{
+  border: 1px solid #ddd !important;
+  margin: 0;
+  xmin-width: 0;
+  padding: 30px 10px;       
+  position: relative;
+  border-radius:4px;
+  background-color:#f5f5f5;
+  padding-left:10px!important;
+} 
+
+legend
+{
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom: 0px; 
+  width: 35%; 
+  border: 1px solid #ddd;
+  border-radius: 4px; 
+  padding: 5px 5px 5px 10px; 
+  background-color: #ffffff;
+}
+
+
+
+
+hr{
+  margin-bottom: 0;
+}
+.container h1{
+  margin-top: 0;
+  font-size: 25px;
+}
+
+.dropdown .btn{
+  background: none;
+  border: none;
+  color: #FFF;
+  font-size: 17px;
+  margin-top: 17px;
+}
+
+
+.table-astro th{
+  text-align: center !important;
+}
+
+.hide{
+  display: none;
+}
