@@ -41,6 +41,7 @@
 								<th>No</th>
 								<th>Nama</th>
 								<th>Username</th>
+								<th>Password</th>
 								<th>Jabatan</th>
 								<th>Status</th>
 								<th>Action</th>
@@ -55,6 +56,7 @@
 									<td><?= $no ?></td>
 									<td><?= $value->nama_karyawan ?></td>
 									<td><?= $value->uname ?></td>
+									<td><?= paramDecrypt($value->upass) ?></td>
 									<td><?= $value->nama_jabatan ?></td>
 									<td>
 										<?php
