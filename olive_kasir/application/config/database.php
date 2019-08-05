@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'olive_kasir';
+$db['default']['username'] = 'clouoid1_root';
+$db['default']['password'] = 'astroboymin';
+$db['default']['database'] = 'clouoid1_olive_kasir';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -66,9 +66,9 @@ $db['default']['stricton'] = FALSE;
 
 
 $db['olive_master']['hostname'] = 'localhost';
-$db['olive_master']['username'] = 'root';
-$db['olive_master']['password'] = '';
-$db['olive_master']['database'] = 'olive_master';
+$db['olive_master']['username'] = 'clouoid1_root';
+$db['olive_master']['password'] = 'astroboymin';
+$db['olive_master']['database'] = 'clouoid1_olive_master';
 $db['olive_master']['dbdriver'] = 'mysql';
 $db['olive_master']['dbprefix'] = '';
 $db['olive_master']['pconnect'] = FALSE;
@@ -82,9 +82,9 @@ $db['olive_master']['autoinit'] = TRUE;
 $db['olive_master']['stricton'] = FALSE;
 
 $db['olive_cs']['hostname'] = 'localhost';
-$db['olive_cs']['username'] = 'root';
-$db['olive_cs']['password'] = '';
-$db['olive_cs']['database'] = 'olive_cs';
+$db['olive_cs']['username'] = 'clouoid1_root';
+$db['olive_cs']['password'] = 'astroboymin';
+$db['olive_cs']['database'] = 'clouoid1_olive_cs';
 $db['olive_cs']['dbdriver'] = 'mysql';
 $db['olive_cs']['dbprefix'] = '';
 $db['olive_cs']['pconnect'] = FALSE;
@@ -98,9 +98,9 @@ $db['olive_cs']['autoinit'] = TRUE;
 $db['olive_cs']['stricton'] = FALSE;
 
 $db['olive_keuangan']['hostname'] = 'localhost';
-$db['olive_keuangan']['username'] = 'root';
-$db['olive_keuangan']['password'] = '';
-$db['olive_keuangan']['database'] = 'olive_keuangan';
+$db['olive_keuangan']['username'] = 'clouoid1_root';
+$db['olive_keuangan']['password'] = 'astroboymin';
+$db['olive_keuangan']['database'] = 'clouoid1_olive_keuangan';
 $db['olive_keuangan']['dbdriver'] = 'mysql';
 $db['olive_keuangan']['dbprefix'] = '';
 $db['olive_keuangan']['pconnect'] = FALSE;
@@ -114,9 +114,9 @@ $db['olive_keuangan']['autoinit'] = TRUE;
 $db['olive_keuangan']['stricton'] = FALSE;
 
 $db['olive_gudang']['hostname'] = 'localhost';
-$db['olive_gudang']['username'] = 'root';
-$db['olive_gudang']['password'] = '';
-$db['olive_gudang']['database'] = 'olive_gudang';
+$db['olive_gudang']['username'] = 'clouoid1_root';
+$db['olive_gudang']['password'] = 'astroboymin';
+$db['olive_gudang']['database'] = 'clouoid1_olive_gudang';
 $db['olive_gudang']['dbdriver'] = 'mysql';
 $db['olive_gudang']['dbprefix'] = '';
 $db['olive_gudang']['pconnect'] = FALSE;

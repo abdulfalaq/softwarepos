@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'olive_admin';
+$db['default']['username'] = 'clouoid1_root';
+$db['default']['password'] = 'astroboymin';
+$db['default']['database'] = 'clouoid1_olive_admin';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -66,9 +66,9 @@ $db['default']['stricton'] = FALSE;
 
 
 $db['olive_master']['hostname'] = 'localhost';
-$db['olive_master']['username'] = 'root';
-$db['olive_master']['password'] = '';
-$db['olive_master']['database'] = 'olive_master';
+$db['olive_master']['username'] = 'clouoid1_root';
+$db['olive_master']['password'] = 'astroboymin';
+$db['olive_master']['database'] = 'clouoid1_olive_master';
 $db['olive_master']['dbdriver'] = 'mysql';
 $db['olive_master']['dbprefix'] = '';
 $db['olive_master']['pconnect'] = FALSE;
@@ -83,9 +83,9 @@ $db['olive_master']['stricton'] = FALSE;
 
 
 $db['olive_keuangan']['hostname'] = 'localhost';
-$db['olive_keuangan']['username'] = 'root';
-$db['olive_keuangan']['password'] = '';
-$db['olive_keuangan']['database'] = 'olive_keuangan';
+$db['olive_keuangan']['username'] = 'clouoid1_root';
+$db['olive_keuangan']['password'] = 'astroboymin';
+$db['olive_keuangan']['database'] = 'clouoid1_olive_keuangan';
 $db['olive_keuangan']['dbdriver'] = 'mysql';
 $db['olive_keuangan']['dbprefix'] = '';
 $db['olive_keuangan']['pconnect'] = FALSE;
@@ -99,9 +99,9 @@ $db['olive_keuangan']['autoinit'] = TRUE;
 $db['olive_keuangan']['stricton'] = FALSE;
 
 $db['olive_kasir']['hostname'] = 'localhost';
-$db['olive_kasir']['username'] = 'root';
-$db['olive_kasir']['password'] = '';
-$db['olive_kasir']['database'] = 'olive_kasir';
+$db['olive_kasir']['username'] = 'clouoid1_root';
+$db['olive_kasir']['password'] = 'astroboymin';
+$db['olive_kasir']['database'] = 'clouoid1_olive_kasir';
 $db['olive_kasir']['dbdriver'] = 'mysql';
 $db['olive_kasir']['dbprefix'] = '';
 $db['olive_kasir']['pconnect'] = FALSE;
