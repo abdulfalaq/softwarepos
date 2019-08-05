@@ -12,17 +12,17 @@
 	<tbody>
 		<?php
 		$kode = $this->uri->segment(3);
-		$this->db->from('olive_gudang.opsi_transaksi_stok_out_temp');
-		$this->db->where('olive_gudang.opsi_transaksi_stok_out_temp.kode_stok_out',$kode);
+		$this->db->from('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp');
+		$this->db->where('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.kode_stok_out',$kode);
 		$get_sapi = $this->db->get()->result();
 		$no = 0;
 		foreach ($get_sapi as $value) { $no++;
 			if ($value->jenis_item == 'Perlengkapan') {
-				$get_perlengkapan = $this->db->get_where('olive_master.master_perlengkapan',array('kode_perlengkapan' => $value->kode_bahan_baku ))->row(); 
+				$get_perlengkapan = $this->db->get_where('clouoid1_olive_master.master_perlengkapan',array('kode_perlengkapan' => $value->kode_bahan_baku ))->row(); 
 				$nama_bahan = $get_perlengkapan->nama_perlengkapan;
 
 			}else{
-				$get_bahan = $this->db->get_where('olive_master.master_bahan_baku',array('kode_bahan_baku' => $value->kode_bahan_baku ))->row(); 
+				$get_bahan = $this->db->get_where('clouoid1_olive_master.master_bahan_baku',array('kode_bahan_baku' => $value->kode_bahan_baku ))->row(); 
 				$nama_bahan = $get_bahan->nama_bahan_baku;
 			}?>
 			<tr>

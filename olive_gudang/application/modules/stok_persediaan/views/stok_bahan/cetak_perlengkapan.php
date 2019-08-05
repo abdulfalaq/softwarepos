@@ -4,8 +4,8 @@
 </head>
 <body onload="window.print()">
 	<?php 
-	$this->db->from('olive_master.master_bahan_baku mbb');
-	$this->db->join('olive_master.master_satuan satuan', 'mbb.kode_satuan_stok = satuan.kode','left');
+	$this->db->from('clouoid1_olive_master.master_bahan_baku mbb');
+	$this->db->join('clouoid1_olive_master.master_satuan satuan', 'mbb.kode_satuan_stok = satuan.kode','left');
 	$this->db->order_by('mbb.id','DESC');
 	$get_gudang = $this->db->get()->result(); 
 	?>

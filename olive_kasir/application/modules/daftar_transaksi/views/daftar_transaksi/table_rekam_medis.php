@@ -1,8 +1,8 @@
 <?php
 $kode_member=$this->uri->segment(3);
 $this->db->where('kode_member', @$kode_member);
-$this->db->from('olive_kasir.data_record_anggota');
-$this->db->join('olive_master.master_produk', 'olive_kasir.data_record_anggota.kode_item = master_produk.kode_produk', 'left');
+$this->db->from('clouoid1_olive_kasir.data_record_anggota');
+$this->db->join('clouoid1_olive_master.master_produk', 'clouoid1_olive_kasir.data_record_anggota.kode_item = master_produk.kode_produk', 'left');
 $data_rekam_medis=$this->db->get()->result();
 foreach ($data_rekam_medis as $data) {
 	?>

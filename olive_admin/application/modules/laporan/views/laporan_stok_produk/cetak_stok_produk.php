@@ -33,31 +33,31 @@
 
 			$data = $this->input->post();
 			$no = 0;
-			$this->db->from('olive_master.master_produk');
+			$this->db->from('clouoid1_olive_master.master_produk');
 			$get_bahan = $this->db->get()->result();
 			foreach ($get_bahan as $value) { $no++; 
-				$this->db->select_sum('olive_gudang.transaksi_stok.stok_masuk');
-				$this->db->select_sum('olive_gudang.transaksi_stok.stok_keluar');
-				$this->db->from('olive_gudang.transaksi_stok');
-				$this->db->where('olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
-				$this->db->where('olive_gudang.transaksi_stok.jenis_transaksi !=','opname');
+				$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_masuk');
+				$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_keluar');
+				$this->db->from('clouoid1_olive_gudang.transaksi_stok');
+				$this->db->where('clouoid1_olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
+				$this->db->where('clouoid1_olive_gudang.transaksi_stok.jenis_transaksi !=','opname');
 				if (!empty($tgl_awal)) {
-					$this->db->where('olive_gudang.transaksi_stok.tanggal_transaksi >=',$tgl_awal);
+					$this->db->where('clouoid1_olive_gudang.transaksi_stok.tanggal_transaksi >=',$tgl_awal);
 				}
 				if (!empty($tgl_akhir)) {
-					$this->db->where('olive_gudang.transaksi_stok.tanggal_transaksi <=',$tgl_akhir);
+					$this->db->where('clouoid1_olive_gudang.transaksi_stok.tanggal_transaksi <=',$tgl_akhir);
 				}
 				$get_stok = $this->db->get()->row();
-				$this->db->select_sum('olive_gudang.transaksi_stok.stok_keluar');
-				$this->db->select_sum('olive_gudang.transaksi_stok.stok_masuk');
-				$this->db->from('olive_gudang.transaksi_stok');
-				$this->db->where('olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
-				$this->db->where('olive_gudang.transaksi_stok.jenis_transaksi','opname');
+				$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_keluar');
+				$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_masuk');
+				$this->db->from('clouoid1_olive_gudang.transaksi_stok');
+				$this->db->where('clouoid1_olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
+				$this->db->where('clouoid1_olive_gudang.transaksi_stok.jenis_transaksi','opname');
 				if (!empty($tgl_awal)) {
-					$this->db->where('olive_gudang.transaksi_stok.tanggal_transaksi >=',$tgl_awal);
+					$this->db->where('clouoid1_olive_gudang.transaksi_stok.tanggal_transaksi >=',$tgl_awal);
 				}
 				if (!empty($tgl_akhir)) {
-					$this->db->where('olive_gudang.transaksi_stok.tanggal_transaksi <=',$tgl_akhir);
+					$this->db->where('clouoid1_olive_gudang.transaksi_stok.tanggal_transaksi <=',$tgl_akhir);
 				}
 				//echo $this->db->last_query();
 				$get_adjust = $this->db->get()->row();

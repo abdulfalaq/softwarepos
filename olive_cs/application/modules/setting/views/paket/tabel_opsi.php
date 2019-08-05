@@ -13,19 +13,19 @@
 		<tbody id="tabel_temp_paket">
 			<?php
 			$data = $this->input->post();
-			$this->db->from('olive_master.opsi_master_paket');
+			$this->db->from('clouoid1_olive_master.opsi_master_paket');
 
-			$this->db->select('olive_master.opsi_master_paket.id');
-			$this->db->select('olive_master.opsi_master_paket.kode_paket');
-			$this->db->select('olive_master.opsi_master_paket.hpp');
-			$this->db->select('olive_master.opsi_master_paket.jenis_produk');
-			$this->db->select('olive_master.master_produk.nama_produk');
-			$this->db->select('olive_master.master_perawatan.nama_perawatan');
-			$this->db->select('olive_master.opsi_master_paket.qty');
-			$this->db->join('olive_master.master_perawatan',' olive_master.master_perawatan.kode_perawatan = olive_master.opsi_master_paket.kode_treatment','left');
-			$this->db->join('olive_master.master_produk',' olive_master.master_produk.kode_produk = olive_master.opsi_master_paket.kode_produk','left');
-			$this->db->where('olive_master.opsi_master_paket.kode_paket',$data['kode_paket']);
-			$this->db->order_by('olive_master.opsi_master_paket.id','DESC');
+			$this->db->select('clouoid1_olive_master.opsi_master_paket.id');
+			$this->db->select('clouoid1_olive_master.opsi_master_paket.kode_paket');
+			$this->db->select('clouoid1_olive_master.opsi_master_paket.hpp');
+			$this->db->select('clouoid1_olive_master.opsi_master_paket.jenis_produk');
+			$this->db->select('clouoid1_olive_master.master_produk.nama_produk');
+			$this->db->select('clouoid1_olive_master.master_perawatan.nama_perawatan');
+			$this->db->select('clouoid1_olive_master.opsi_master_paket.qty');
+			$this->db->join('clouoid1_olive_master.master_perawatan',' clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_master.opsi_master_paket.kode_treatment','left');
+			$this->db->join('clouoid1_olive_master.master_produk',' clouoid1_olive_master.master_produk.kode_produk = clouoid1_olive_master.opsi_master_paket.kode_produk','left');
+			$this->db->where('clouoid1_olive_master.opsi_master_paket.kode_paket',$data['kode_paket']);
+			$this->db->order_by('clouoid1_olive_master.opsi_master_paket.id','DESC');
 			$get_sapi = $this->db->get()->result();
 
 			$hpp=0;

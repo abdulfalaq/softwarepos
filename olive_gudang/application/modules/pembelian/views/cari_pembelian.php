@@ -5,9 +5,9 @@ if(!empty($tgl_awal) && !empty($tgl_akhir)){
 	$this->db->where('tanggal_pembelian >=', $tgl_awal);
 	$this->db->where('tanggal_pembelian <=', $tgl_akhir);
 }
-$this->db->order_by('olive_gudang.transaksi_pembelian.id','DESC');
-$this->db->from('olive_gudang.transaksi_pembelian');
-$this->db->join('olive_master.master_supplier', 'olive_gudang.transaksi_pembelian.kode_supplier = olive_master.master_supplier.kode_supplier', 'left');
+$this->db->order_by('clouoid1_olive_gudang.transaksi_pembelian.id','DESC');
+$this->db->from('clouoid1_olive_gudang.transaksi_pembelian');
+$this->db->join('clouoid1_olive_master.master_supplier', 'clouoid1_olive_gudang.transaksi_pembelian.kode_supplier = clouoid1_olive_master.master_supplier.kode_supplier', 'left');
 $get_gudang = $this->db->get()->result();
 $no = 1;
 foreach ($get_gudang as $value) { ?>

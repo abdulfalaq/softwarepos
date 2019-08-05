@@ -27,7 +27,7 @@
 					<div class="sukses" ></div>
 					<?php 
 					$id=$this->uri->segment(4);
-					$this->db->from('olive_cs.transaksi_order_paket');
+					$this->db->from('clouoid1_olive_cs.transaksi_order_paket');
 					$get_gudang = $this->db->get()->row();
 					?>
 					<form id="data_form" action="" method="post">
@@ -64,7 +64,7 @@
 							<div class="box-body">
 								<?php
 								$id=$this->uri->segment(4);
-								$this->db->from('olive_cs.opsi_transaksi_order_paket');
+								$this->db->from('clouoid1_olive_cs.opsi_transaksi_order_paket');
 								$get_gudang = $this->db->get()->result();
 								?>
 								<table id="datatable" class="table table-bordered table-striped">

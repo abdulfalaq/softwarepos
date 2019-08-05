@@ -27,8 +27,8 @@
 					<div class="box-body" id="list_filter">            
 						<div class="sukses" ></div>
 						<?php 
-						$this->db->from('olive_cs.transaksi_reservasi');
-						$this->db->join('olive_master.master_member','master_member.kode_member = olive_cs.transaksi_reservasi.kode_member', 'left');
+						$this->db->from('clouoid1_olive_cs.transaksi_reservasi');
+						$this->db->join('clouoid1_olive_master.master_member','master_member.kode_member = clouoid1_olive_cs.transaksi_reservasi.kode_member', 'left');
 						$get_gudang = $this->db->get()->result();
 						?>
 						<table class="table table-striped table-hover table-bordered" id="datatable">

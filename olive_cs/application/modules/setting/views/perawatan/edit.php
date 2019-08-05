@@ -1,7 +1,7 @@
 <?php 
 $kode_perawatan=$this->uri->segment(4);
 $this->db->where('kode_perawatan',$kode_perawatan);
-$get_gudang = $this->db->get('olive_master.master_perawatan')->row();
+$get_gudang = $this->db->get('clouoid1_olive_master.master_perawatan')->row();
 ?>
 
 
@@ -126,7 +126,7 @@ $get_gudang = $this->db->get('olive_master.master_perawatan')->row();
 										<select id="kode_bahan" name="kode_bahan" class="form-control" style="width: 100%">
 											<option value="">--Pilih Bahan--</option>
 											<?php  
-											$get_paket = $this->db->get('olive_master.master_bahan_baku')->result();
+											$get_paket = $this->db->get('clouoid1_olive_master.master_bahan_baku')->result();
 											foreach ($get_paket as $value) {?>
 												<option value="<?php echo $value->kode_bahan_baku ?>"><?php echo $value->nama_bahan_baku ?></option>
 												<?php }
@@ -141,7 +141,7 @@ $get_gudang = $this->db->get('olive_master.master_perawatan')->row();
 											<select id="kode_perlengkapan" name="kode_perlengkapan" class="form-control " style="width: 100%">
 												<option value="">--Pilih Perlengkapan--</option>
 												<?php  
-												$get_butung = $this->db->get('olive_master.master_perlengkapan')->result();
+												$get_butung = $this->db->get('clouoid1_olive_master.master_perlengkapan')->result();
 												foreach ($get_butung as $value) {?>
 													<option value="<?php echo $value->kode_perlengkapan ?>"><?php echo $value->nama_perlengkapan ?></option>
 													<?php }

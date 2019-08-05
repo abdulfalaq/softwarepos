@@ -101,7 +101,7 @@
 	<?php 
 
 	$this->db->order_by('id','DESC');
-	$get_gudang = $this->db->get('olive_master.master_member')->result();
+	$get_gudang = $this->db->get('clouoid1_olive_master.master_member')->result();
 
 	?>
 </style>
@@ -234,14 +234,14 @@
 														<?php
 
 														$this->db->select_max('id');
-														$get_max_member = $this->db->get('olive_master.master_member');
+														$get_max_member = $this->db->get('clouoid1_olive_master.master_member');
 														$max_member = $get_max_member->row();
 
 														$tanggal_=date('Y-m-d');
 
 														$this->db->where('id', $max_member->id);
 														$this->db->where('tanggal_registrasi', $tanggal_);
-														$get_member = $this->db->get('olive_master.master_member');
+														$get_member = $this->db->get('clouoid1_olive_master.master_member');
 														$member = $get_member->row();
 														$nomor = substr(@$member->kode_member, 8);
 														$tanggal=date('Ymd');

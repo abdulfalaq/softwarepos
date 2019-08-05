@@ -66,20 +66,20 @@
 								<tbody>
 									<?php 
 									$no = 0;
-									$this->db->from('olive_master.master_produk');
+									$this->db->from('clouoid1_olive_master.master_produk');
 									$get_bahan = $this->db->get()->result();
 									foreach ($get_bahan as $value) { $no++; 
-										$this->db->select_sum('olive_gudang.transaksi_stok.stok_masuk');
-										$this->db->select_sum('olive_gudang.transaksi_stok.stok_keluar');
-										$this->db->from('olive_gudang.transaksi_stok');
-										$this->db->where('olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
-										$this->db->where('olive_gudang.transaksi_stok.jenis_transaksi !=','opname');
+										$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_masuk');
+										$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_keluar');
+										$this->db->from('clouoid1_olive_gudang.transaksi_stok');
+										$this->db->where('clouoid1_olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
+										$this->db->where('clouoid1_olive_gudang.transaksi_stok.jenis_transaksi !=','opname');
 										$get_stok = $this->db->get()->row();
-										$this->db->select_sum('olive_gudang.transaksi_stok.stok_keluar');
-										$this->db->select_sum('olive_gudang.transaksi_stok.stok_masuk');
-										$this->db->from('olive_gudang.transaksi_stok');
-										$this->db->where('olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
-										$this->db->where('olive_gudang.transaksi_stok.jenis_transaksi','opname');
+										$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_keluar');
+										$this->db->select_sum('clouoid1_olive_gudang.transaksi_stok.stok_masuk');
+										$this->db->from('clouoid1_olive_gudang.transaksi_stok');
+										$this->db->where('clouoid1_olive_gudang.transaksi_stok.kode_bahan',$value->kode_produk);
+										$this->db->where('clouoid1_olive_gudang.transaksi_stok.jenis_transaksi','opname');
 										$get_adjust = $this->db->get()->row();
 
 										$hasil_opname 	= $get_adjust->stok_masuk + $get_adjust->stok_keluar;

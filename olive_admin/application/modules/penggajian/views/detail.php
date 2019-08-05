@@ -1,7 +1,7 @@
 <?php 
 $kode_transaksi=$this->uri->segment(3);
 $this->db->where('kode_transaksi',$kode_transaksi);
-$get_gudang = $this->db->get('olive_keuangan.transaksi_penggajian')->row();
+$get_gudang = $this->db->get('clouoid1_olive_keuangan.transaksi_penggajian')->row();
 ?>
 <a href="<?php echo base_url('penggajian'); ?>"><button class="button-back"></button></a>
 <!-- //back button -->

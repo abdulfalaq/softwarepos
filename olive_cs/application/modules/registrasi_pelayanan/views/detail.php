@@ -19,10 +19,10 @@
 						if ($kode_transaksi == 'detail') {
 							$kode_transaksi=$this->uri->segment(4);
 						}
-						$this->db->from('olive_cs.transaksi_registrasi');
-						$this->db->join('olive_master.master_member','master_member.kode_member = olive_cs.transaksi_registrasi.kode_member', 'left');
-						$this->db->join('olive_master.master_layanan','master_layanan.kode_layanan = olive_cs.transaksi_registrasi.kode_layanan', 'left');
-						$this->db->where('olive_cs.transaksi_registrasi.kode_transaksi', $kode_transaksi);
+						$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+						$this->db->join('clouoid1_olive_master.master_member','master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member', 'left');
+						$this->db->join('clouoid1_olive_master.master_layanan','master_layanan.kode_layanan = clouoid1_olive_cs.transaksi_registrasi.kode_layanan', 'left');
+						$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_transaksi', $kode_transaksi);
 						$data_periksa = $this->db->get()->row(); 
 						?>
 						<form id="data_form" method="post">
@@ -53,8 +53,8 @@
 												<div class="box-body col-xs-12">
 													<?php 
 													$this->db->from('opsi_transaksi_registrasi tr');
-													$this->db->join('olive_master.master_perawatan mp','mp.kode_perawatan = tr.kode_item','left');
-													$this->db->join('olive_master.master_produk mpr','mpr.kode_produk = tr.kode_item','left');
+													$this->db->join('clouoid1_olive_master.master_perawatan mp','mp.kode_perawatan = tr.kode_item','left');
+													$this->db->join('clouoid1_olive_master.master_produk mpr','mpr.kode_produk = tr.kode_item','left');
 													$this->db->where('tr.kode_transaksi',$kode_transaksi);
 													$this->db->order_by('tr.id','DESC');
 													$data_periksa = $this->db->get()->result(); 		

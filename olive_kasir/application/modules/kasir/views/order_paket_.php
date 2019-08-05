@@ -111,7 +111,7 @@ td, th, tr{
 							<select  class="form-control select2" id="kode_member">
 								<option value="">--Pilih Customer--</option>
 								<?php
-								$member = $this->db->get_where('olive_master.master_member',array('status_member' => '1'));
+								$member = $this->db->get_where('clouoid1_olive_master.master_member',array('status_member' => '1'));
 								$member = $member->result();
 								?>
 								<?php foreach($member as $daftar){ ?>
@@ -144,7 +144,7 @@ td, th, tr{
 									<select id="kode_paket" disabled class="form-control select2">
 										<option value="">--Pilih Paket</option>
 										<?php
-										$get_paket = $this->db->get('olive_master.master_paket')->result();
+										$get_paket = $this->db->get('clouoid1_olive_master.master_paket')->result();
 										foreach ($get_paket as $paket) {
 											?>
 											<option value="<?php echo $paket->kode_paket; ?>"><?php echo $paket->nama_paket; ?></option>
@@ -157,7 +157,7 @@ td, th, tr{
 									<select id="kode_treatment" class="form-control select2" style="width:100%">
 										<option value="">--Pilih Treatment</option>
 										<?php
-										$get_perawatan = $this->db->get('olive_master.master_perawatan')->result();
+										$get_perawatan = $this->db->get('clouoid1_olive_master.master_perawatan')->result();
 										foreach ($get_perawatan as $perawatan) {
 											?>
 											<option value="<?php echo $perawatan->kode_perawatan; ?>"><?php echo $perawatan->nama_perawatan; ?></option>
@@ -287,7 +287,7 @@ td, th, tr{
 							$this->db->where('status', '1');
 							$this->db->where('tanggal_awal <=',date('Y-m-d'));
 							$this->db->where('tanggal_akhir >=',date('Y-m-d'));
-							$this->db->from('olive_master.master_promo');
+							$this->db->from('clouoid1_olive_master.master_promo');
 							$get_promo=$this->db->get()->result();
 							foreach ($get_promo as $promo) {
 								?>
@@ -312,7 +312,7 @@ td, th, tr{
 							$this->db->where('status', '1');
 							$this->db->where('tanggal_awal <=',date('Y-m-d'));
 							$this->db->where('tanggal_akhir >=',date('Y-m-d'));
-							$this->db->from('olive_master.master_merchant');
+							$this->db->from('clouoid1_olive_master.master_merchant');
 							$get_merchant=$this->db->get()->result();
 							foreach ($get_merchant as $merchant) {
 								?>

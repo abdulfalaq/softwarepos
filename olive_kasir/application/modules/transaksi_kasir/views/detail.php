@@ -1,10 +1,10 @@
 <?php 
 $kode = $this->uri->segment(3);
-$this->db->select('olive_kasir.transaksi_kasir.kode_transaksi,tanggal,check_in,check_out,petugas,saldo_awal,saldo_akhir,saldo_sebenarnya,selisih,validasi');
+$this->db->select('clouoid1_olive_kasir.transaksi_kasir.kode_transaksi,tanggal,check_in,check_out,petugas,saldo_awal,saldo_akhir,saldo_sebenarnya,selisih,validasi');
 $this->db->select('nama_karyawan');
-$this->db->from('olive_kasir.transaksi_kasir');
-$this->db->where('olive_kasir.transaksi_kasir.kode_transaksi',$kode);
-$this->db->join('olive_master.master_user', 'olive_kasir.transaksi_kasir.petugas = olive_master.master_user.id', 'left');
+$this->db->from('clouoid1_olive_kasir.transaksi_kasir');
+$this->db->where('clouoid1_olive_kasir.transaksi_kasir.kode_transaksi',$kode);
+$this->db->join('clouoid1_olive_master.master_user', 'clouoid1_olive_kasir.transaksi_kasir.petugas = clouoid1_olive_master.master_user.id', 'left');
 $get_detail = $this->db->get()->row();
 
 $this->db->select_sum('grand_total');

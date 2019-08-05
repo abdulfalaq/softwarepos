@@ -88,7 +88,7 @@ class paket extends MY_Controller {
     {
         $kode_paket = $this->input->post('kode_paket');
 
-        $this->db->from('olive_master.master_paket');
+        $this->db->from('clouoid1_olive_master.master_paket');
         $this->db->where('kode_paket', $kode_paket);
         $cari_bahan = $this->db->get();
         $hasil_cari = $cari_bahan->row();
@@ -103,8 +103,8 @@ class paket extends MY_Controller {
     {
         $produk = $this->input->post('produk');
 
-        $this->db->from('olive_master.master_produk');
-        $this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.master_produk.kode_satuan_stok');
+        $this->db->from('clouoid1_olive_master.master_produk');
+        $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.master_produk.kode_satuan_stok');
         $this->db->where('kode_produk', $produk);
         $cari_bahan = $this->db->get();
         $hasil_cari = $cari_bahan->row();
@@ -116,7 +116,7 @@ class paket extends MY_Controller {
     {
         $treatment = $this->input->post('treatment');
 
-        $this->db->from('olive_master.master_perawatan');
+        $this->db->from('clouoid1_olive_master.master_perawatan');
         $this->db->where('kode_perawatan', $treatment);
         $cari_bahan = $this->db->get();
         $hasil_cari = $cari_bahan->row();
@@ -126,17 +126,17 @@ class paket extends MY_Controller {
 
     public function hapus_data(){
         $id = $this->input->post('id');
-        $this->db->delete('olive_master.opsi_master_paket_temp', array('id' => $id ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_paket_temp', array('id' => $id ));
 
     }
     public function hapus_data_opsi(){
         $id = $this->input->post('id');
-        $this->db->delete('olive_master.opsi_master_paket', array('id' => $id ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_paket', array('id' => $id ));
 
     }
     public function delete_all_temp(){
         $kode_paket = $this->input->post('kode_paket');
-        $this->db->delete('olive_master.opsi_master_paket_temp', array('kode_paket' => $kode_paket ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_paket_temp', array('kode_paket' => $kode_paket ));
 
     }
     public function add()
@@ -168,7 +168,7 @@ class paket extends MY_Controller {
             $masuk['hpp']                = $data['hpp_total'];   
         }
 
-        $isi = $this->db->insert('olive_master.opsi_master_paket_temp',$masuk);
+        $isi = $this->db->insert('clouoid1_olive_master.opsi_master_paket_temp',$masuk);
         if ($isi) {
             $ambil['response'] = 'sukses';
         }else{
@@ -207,7 +207,7 @@ class paket extends MY_Controller {
             $masuk['hpp']                = $data['hpp_total'];   
         }
 
-        $isi = $this->db->insert('olive_master.opsi_master_paket',$masuk);
+        $isi = $this->db->insert('clouoid1_olive_master.opsi_master_paket',$masuk);
         if ($isi) {
             $ambil['response'] = 'sukses';
         }else{
@@ -221,7 +221,7 @@ class paket extends MY_Controller {
     {
         $data = $this->input->post();       
 
-        $get_ayam = $this->db->get_where('olive_master.opsi_master_paket_temp',array('kode_paket' => $data['kode_paket']))->result();
+        $get_ayam = $this->db->get_where('clouoid1_olive_master.opsi_master_paket_temp',array('kode_paket' => $data['kode_paket']))->result();
 
         foreach ($get_ayam as $value) { 
 
@@ -232,7 +232,7 @@ class paket extends MY_Controller {
             $opsi['hpp']              = $value->hpp;
             $opsi['jenis_produk']     = $value->jenis_produk;
             $opsi['kode_satuan']       = $value->kode_satuan;
-            $isi = $this->db->insert('olive_master.opsi_master_paket',$opsi);
+            $isi = $this->db->insert('clouoid1_olive_master.opsi_master_paket',$opsi);
         }
         $masuk['kode_paket']       = @$data['kode_paket'];
         $masuk['nama_paket']       = @$data['nama_paket'];
@@ -242,9 +242,9 @@ class paket extends MY_Controller {
         $masuk['status']           = @$data['status'];
 
 
-        $isi = $this->db->insert('olive_master.master_paket',$masuk);
+        $isi = $this->db->insert('clouoid1_olive_master.master_paket',$masuk);
 
-        $isi = $this->db->delete('olive_master.opsi_master_paket_temp',array('kode_paket' => $data['kode_paket']));
+        $isi = $this->db->delete('clouoid1_olive_master.opsi_master_paket_temp',array('kode_paket' => $data['kode_paket']));
 
         if ($isi) {
             $data['response'] = 'sukses';
@@ -256,10 +256,10 @@ class paket extends MY_Controller {
     }
     public function hapus_besar(){
         $kode_paket = $this->input->post('kode_paket');
-        $this->db->delete('olive_master.master_paket', array('kode_paket' => $kode_paket ));
+        $this->db->delete('clouoid1_olive_master.master_paket', array('kode_paket' => $kode_paket ));
 
         $kode_paket = $this->input->post('kode_paket');
-        $this->db->delete('olive_master.opsi_master_paket', array('kode_paket' => $kode_paket ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_paket', array('kode_paket' => $kode_paket ));
 
     }
 
@@ -274,8 +274,8 @@ class paket extends MY_Controller {
         $masuk['hpp']              = @$data['hpp'];
         $masuk['status']           = @$data['status'];
 
-        $this->db->where('olive_master.master_paket.id', $data['kode_paket']);
-        $insert = $this->db->update('olive_master.master_paket',$masuk);
+        $this->db->where('clouoid1_olive_master.master_paket.id', $data['kode_paket']);
+        $insert = $this->db->update('clouoid1_olive_master.master_paket',$masuk);
         if ($insert) {
             $data['response'] = 'sukses';
         }else{
@@ -289,22 +289,22 @@ class paket extends MY_Controller {
 
         $id = $this->input->post('id');
 
-        $this->db->from('olive_master.opsi_master_paket_temp');
-        $this->db->select('olive_master.opsi_master_paket_temp.id');
-        $this->db->select('olive_master.opsi_master_paket_temp.jenis_produk');
-        $this->db->select('olive_master.opsi_master_paket_temp.kode_paket');
-        $this->db->select('olive_master.opsi_master_paket_temp.kode_treatment');
-        $this->db->select('olive_master.opsi_master_paket_temp.kode_satuan');
-        $this->db->select('olive_master.opsi_master_paket_temp.kode_produk');
-        $this->db->select('olive_master.opsi_master_paket_temp.qty');
-        $this->db->select('olive_master.opsi_master_paket_temp.hpp');
-        $this->db->select('olive_master.master_satuan.alias');
+        $this->db->from('clouoid1_olive_master.opsi_master_paket_temp');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.id');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.jenis_produk');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.kode_paket');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.kode_treatment');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.kode_satuan');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.kode_produk');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.qty');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket_temp.hpp');
+        $this->db->select('clouoid1_olive_master.master_satuan.alias');
 
 
-        $this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.opsi_master_paket_temp.kode_satuan', 'left');
+        $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.opsi_master_paket_temp.kode_satuan', 'left');
 
 
-        $this->db->where('olive_master.opsi_master_paket_temp.id', $id);
+        $this->db->where('clouoid1_olive_master.opsi_master_paket_temp.id', $id);
         $pembelian = $this->db->get();
         $hasil_pembelian = $pembelian->row();
         echo json_encode($hasil_pembelian);
@@ -313,22 +313,22 @@ class paket extends MY_Controller {
 
         $id = $this->input->post('id');
 
-        $this->db->from('olive_master.opsi_master_paket');
-        $this->db->select('olive_master.opsi_master_paket.id');
-        $this->db->select('olive_master.opsi_master_paket.jenis_produk');
-        $this->db->select('olive_master.opsi_master_paket.kode_paket');
-        $this->db->select('olive_master.opsi_master_paket.kode_treatment');
-        $this->db->select('olive_master.opsi_master_paket.kode_satuan');
-        $this->db->select('olive_master.opsi_master_paket.kode_produk');
-        $this->db->select('olive_master.opsi_master_paket.qty');
-        $this->db->select('olive_master.opsi_master_paket.hpp');
-        $this->db->select('olive_master.master_satuan.alias');
+        $this->db->from('clouoid1_olive_master.opsi_master_paket');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.id');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.jenis_produk');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.kode_paket');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.kode_treatment');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.kode_satuan');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.kode_produk');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.qty');
+        $this->db->select('clouoid1_olive_master.opsi_master_paket.hpp');
+        $this->db->select('clouoid1_olive_master.master_satuan.alias');
 
 
-        $this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.opsi_master_paket.kode_satuan', 'left');
+        $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.opsi_master_paket.kode_satuan', 'left');
 
 
-        $this->db->where('olive_master.opsi_master_paket.id', $id);
+        $this->db->where('clouoid1_olive_master.opsi_master_paket.id', $id);
         $pembelian = $this->db->get();
         $hasil_pembelian = $pembelian->row();
         echo json_encode($hasil_pembelian);
@@ -351,7 +351,7 @@ class paket extends MY_Controller {
 
 
         $this->db->where('opsi_master_paket_temp.id', $data['id_item']);
-        $isi = $this->db->update('olive_master.opsi_master_paket_temp',$insert);
+        $isi = $this->db->update('clouoid1_olive_master.opsi_master_paket_temp',$insert);
         if ($isi) {
             $data['response'] = 'sukses';
         }else{
@@ -378,7 +378,7 @@ class paket extends MY_Controller {
 
 
         $this->db->where('opsi_master_paket.id', $data['id_item']);
-        $isi = $this->db->update('olive_master.opsi_master_paket',$insert);
+        $isi = $this->db->update('clouoid1_olive_master.opsi_master_paket',$insert);
         if ($isi) {
             $data['response'] = 'sukses';
         }else{

@@ -22,7 +22,7 @@
 	<?php 
 	$id=$this->uri->segment(4);
 	$this->db->where('id',$id);
-	$get_kategori = $this->db->get('olive_master.master_aset')->row();
+	$get_kategori = $this->db->get('clouoid1_olive_master.master_aset')->row();
 	?>
 	<div class="row">
 		<div class="col-sm-12">

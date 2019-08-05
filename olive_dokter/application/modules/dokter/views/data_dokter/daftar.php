@@ -35,12 +35,12 @@
 							</thead>
 							<tbody id="scroll_data">
 								<?php
-								$this->db->from('olive_cs.transaksi_registrasi');
-								$this->db->join('olive_master.master_member','olive_master.master_member.kode_member = olive_cs.transaksi_registrasi.kode_member');
-								$this->db->join('olive_master.master_layanan','olive_master.master_layanan.kode_layanan = olive_cs.transaksi_registrasi.kode_layanan');
-								$this->db->where('olive_cs.transaksi_registrasi.kode_layanan !=','perawatan');
-								$this->db->where('olive_cs.transaksi_registrasi.status','menunggu');
-								$this->db->order_by('olive_cs.transaksi_registrasi.id','DESC');
+								$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+								$this->db->join('clouoid1_olive_master.master_member','clouoid1_olive_master.master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member');
+								$this->db->join('clouoid1_olive_master.master_layanan','clouoid1_olive_master.master_layanan.kode_layanan = clouoid1_olive_cs.transaksi_registrasi.kode_layanan');
+								$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_layanan !=','perawatan');
+								$this->db->where('clouoid1_olive_cs.transaksi_registrasi.status','menunggu');
+								$this->db->order_by('clouoid1_olive_cs.transaksi_registrasi.id','DESC');
 								$get_sapi = $this->db->get()->result();
 								$no = 0;
 								foreach ($get_sapi as $value) { $no++;

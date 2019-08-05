@@ -52,7 +52,7 @@
 										<option selected="true" value="">--Pilih Supplier--</option>
 										<?php
 										$this->db->where('status_supplier', '1');
-										$this->db->from('olive_master.master_supplier');
+										$this->db->from('clouoid1_olive_master.master_supplier');
 										$get_supplier=$this->db->get()->result();
 										foreach ($get_supplier as $value) {
 											?>

@@ -1,19 +1,19 @@
 <?php 
 $data = $this->input->post();
-$this->db->from('olive_master.opsi_master_perawatan_temp');
-$this->db->select('olive_master.opsi_master_perawatan_temp.hpp');
-$this->db->select('olive_master.opsi_master_perawatan_temp.kode_perawatan');
-$this->db->select('olive_master.opsi_master_perawatan_temp.id');
-$this->db->select('olive_master.opsi_master_perawatan_temp.jenis');
-$this->db->select('olive_master.opsi_master_perawatan_temp.qty');
-$this->db->select('olive_master.master_perlengkapan.nama_perlengkapan');
-$this->db->select('olive_master.master_bahan_baku.nama_bahan_baku');
+$this->db->from('clouoid1_olive_master.opsi_master_perawatan_temp');
+$this->db->select('clouoid1_olive_master.opsi_master_perawatan_temp.hpp');
+$this->db->select('clouoid1_olive_master.opsi_master_perawatan_temp.kode_perawatan');
+$this->db->select('clouoid1_olive_master.opsi_master_perawatan_temp.id');
+$this->db->select('clouoid1_olive_master.opsi_master_perawatan_temp.jenis');
+$this->db->select('clouoid1_olive_master.opsi_master_perawatan_temp.qty');
+$this->db->select('clouoid1_olive_master.master_perlengkapan.nama_perlengkapan');
+$this->db->select('clouoid1_olive_master.master_bahan_baku.nama_bahan_baku');
 
 
-$this->db->join('olive_master.master_perlengkapan','olive_master.master_perlengkapan.kode_perlengkapan = olive_master.opsi_master_perawatan_temp.kode_perlengkapan','Left');
-$this->db->join('olive_master.master_bahan_baku','olive_master.master_bahan_baku.kode_bahan_baku = olive_master.opsi_master_perawatan_temp.kode_bahan','Left');
+$this->db->join('clouoid1_olive_master.master_perlengkapan','clouoid1_olive_master.master_perlengkapan.kode_perlengkapan = clouoid1_olive_master.opsi_master_perawatan_temp.kode_perlengkapan','Left');
+$this->db->join('clouoid1_olive_master.master_bahan_baku','clouoid1_olive_master.master_bahan_baku.kode_bahan_baku = clouoid1_olive_master.opsi_master_perawatan_temp.kode_bahan','Left');
 
-$this->db->where('olive_master.opsi_master_perawatan_temp.kode_perawatan',$data['kode_perawatan']);
+$this->db->where('clouoid1_olive_master.opsi_master_perawatan_temp.kode_perawatan',$data['kode_perawatan']);
 $get_sapi = $this->db->get()->result();
 ?>
 <table id="" class="table table-striped table-bordered">

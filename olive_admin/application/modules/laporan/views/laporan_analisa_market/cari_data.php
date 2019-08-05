@@ -17,9 +17,9 @@
 		$this->db->select('kode');
 		$this->db->select('nama_promo');
 		$this->db->group_by('kode');
-		$this->db->where('olive_kasir.transaksi_layanan.kategori_diskon', 'promo');
-		$this->db->from('olive_kasir.transaksi_layanan');
-		$this->db->join('olive_master.master_promo', 'olive_kasir.transaksi_layanan.kode = olive_master.master_promo.kode_promo', 'left');
+		$this->db->where('clouoid1_olive_kasir.transaksi_layanan.kategori_diskon', 'promo');
+		$this->db->from('clouoid1_olive_kasir.transaksi_layanan');
+		$this->db->join('clouoid1_olive_master.master_promo', 'clouoid1_olive_kasir.transaksi_layanan.kode = clouoid1_olive_master.master_promo.kode_promo', 'left');
 		$get_data=$this->db->get()->result();
 		foreach ($get_data as $value) {
 			if(!empty($tgl_awal) && !empty($tgl_akhir)){
@@ -28,7 +28,7 @@
 			}
 			$this->db->where('kode', $value->kode);
 			$this->db->select('kode');
-			$jumlah_data=$this->db->get('olive_kasir.transaksi_layanan')->result();
+			$jumlah_data=$this->db->get('clouoid1_olive_kasir.transaksi_layanan')->result();
 			?>
 			<tr>
 				<td><?php echo TanggalIndo($tgl_awal).' ~ '.TanggalIndo($tgl_akhir)?></td>

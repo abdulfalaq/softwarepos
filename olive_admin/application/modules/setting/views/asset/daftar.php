@@ -1,6 +1,6 @@
 <?php 
 $this->db->order_by('id','DESC');
-$get_kategori = $this->db->get('olive_master.master_aset')->result();
+$get_kategori = $this->db->get('clouoid1_olive_master.master_aset')->result();
 ?>
 <!-- back button -->
 <a href="<?php echo base_url('setting'); ?>"><button class="button-back"></button></a>

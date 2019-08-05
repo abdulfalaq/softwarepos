@@ -35,7 +35,7 @@ class registrasi_pelayanan extends MY_Controller {
 	public function simpan_member()
 	{
 		$input = $this->input->post();
-		$insert = $this->db->insert('olive_master.kartu_member',$input);
+		$insert = $this->db->insert('clouoid1_olive_master.kartu_member',$input);
 		if ($insert) {
 			$data['response'] = 'sukses';
 		}else{
@@ -107,9 +107,9 @@ class registrasi_pelayanan extends MY_Controller {
 		$data_user 	= $this->session->userdata('astrosession');
 		$data 		= $this->input->post();	
 		$get_total  = 0 ;
-		$this->db->from('olive_cs.opsi_transaksi_registrasi_temp');
-		$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_registrasi_temp.kode_item','left');
-		$this->db->where('olive_cs.opsi_transaksi_registrasi_temp.kode_transaksi', $data['kode_transaksi']);
+		$this->db->from('clouoid1_olive_cs.opsi_transaksi_registrasi_temp');
+		$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_registrasi_temp.kode_item','left');
+		$this->db->where('clouoid1_olive_cs.opsi_transaksi_registrasi_temp.kode_transaksi', $data['kode_transaksi']);
 		$data_transaksi = $this->db->get()->result();
 		foreach ($data_transaksi as $value) {	
 			$input_kasir['kode_transaksi'] 	= $value->kode_transaksi;
@@ -121,7 +121,7 @@ class registrasi_pelayanan extends MY_Controller {
 			$input_kasir['diskon_persen'] 	= '0';
 			$input_kasir['subtotal'] 		= $value->harga_jual;
 			$get_total 						= $value->harga_jual + $get_total; 
-			$insert_opsi_layanan            = $this->db->insert('olive_kasir.opsi_transaksi_layanan', $input_kasir);
+			$insert_opsi_layanan            = $this->db->insert('clouoid1_olive_kasir.opsi_transaksi_layanan', $input_kasir);
 		}
 
 		$get_temp = $this->db->get_where('opsi_transaksi_registrasi_temp', array('kode_transaksi'=> $data['kode_transaksi']))->result();
@@ -145,7 +145,7 @@ class registrasi_pelayanan extends MY_Controller {
 		$data_utama['grand_total'] 		    = $get_total;
 		$data_utama['status'] 				= 'proses';
 		
-		$insert_utama = $this->db->insert('olive_kasir.transaksi_layanan', $data_utama);
+		$insert_utama = $this->db->insert('clouoid1_olive_kasir.transaksi_layanan', $data_utama);
 
 		$data['tanggal_transaksi'] 	= date('Y-m-d');
 		$data['jam_registrasi'] 	= date('H:i:s');
@@ -171,11 +171,11 @@ class registrasi_pelayanan extends MY_Controller {
 
 		$this->db->where('kode_transaksi', @$get_registrasi->kode_transaksi);
 		$this->db->where('kode_item', @$get_registrasi->kode_item);
-		$get_opsi_layanan = $this->db->get('olive_kasir.opsi_transaksi_layanan')->row();
+		$get_opsi_layanan = $this->db->get('clouoid1_olive_kasir.opsi_transaksi_layanan')->row();
 
 		$opsi_layanan['qty']=$data['qty'];
 		$opsi_layanan['subtotal']=@$get_opsi_layanan->harga * $data['qty'];
-		$this->db->update('olive_kasir.opsi_transaksi_layanan',$opsi_layanan, array('kode_transaksi' => @$get_registrasi->kode_transaksi,'kode_item'=>@$get_registrasi->kode_item ));
+		$this->db->update('clouoid1_olive_kasir.opsi_transaksi_layanan',$opsi_layanan, array('kode_transaksi' => @$get_registrasi->kode_transaksi,'kode_item'=>@$get_registrasi->kode_item ));
 
 		if ($update) {
 			$out['response'] = 'sukses';
@@ -199,7 +199,7 @@ class registrasi_pelayanan extends MY_Controller {
 		$this->db->where('id', $data['id']);
 		$get_registrasi = $this->db->get('opsi_transaksi_registrasi')->row();
 
-		$this->db->delete('olive_kasir.opsi_transaksi_layanan', array('kode_transaksi' => @$get_registrasi->kode_transaksi,'kode_item'=>@$get_registrasi->kode_item ));
+		$this->db->delete('clouoid1_olive_kasir.opsi_transaksi_layanan', array('kode_transaksi' => @$get_registrasi->kode_transaksi,'kode_item'=>@$get_registrasi->kode_item ));
 
 		$delete = $this->db->delete('opsi_transaksi_registrasi', array('id' => $data['id'] ));
 		if ($delete) {
@@ -219,7 +219,7 @@ class registrasi_pelayanan extends MY_Controller {
 		$kode_member 	= $this->input->post('kode_member');
 
 		$this->db->where('kode_member', $kode_member);
-		$data = $this->db->get('olive_master.master_member')->row();
+		$data = $this->db->get('clouoid1_olive_master.master_member')->row();
 
 
 		echo json_encode($data);
@@ -230,7 +230,7 @@ class registrasi_pelayanan extends MY_Controller {
 
 		$this->db->where('kode_transaksi', @$data['kode_transaksi']);
 		$this->db->select_sum('subtotal');
-		$data_opsi=$this->db->get('olive_kasir.opsi_transaksi_layanan')->row();
+		$data_opsi=$this->db->get('clouoid1_olive_kasir.opsi_transaksi_layanan')->row();
 		
 		$updates['status'] = 'proses';
 		$update = $this->db->update('transaksi_registrasi',$updates, array('kode_transaksi' => $data['kode_transaksi'] ));
@@ -238,7 +238,7 @@ class registrasi_pelayanan extends MY_Controller {
 		$updates_kasir['status'] = 'proses';
 		$updates_kasir['total_layanan'] = @$data_opsi->subtotal;
 		$updates_kasir['grand_total'] = @$data_opsi->subtotal;
-		$update = $this->db->update('olive_kasir.transaksi_layanan',$updates_kasir, array('kode_transaksi' => $data['kode_transaksi'] ));
+		$update = $this->db->update('clouoid1_olive_kasir.transaksi_layanan',$updates_kasir, array('kode_transaksi' => $data['kode_transaksi'] ));
 		
 		
 		if ($update) {
@@ -252,12 +252,12 @@ class registrasi_pelayanan extends MY_Controller {
 	}
 	public function print_registrasi($kode_transaksi)
 	{
-		$setting = $this->db->get('olive_master.master_setting');
+		$setting = $this->db->get('clouoid1_olive_master.master_setting');
 		$hasil_setting = $setting->row();
 
-		$this->db->from('olive_kasir.transaksi_layanan');
-		$this->db->join('olive_master.master_member','olive_master.master_member.kode_member = olive_kasir.transaksi_layanan.kode_member','left');
-		$this->db->where('olive_kasir.transaksi_layanan.kode_transaksi',$kode_transaksi);
+		$this->db->from('clouoid1_olive_kasir.transaksi_layanan');
+		$this->db->join('clouoid1_olive_master.master_member','clouoid1_olive_master.master_member.kode_member = clouoid1_olive_kasir.transaksi_layanan.kode_member','left');
+		$this->db->where('clouoid1_olive_kasir.transaksi_layanan.kode_transaksi',$kode_transaksi);
 		$hasil_transaksi = $this->db->get()->row();
 		
 		$printTestText  = align_center(62,'KARTU PERAWATAN')."\n";
@@ -272,9 +272,9 @@ class registrasi_pelayanan extends MY_Controller {
 		$printTestText .= repeat_value(62,'_')."\n";
 
 
-		$this->db->from('olive_cs.opsi_transaksi_registrasi');
-		$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_registrasi.kode_item','left');
-		$this->db->where('olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode_transaksi);
+		$this->db->from('clouoid1_olive_cs.opsi_transaksi_registrasi');
+		$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_registrasi.kode_item','left');
+		$this->db->where('clouoid1_olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode_transaksi);
 		$opsi_transaksi = $this->db->get();
 		$hasil_opsi_transaksi = $opsi_transaksi->result();
 		foreach ($hasil_opsi_transaksi as $value) {
@@ -296,14 +296,14 @@ class registrasi_pelayanan extends MY_Controller {
 	}
 	public function print_invoice($kode_registrasi)
 	{
-		$setting = $this->db->get('olive_master.master_setting');
+		$setting = $this->db->get('clouoid1_olive_master.master_setting');
 		$hasil_setting = $setting->row();
 
-		$this->db->from('olive_cs.transaksi_registrasi');
-		$this->db->join('olive_master.master_member','olive_master.master_member.kode_member = olive_cs.transaksi_registrasi.kode_member','left');
-		$this->db->join('olive_master.master_karyawan','olive_master.master_karyawan.kode_karyawan = olive_cs.transaksi_registrasi.kode_dokter','left');
-		$this->db->join('olive_master.master_layanan_periksa','olive_master.master_layanan_periksa.kode_periksa = olive_cs.transaksi_registrasi.kode_periksa','left');
-		$this->db->where('olive_cs.transaksi_registrasi.kode_transaksi',$kode_registrasi);
+		$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+		$this->db->join('clouoid1_olive_master.master_member','clouoid1_olive_master.master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member','left');
+		$this->db->join('clouoid1_olive_master.master_karyawan','clouoid1_olive_master.master_karyawan.kode_karyawan = clouoid1_olive_cs.transaksi_registrasi.kode_dokter','left');
+		$this->db->join('clouoid1_olive_master.master_layanan_periksa','clouoid1_olive_master.master_layanan_periksa.kode_periksa = clouoid1_olive_cs.transaksi_registrasi.kode_periksa','left');
+		$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_transaksi',$kode_registrasi);
 		$hasil_transaksi = $this->db->get()->row();
 		
 		$printTestText  = align_center(62,'KARTU PERAWATAN')."\n";
@@ -319,9 +319,9 @@ class registrasi_pelayanan extends MY_Controller {
 
 		if($hasil_transaksi->kode_layanan == '01'){
 
-			$this->db->from('olive_cs.opsi_transaksi_registrasi');
-			$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_registrasi.kode_item','left');
-			$this->db->where('olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode_registrasi);
+			$this->db->from('clouoid1_olive_cs.opsi_transaksi_registrasi');
+			$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_registrasi.kode_item','left');
+			$this->db->where('clouoid1_olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode_registrasi);
 			$opsi_transaksi = $this->db->get();
 			$hasil_opsi_transaksi = $opsi_transaksi->result();
 			foreach ($hasil_opsi_transaksi as $value) {
@@ -355,14 +355,14 @@ class registrasi_pelayanan extends MY_Controller {
 	public function reprint()
 	{
 		$kode_registrasi = $this->input->post('kode_transaksi');
-		$setting = $this->db->get('olive_master.master_setting');
+		$setting = $this->db->get('clouoid1_olive_master.master_setting');
 		$hasil_setting = $setting->row();
 
-		$this->db->from('olive_cs.transaksi_registrasi');
-		$this->db->join('olive_master.master_member','olive_master.master_member.kode_member = olive_cs.transaksi_registrasi.kode_member','left');
-		$this->db->join('olive_master.master_karyawan','olive_master.master_karyawan.kode_karyawan = olive_cs.transaksi_registrasi.kode_dokter','left');
-		$this->db->join('olive_master.master_layanan_periksa','olive_master.master_layanan_periksa.kode_periksa = olive_cs.transaksi_registrasi.kode_periksa','left');
-		$this->db->where('olive_cs.transaksi_registrasi.kode_transaksi',$kode_registrasi);
+		$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+		$this->db->join('clouoid1_olive_master.master_member','clouoid1_olive_master.master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member','left');
+		$this->db->join('clouoid1_olive_master.master_karyawan','clouoid1_olive_master.master_karyawan.kode_karyawan = clouoid1_olive_cs.transaksi_registrasi.kode_dokter','left');
+		$this->db->join('clouoid1_olive_master.master_layanan_periksa','clouoid1_olive_master.master_layanan_periksa.kode_periksa = clouoid1_olive_cs.transaksi_registrasi.kode_periksa','left');
+		$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_transaksi',$kode_registrasi);
 		$hasil_transaksi = $this->db->get()->row();
 		
 		$printTestText  = align_center(62,'KARTU PERAWATAN')."\n";
@@ -378,9 +378,9 @@ class registrasi_pelayanan extends MY_Controller {
 
 		if($hasil_transaksi->kode_layanan == '01'){
 
-			$this->db->from('olive_cs.opsi_transaksi_registrasi');
-			$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_registrasi.kode_item','left');
-			$this->db->where('olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode_registrasi);
+			$this->db->from('clouoid1_olive_cs.opsi_transaksi_registrasi');
+			$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_registrasi.kode_item','left');
+			$this->db->where('clouoid1_olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode_registrasi);
 			$opsi_transaksi = $this->db->get();
 			$hasil_opsi_transaksi = $opsi_transaksi->result();
 			foreach ($hasil_opsi_transaksi as $value) {

@@ -2,11 +2,11 @@
 $tgl_awal=$this->input->post('tgl_awal');
 $tgl_akhir=$this->input->post('tgl_akhir');
 if(!empty($tgl_awal) && !empty($tgl_akhir)){
-	$this->db->where('olive_keuangan.keuangan_masuk.tanggal_transaksi >=', $tgl_awal);
-	$this->db->where('olive_keuangan.keuangan_masuk.tanggal_transaksi <=', $tgl_akhir);
+	$this->db->where('clouoid1_olive_keuangan.keuangan_masuk.tanggal_transaksi >=', $tgl_awal);
+	$this->db->where('clouoid1_olive_keuangan.keuangan_masuk.tanggal_transaksi <=', $tgl_akhir);
 }
 $this->db->order_by('id','DESC');
-$get_gudang = $this->db->get('olive_keuangan.keuangan_masuk')->result();
+$get_gudang = $this->db->get('clouoid1_olive_keuangan.keuangan_masuk')->result();
 ?>
 <table class="table table-striped table-hover table-bordered" id="datatable">
 	<thead>

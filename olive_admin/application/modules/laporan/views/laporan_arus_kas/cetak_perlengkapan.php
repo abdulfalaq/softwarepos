@@ -12,10 +12,10 @@
 									$bulan_sebelumnya=date('m',strtotime($tgl_sebelumnya));
 									$tahun_sebelumnya=date('Y',strtotime($tgl_sebelumnya));
 
-									$kas_lalu = $this->db->get_where('olive_keuangan.laporan_neraca',array('nama_akun' =>'Kas','kategori_keuangan' =>'Aktiva','bulan'=>$bulan_sebelumnya,'tahun'=>$tahun_sebelumnya));
+									$kas_lalu = $this->db->get_where('clouoid1_olive_keuangan.laporan_neraca',array('nama_akun' =>'Kas','kategori_keuangan' =>'Aktiva','bulan'=>$bulan_sebelumnya,'tahun'=>$tahun_sebelumnya));
 									$hasil_kas_lalu = $kas_lalu->row();
 
-									$saldo_awal = $this->db->get_where('olive_master.setting_saldo_awal',array('bulan'=>date('m'),'tahun'=>date('Y')));
+									$saldo_awal = $this->db->get_where('clouoid1_olive_master.setting_saldo_awal',array('bulan'=>date('m'),'tahun'=>date('Y')));
 									$hasil_saldo_awal = $saldo_awal->row();
 									if(!empty($hasil_saldo_awal)){
 										$kas_awal=@$hasil_saldo_awal->kas_awal;
@@ -48,7 +48,7 @@
 											<th></th>
 										</tr>
 										<?php
-										$get_pemasukan=$this->db->get_where('olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>'Pendapatan'));
+										$get_pemasukan=$this->db->get_where('clouoid1_olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>'Pendapatan'));
 										$hasil_pemasukan=$get_pemasukan->result();
 										$total_pemasukan=0;
 										foreach ($hasil_pemasukan as $pemasukan) {
@@ -78,7 +78,7 @@
 											<th></th>
 										</tr>
 										<?php
-										$get_pengeluaran=$this->db->get_where('olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>'Pengeluaran'));
+										$get_pengeluaran=$this->db->get_where('clouoid1_olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>'Pengeluaran'));
 										$hasil_pengeluaran=$get_pengeluaran->result();
 										$total_pengeluaran=0;
 										foreach ($hasil_pengeluaran as $pengeluaran) {

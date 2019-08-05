@@ -59,11 +59,11 @@ class user extends MY_Controller {
     public function get_karyawan()
     {
         $kode_karyawan = $this->input->post('kode_karyawan');
-        $this->db->from('olive_master.master_karyawan karyawan');
-        $this->db->join('olive_master.master_jabatan jabatan','karyawan.kode_jabatan = jabatan.kode_jabatan','left');
+        $this->db->from('clouoid1_olive_master.master_karyawan karyawan');
+        $this->db->join('clouoid1_olive_master.master_jabatan jabatan','karyawan.kode_jabatan = jabatan.kode_jabatan','left');
         $this->db->where('karyawan.kode_karyawan', $kode_karyawan);
         $get_karyawan = $this->db->get()->row();
-        // $get_karyawan = $this->db->get_where('olive_master.master_jabatan', array('kode_jabatan' => $get_karyawan->kode_jabatan))->row();
+        // $get_karyawan = $this->db->get_where('clouoid1_olive_master.master_jabatan', array('kode_jabatan' => $get_karyawan->kode_jabatan))->row();
         echo json_encode($get_karyawan);
     }
 
@@ -124,7 +124,7 @@ class user extends MY_Controller {
             );
 
           $this->db->where('kode_karyawan',$data['kode_karyawan']);
-          $this->db->update('olive_master.master_user', $user);
+          $this->db->update('clouoid1_olive_master.master_user', $user);
           echo '<div class="alert alert-success">Sudah tersimpan.</div>';    
       }
 

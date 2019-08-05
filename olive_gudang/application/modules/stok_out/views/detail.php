@@ -41,8 +41,8 @@
 						<div class="col-md-12 row">
 							<?php 
 							$kode = $this->uri->segment(3);
-							$this->db->from('olive_gudang.opsi_transaksi_stok_out');
-							$this->db->where('olive_gudang.opsi_transaksi_stok_out.kode_stok_out',$kode);
+							$this->db->from('clouoid1_olive_gudang.opsi_transaksi_stok_out');
+							$this->db->where('clouoid1_olive_gudang.opsi_transaksi_stok_out.kode_stok_out',$kode);
 							$get_gudang = $this->db->get()->result();
 							?>
 							<table id="" class="table table-striped table-bordered">
@@ -71,11 +71,11 @@
 									foreach ($get_gudang as $value) { 
 										$no++; 
 										if ($value->jenis_item == 'Perlengkapan') {
-											$get_perlengkapan = $this->db->get_where('olive_gudang.opsi_transaksi_stok_out',array('kode_bahan_baku' => $value->kode_bahan_baku ))->row(); 
+											$get_perlengkapan = $this->db->get_where('clouoid1_olive_gudang.opsi_transaksi_stok_out',array('kode_bahan_baku' => $value->kode_bahan_baku ))->row(); 
 											$nama_bahan = $get_perlengkapan->kode_bahan_baku;
 
 										}else{
-											$get_bahan = $this->db->get_where('olive_master.master_bahan_baku',array('kode_bahan_baku' => $value->kode_bahan_baku ))->row(); 
+											$get_bahan = $this->db->get_where('clouoid1_olive_master.master_bahan_baku',array('kode_bahan_baku' => $value->kode_bahan_baku ))->row(); 
 											$nama_bahan = @$get_bahan->nama_bahan_baku;
 										}
 										?>

@@ -48,7 +48,7 @@
 						<?php 
 						$this->db->order_by('id','DESC');
 						$this->db->where('kode_referensi','manual');
-						$get_gudang = $this->db->get('olive_keuangan.keuangan_masuk')->result();
+						$get_gudang = $this->db->get('clouoid1_olive_keuangan.keuangan_masuk')->result();
 						?>
 						<table class="table table-striped table-hover table-bordered" id="datatable">
 							<thead>

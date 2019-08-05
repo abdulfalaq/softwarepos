@@ -43,7 +43,7 @@
 									<option value="">--Pilih Karyawan--</option>
 									<?php
 									$this->db->where('status_karyawan', '1');
-									$get_karyawan=$this->db->get('olive_master.master_karyawan')->result();
+									$get_karyawan=$this->db->get('clouoid1_olive_master.master_karyawan')->result();
 									foreach ($get_karyawan as $karyawan) {
 										?>
 										<option value="<?php echo @$karyawan->kode_karyawan;?>"><?php echo @$karyawan->nama_karyawan;?></option>

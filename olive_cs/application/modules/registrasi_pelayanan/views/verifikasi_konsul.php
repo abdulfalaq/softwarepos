@@ -16,10 +16,10 @@
 					<div class="panel-body" style="padding:30px">
 						<?php 
 						$kode = $this->uri->segment(3);
-						$this->db->from('olive_cs.transaksi_registrasi');
-						$this->db->join('olive_master.master_member','master_member.kode_member = olive_cs.transaksi_registrasi.kode_member', 'left');
-						$this->db->join('olive_master.master_layanan',',master_layanan.kode_layanan = olive_cs.transaksi_registrasi.kode_layanan', 'left');
-						$this->db->where('olive_cs.transaksi_registrasi.kode_transaksi',$kode);
+						$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+						$this->db->join('clouoid1_olive_master.master_member','master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member', 'left');
+						$this->db->join('clouoid1_olive_master.master_layanan',',master_layanan.kode_layanan = clouoid1_olive_cs.transaksi_registrasi.kode_layanan', 'left');
+						$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_transaksi',$kode);
 						$data_periksa = $this->db->get()->row();
 						?>
 						<form id="data_form" method="post">
@@ -49,13 +49,13 @@
 											<div id="list_transaksi_pembelian">
 												<div class="box-body col-xs-12">
 													<?php 
-													$this->db->select('olive_cs.opsi_transaksi_registrasi.id,qty');
-													$this->db->select('olive_master.master_perawatan.nama_perawatan');
-													$this->db->select('olive_master.master_produk.nama_produk');
-													$this->db->from('olive_cs.opsi_transaksi_registrasi');
-													$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_registrasi.kode_item','left');
-													$this->db->join('olive_master.master_produk','olive_master.master_produk.kode_produk = olive_cs.opsi_transaksi_registrasi.kode_item','left');
-													$this->db->where('olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode);
+													$this->db->select('clouoid1_olive_cs.opsi_transaksi_registrasi.id,qty');
+													$this->db->select('clouoid1_olive_master.master_perawatan.nama_perawatan');
+													$this->db->select('clouoid1_olive_master.master_produk.nama_produk');
+													$this->db->from('clouoid1_olive_cs.opsi_transaksi_registrasi');
+													$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_registrasi.kode_item','left');
+													$this->db->join('clouoid1_olive_master.master_produk','clouoid1_olive_master.master_produk.kode_produk = clouoid1_olive_cs.opsi_transaksi_registrasi.kode_item','left');
+													$this->db->where('clouoid1_olive_cs.opsi_transaksi_registrasi.kode_transaksi',$kode);
 													$data_periksa = $this->db->get()->result();						
 													?>
 													<table id="tabel_daftar" class="table table-bordered table-striped">

@@ -25,7 +25,7 @@ class order_paket extends MY_Controller {
 		@$kode_reservasi=$this->uri->segment(4);
 		if(!empty($kode_reservasi)){
 			$this->db->where('kode_transaksi', $kode_reservasi);
-			$get_opsi=$this->db->get('olive_cs.opsi_transaksi_order_paket')->result();
+			$get_opsi=$this->db->get('clouoid1_olive_cs.opsi_transaksi_order_paket')->result();
 
 			$this->db->delete('opsi_transaksi_layanan_temp',array('kode_transaksi' =>@$kode_reservasi));
 			foreach ($get_opsi as  $value) {
@@ -67,7 +67,7 @@ class order_paket extends MY_Controller {
 		$data = $this->input->post();
 
 		$this->db->select('harga_jual');
-		$treatment = $this->db->get_where('olive_master.master_perawatan', array('kode_perawatan' => $data['kode_treatment']));
+		$treatment = $this->db->get_where('clouoid1_olive_master.master_perawatan', array('kode_perawatan' => $data['kode_treatment']));
 		$hasil_treatment = $treatment->row();
 		echo json_encode($hasil_treatment);
 	}
@@ -77,7 +77,7 @@ class order_paket extends MY_Controller {
 		$data = $this->input->post();
 
 		$this->db->select('harga_jual');
-		$paket = $this->db->get_where('olive_master.master_paket', array('kode_paket' => $data['kode_paket']));
+		$paket = $this->db->get_where('clouoid1_olive_master.master_paket', array('kode_paket' => $data['kode_paket']));
 		$hasil_paket = $paket->row();
 		echo json_encode($hasil_paket);
 	}
@@ -86,7 +86,7 @@ class order_paket extends MY_Controller {
 	{	
 		$kode_member=$this->input->post('kode_member');
 		$this->db->where('kode_member', $kode_member);
-		$this->db->from('olive_master.master_member');
+		$this->db->from('clouoid1_olive_master.master_member');
 		$get_member=$this->db->get()->row();
 		echo json_encode($get_member);
 	}
@@ -110,7 +110,7 @@ class order_paket extends MY_Controller {
 			$get_temp = $this->db->get('opsi_transaksi_layanan_temp')->num_rows();
 			if(empty($get_temp)){
 
-				$master_paket 	= $this->db->get_where("olive_master.master_paket", array("kode_paket"=>$kode_paket))->row();
+				$master_paket 	= $this->db->get_where("clouoid1_olive_master.master_paket", array("kode_paket"=>$kode_paket))->row();
 
 				$data['kode_transaksi'] = $kode_reservasi;
 				$data['jenis_item'] = $jenis_reservasi;
@@ -138,7 +138,7 @@ class order_paket extends MY_Controller {
 			$get_temp = $this->db->get('opsi_transaksi_layanan_temp')->num_rows();
 			if(empty($get_temp)){
 
-				$master_perawatan = $this->db->get_where("olive_master.master_perawatan", array("kode_perawatan"=>$kode_treatment))->row();
+				$master_perawatan = $this->db->get_where("clouoid1_olive_master.master_perawatan", array("kode_perawatan"=>$kode_treatment))->row();
 
 				$data['kode_transaksi'] = $kode_reservasi;
 				$data['jenis_item'] = $jenis_reservasi;
@@ -196,8 +196,8 @@ class order_paket extends MY_Controller {
 		$this->db->select('pkt.nama_paket');
 		$this->db->select('prw.nama_perawatan');
 		$this->db->from('opsi_transaksi_layanan_temp opsi');
-		$this->db->join('olive_master.master_paket pkt', 'opsi.kode_item = pkt.kode_paket', 'left');
-		$this->db->join('olive_master.master_perawatan prw', 'opsi.kode_item = prw.kode_perawatan', 'left');
+		$this->db->join('clouoid1_olive_master.master_paket pkt', 'opsi.kode_item = pkt.kode_paket', 'left');
+		$this->db->join('clouoid1_olive_master.master_perawatan prw', 'opsi.kode_item = prw.kode_perawatan', 'left');
 		$get_temp = $this->db->get();
 
 		$temp['result'] 	= $get_temp->result();
@@ -277,7 +277,7 @@ class order_paket extends MY_Controller {
 			$this->db->select('pkt.kode_treatment');
 			$this->db->select('pkt.jenis_produk');
 			$this->db->select('pkt.qty');
-			$this->db->join('olive_master.opsi_master_paket pkt', 'opsi_transaksi_layanan_temp.kode_item = pkt.kode_paket', 'left');
+			$this->db->join('clouoid1_olive_master.opsi_master_paket pkt', 'opsi_transaksi_layanan_temp.kode_item = pkt.kode_paket', 'left');
 		}
 		$this->db->from('opsi_transaksi_layanan_temp');
 		$get_detail_temp = $this->db->get()->result();
@@ -296,14 +296,14 @@ class order_paket extends MY_Controller {
 			$data['qty_diambil'] = '0';
 			$data['qty_sisa'] = $data['qty_item'];
 			$data['status'] = 'proses';
-			$this->db->insert('olive_cs.opsi_transaksi_reservasi', $data);
+			$this->db->insert('clouoid1_olive_cs.opsi_transaksi_reservasi', $data);
 		}
 		$data_reservasi['kode_reservasi'] = $kode_reservasi;
 		$data_reservasi['tanggal_transaksi'] = date('Y-m-d');
 		$data_reservasi['kode_member'] = $kode_member;
 		$data_reservasi['status'] = 'menunggu';
 
-		$this->db->insert('olive_cs.transaksi_reservasi', $data_reservasi);
+		$this->db->insert('clouoid1_olive_cs.transaksi_reservasi', $data_reservasi);
 
 		if($jenis_reservasi == 'Paket'){
 			
@@ -342,12 +342,12 @@ class order_paket extends MY_Controller {
 		$this->db->select('poin');
 		$this->db->select('kategori_member');
 		$this->db->where('kode_member', @$kode_member);
-		$this->db->from('olive_master.master_member');
+		$this->db->from('clouoid1_olive_master.master_member');
 		$poin_member = $this->db->get();
 		$hasil_poin_member = $poin_member->row();
 
 		if ($hasil_poin_member->kategori_member == 'Member') {
-			$this->db->from('olive_master.setting_poin');
+			$this->db->from('clouoid1_olive_master.setting_poin');
 			$get_poin = $this->db->get();
 			$hasil_get_poin = $get_poin->row();
 
@@ -357,7 +357,7 @@ class order_paket extends MY_Controller {
 					
 					$this->db->where('kode_member', $kode_member);
 					$this->db->set('poin',floor($total_poin));
-					$this->db->from('olive_master.master_member');
+					$this->db->from('clouoid1_olive_master.master_member');
 					$this->db->update();
 
 				}
@@ -367,14 +367,14 @@ class order_paket extends MY_Controller {
 
 					$this->db->where('kode_member', $kode_member);
 					$this->db->set('poin',@$hasil_poin_member->poin + (floor($total_poin)));
-					$this->db->from('olive_master.master_member');
+					$this->db->from('clouoid1_olive_master.master_member');
 					$this->db->update();
 				}
 			}
 		}
 
 		$order_paket['status'] = 'selesai';
-		$this->db->update('olive_cs.transaksi_order_paket', $order_paket,array('kode_transaksi' =>@$kode_reservasi));
+		$this->db->update('clouoid1_olive_cs.transaksi_order_paket', $order_paket,array('kode_transaksi' =>@$kode_reservasi));
 
 		$keuangan['kode_jenis_keuangan'] = '1';
 		$keuangan['kode_kategori_keuangan'] = '1.1';
@@ -392,12 +392,12 @@ class order_paket extends MY_Controller {
 		$keuangan['tanggal_transaksi'] = date('Y-m-d');
 		$keuangan['id_petugas'] = $kode_petugas;
 		$keuangan['kode_referensi'] = @$kode_reservasi;
-		$this->db->insert('olive_keuangan.keuangan_masuk', $keuangan);
+		$this->db->insert('clouoid1_olive_keuangan.keuangan_masuk', $keuangan);
 
 		$this->db->select('kode_jenis_akun');
 		$this->db->select('kode_sub_kategori_akun');
 		$this->db->where('kode_sub_kategori_akun', '2.6.2');
-		$this->db->from('olive_keuangan.keuangan_sub_kategori_akun');
+		$this->db->from('clouoid1_olive_keuangan.keuangan_sub_kategori_akun');
 		$kategori_keluar = $this->db->get();
 		$hasil_kategori_keluar = $kategori_keluar->row();
 
@@ -408,7 +408,7 @@ class order_paket extends MY_Controller {
 		$keuangan['tanggal_transaksi'] = date('Y-m-d');
 		$keuangan['id_petugas'] = $kode_petugas;
 		$keuangan['kode_referensi'] = @$kode_reservasi;
-		$this->db->insert('olive_keuangan.keuangan_keluar', $keuangan);
+		$this->db->insert('clouoid1_olive_keuangan.keuangan_keluar', $keuangan);
 
 		$this->simpan_arus_kas('Pendapatan','1.1.1','Penjualan',@$grand_total);
 		$this->simpan_laba_rugi('Pemasukan','1.1.1','Penjualan',@$grand_total);
@@ -424,11 +424,11 @@ class order_paket extends MY_Controller {
 		$tahun=date('Y',strtotime($tanggal));
 
 		$this->db->select('nominal');
-		$get_laporan_arus_kas   = $this->db->get_where('olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+		$get_laporan_arus_kas   = $this->db->get_where('clouoid1_olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		$hasil_laporan_arus_kas  = $get_laporan_arus_kas->row();
 		if(!empty($hasil_laporan_arus_kas)){
 			$update_arus_kas['nominal']=$hasil_laporan_arus_kas->nominal +$nominal;
-			$this->db->update('olive_keuangan.laporan_arus_kas',$update_arus_kas,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+			$this->db->update('clouoid1_olive_keuangan.laporan_arus_kas',$update_arus_kas,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		}else{
 
 			$insert_arus_kas['jenis_keuangan']=$jenis_keuangan;
@@ -438,7 +438,7 @@ class order_paket extends MY_Controller {
 			$insert_arus_kas['tanggal']=$tanggal;
 			$insert_arus_kas['bulan']=$bulan;
 			$insert_arus_kas['tahun']=$tahun;
-			$this->db->insert('olive_keuangan.laporan_arus_kas',$insert_arus_kas);
+			$this->db->insert('clouoid1_olive_keuangan.laporan_arus_kas',$insert_arus_kas);
 		}
 
 	}
@@ -448,11 +448,11 @@ class order_paket extends MY_Controller {
 		$tahun=date('Y',strtotime($tanggal));
 
 		$this->db->select('nominal');
-		$get_laporan_laba_rugi   = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+		$get_laporan_laba_rugi   = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		$hasil_laporan_laba_rugi  = $get_laporan_laba_rugi->row();
 		if(!empty($hasil_laporan_laba_rugi)){
 			$update_laba_rugi['nominal']=$hasil_laporan_laba_rugi->nominal +$nominal;
-			$this->db->update('olive_keuangan.laporan_laba_rugi',$update_laba_rugi,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+			$this->db->update('clouoid1_olive_keuangan.laporan_laba_rugi',$update_laba_rugi,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		}else{
 
 			$insert_laba_rugi['jenis_keuangan']=$jenis_keuangan;
@@ -462,7 +462,7 @@ class order_paket extends MY_Controller {
 			$insert_laba_rugi['tanggal']=$tanggal;
 			$insert_laba_rugi['bulan']=$bulan;
 			$insert_laba_rugi['tahun']=$tahun;
-			$this->db->insert('olive_keuangan.laporan_laba_rugi',$insert_laba_rugi);
+			$this->db->insert('clouoid1_olive_keuangan.laporan_laba_rugi',$insert_laba_rugi);
 		}
 
 	}

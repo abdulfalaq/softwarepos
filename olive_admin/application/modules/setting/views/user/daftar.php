@@ -30,8 +30,8 @@
 				</div>
 				<div class="panel-body">
 					<?php 
-					$this->db->from('olive_master.master_user user');
-					$this->db->join('olive_master.master_jabatan jabatan','jabatan.kode_jabatan = user.jabatan','left');
+					$this->db->from('clouoid1_olive_master.master_user user');
+					$this->db->join('clouoid1_olive_master.master_jabatan jabatan','jabatan.kode_jabatan = user.jabatan','left');
 					$this->db->order_by('user.id','DESC');
 					$get_gudang = $this->db->get()->result();
 					?>

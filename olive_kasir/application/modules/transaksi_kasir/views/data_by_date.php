@@ -22,8 +22,8 @@
 		$this->db->order_by('kasir.id', 'desc');
 		$this->db->where('kasir.tanggal >=',$data['tgl_awal']);
 		$this->db->where('kasir.tanggal <=',$data['tgl_akhir']);
-		$this->db->from('olive_kasir.transaksi_kasir kasir');
-		$this->db->join('olive_master.master_user user', 'kasir.petugas = user.id', 'left');
+		$this->db->from('clouoid1_olive_kasir.transaksi_kasir kasir');
+		$this->db->join('clouoid1_olive_master.master_user user', 'kasir.petugas = user.id', 'left');
 		$get_transaksi = $this->db->get()->result();
 		foreach ($get_transaksi as $value) { $no++;?>
 		<tr>

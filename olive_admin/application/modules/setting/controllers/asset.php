@@ -55,12 +55,12 @@ class asset extends MY_Controller {
     {
         $input = $this->input->post();
 
-        $this->db->from('olive_master.master_aset');
+        $this->db->from('clouoid1_olive_master.master_aset');
         $this->db->where('kode_aset', $input['kode_aset']);
         $cari_bahan = $this->db->get();
         $hasil_cari = $cari_bahan->row();
         if(empty($hasil_cari)){
-            $insert = $this->db->insert('olive_master.master_aset',$input);
+            $insert = $this->db->insert('clouoid1_olive_master.master_aset',$input);
             if ($insert) {
                 $data['response'] = 'sukses';
             }else{
@@ -77,7 +77,7 @@ class asset extends MY_Controller {
     {
         $input = $this->input->post();
         $this->db->where('id', $input['id']);
-        $insert = $this->db->update('olive_master.master_aset',$input);
+        $insert = $this->db->update('clouoid1_olive_master.master_aset',$input);
         
         if ($insert) {
             $data['response'] = 'sukses';
@@ -92,14 +92,14 @@ class asset extends MY_Controller {
     {
 
         $input = $this->input->post('id');
-        $this->db->delete('olive_master.master_aset', array('id' => $input ));
+        $this->db->delete('clouoid1_olive_master.master_aset', array('id' => $input ));
 
     }
 
     public function cek_kode_promo()
     {
         $kode_aset = $this->input->post('kode_aset');
-        $get = $this ->db ->get_where('olive_master.master_aset', array('kode_aset' =>$kode_aset));
+        $get = $this ->db ->get_where('clouoid1_olive_master.master_aset', array('kode_aset' =>$kode_aset));
         $peringatan = $get->row();
         if(empty($peringatan)){
             $data['peringatan']='kosong';

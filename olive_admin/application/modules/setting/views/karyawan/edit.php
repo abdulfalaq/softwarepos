@@ -47,7 +47,7 @@ $get_gudang = $this->db2->get('master_karyawan')->row();
 										<option selected="true" value="">--Pilih Nama Jabatan--</option>
 										<option value="">--Pilih Nama Jabatan--</option>
 										<?php 
-										$ambil_data = $this->db->get('olive_master.master_jabatan');
+										$ambil_data = $this->db->get('clouoid1_olive_master.master_jabatan');
 										$hasil_ambil_data = $ambil_data->result();
 										foreach ($hasil_ambil_data as $value) {
 											?>

@@ -63,8 +63,8 @@
 							$no = 1;
 							$kode = $this->uri->segment(4);
 							$this->db->from('transaksi_stok ts');
-							$this->db->join('olive_master.master_bahan_baku mb','mb.kode_bahan_baku = ts.kode_bahan' ,'left');
-							$this->db->join('olive_master.master_perlengkapan mp','mp.kode_perlengkapan = ts.kode_bahan' ,'left');
+							$this->db->join('clouoid1_olive_master.master_bahan_baku mb','mb.kode_bahan_baku = ts.kode_bahan' ,'left');
+							$this->db->join('clouoid1_olive_master.master_perlengkapan mp','mp.kode_perlengkapan = ts.kode_bahan' ,'left');
 							$this->db->order_by('ts.id','DESC');
 							$this->db->where('ts.jenis_transaksi','pembelian');
 							$this->db->where('ts.kode_bahan',$kode);

@@ -22,8 +22,8 @@ class stok_out extends MY_Controller {
 	{
 		$kode_bahan = $this->input->post('kode_bahan');
 
-		$this->db->from('olive_master.master_bahan_baku');
-		$this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.master_bahan_baku.kode_satuan_stok');
+		$this->db->from('clouoid1_olive_master.master_bahan_baku');
+		$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.master_bahan_baku.kode_satuan_stok');
 		$this->db->where('kode_bahan_baku', $kode_bahan);
 		$cari_bahan = $this->db->get();
 		$hasil_cari = $cari_bahan->row();
@@ -102,7 +102,7 @@ class stok_out extends MY_Controller {
 
 			foreach ($get_ayam as $value) { 
 
-				$this->db->from('olive_master.master_bahan_baku');
+				$this->db->from('clouoid1_olive_master.master_bahan_baku');
 				$this->db->where('kode_bahan_baku', $value->kode_bahan_baku);
 				$cari_bahan = $this->db->get();
 				$hasil_cari = $cari_bahan->row();
@@ -119,7 +119,7 @@ class stok_out extends MY_Controller {
 				$perbarui['real_stock'] = @$hasil_cari->real_stock-$value->jumlah;
 
 				$this->db->where('kode_bahan_baku', $value->kode_bahan_baku);
-				$insert = $this->db->update('olive_master.master_bahan_baku', $perbarui);
+				$insert = $this->db->update('clouoid1_olive_master.master_bahan_baku', $perbarui);
 				$insert = $this->db->insert('opsi_transaksi_stok_out', $masuk);
 			}
 
@@ -145,7 +145,7 @@ class stok_out extends MY_Controller {
 
 			foreach ($get_ayam2 as $value) { 
 
-				$this->db->from('olive_master.master_perlengkapan');
+				$this->db->from('clouoid1_olive_master.master_perlengkapan');
 				$this->db->where('kode_perlengkapan', $value->kode_bahan_baku);
 				$cari_bahan = $this->db->get();
 				$hasil_cari = $cari_bahan->row();
@@ -160,7 +160,7 @@ class stok_out extends MY_Controller {
 				$perbarui2['real_stock'] = @$hasil_cari->real_stock - $value->jumlah;
 
 				$this->db->where('kode_perlengkapan', $value->kode_bahan_baku);
-				$insert = $this->db->update('olive_master.master_perlengkapan', $perbarui2);
+				$insert = $this->db->update('clouoid1_olive_master.master_perlengkapan', $perbarui2);
 				echo $this->db->last_query();
 				$insert = $this->db->insert('opsi_transaksi_stok_out', $masuk2);
 			}
@@ -234,19 +234,19 @@ class stok_out extends MY_Controller {
 	{
 		$id = $this->input->post('id');
 
-		$this->db->from('olive_gudang.opsi_transaksi_stok_out_temp');
+		$this->db->from('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp');
 
-		$this->db->select('olive_gudang.opsi_transaksi_stok_out_temp.id');
-		$this->db->select('olive_gudang.opsi_transaksi_stok_out_temp.kode_stok_out');
-		$this->db->select('olive_gudang.opsi_transaksi_stok_out_temp.kode_bahan_baku');
-		$this->db->select('olive_gudang.opsi_transaksi_stok_out_temp.jumlah');
-		$this->db->select('olive_gudang.opsi_transaksi_stok_out_temp.kode_satuan');
-		$this->db->select('olive_gudang.opsi_transaksi_stok_out_temp.keterangan');
-		$this->db->select('olive_gudang.opsi_transaksi_stok_out_temp.jenis_item');
-		$this->db->select('olive_master.master_satuan.alias');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.id');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.kode_stok_out');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.kode_bahan_baku');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.jumlah');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.kode_satuan');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.keterangan');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.jenis_item');
+		$this->db->select('clouoid1_olive_master.master_satuan.alias');
 
-		$this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_gudang.opsi_transaksi_stok_out_temp.kode_satuan', 'left');
-		$this->db->where('olive_gudang.opsi_transaksi_stok_out_temp.id', $id);
+		$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.kode_satuan', 'left');
+		$this->db->where('clouoid1_olive_gudang.opsi_transaksi_stok_out_temp.id', $id);
 
 		$pembelian = $this->db->get();
 		$hasil_pembelian = $pembelian->row();
@@ -265,8 +265,8 @@ class stok_out extends MY_Controller {
 		$this->db = $this->load->database('olive_master',TRUE);
 		$kode_perlengkapan = $this->input->post('kode_perlengkapan');
 
-		$this->db->from('olive_master.master_perlengkapan');
-		$this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.master_perlengkapan.kode_satuan_stok');
+		$this->db->from('clouoid1_olive_master.master_perlengkapan');
+		$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.master_perlengkapan.kode_satuan_stok');
 		$this->db->where('kode_perlengkapan', $kode_perlengkapan);
 		$cari_bahan = $this->db->get();
 		$hasil_cari = $cari_bahan->row();

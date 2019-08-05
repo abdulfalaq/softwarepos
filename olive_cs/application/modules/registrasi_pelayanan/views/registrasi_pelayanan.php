@@ -161,9 +161,9 @@ td{
 										<?php 
 										$no = 0;
 										$this->db->select('tr.kode_transaksi,tr.kode_transaksi,tr.tanggal_transaksi,ml.nama_layanan, mm.nama_member');
-										$this->db->from('olive_cs.transaksi_registrasi tr');
-										$this->db->join('olive_master.master_member mm','mm.kode_member = tr.kode_member', 'left');
-										$this->db->join('olive_master.master_layanan ml','ml.kode_layanan = tr.kode_layanan', 'left');
+										$this->db->from('clouoid1_olive_cs.transaksi_registrasi tr');
+										$this->db->join('clouoid1_olive_master.master_member mm','mm.kode_member = tr.kode_member', 'left');
+										$this->db->join('clouoid1_olive_master.master_layanan ml','ml.kode_layanan = tr.kode_layanan', 'left');
 										$this->db->where('tr.kode_layanan','01');
 										$this->db->where('tr.tanggal_transaksi',date('Y-m-d'));
 										$data_periksa = $this->db->get()->result();
@@ -231,7 +231,7 @@ td{
 							<option value="">--- Pilih Customer</option>
 							<?php 
 							$this->db->where('status_member',1);
-							$get_member = $this->db->get('olive_master.master_member')->result();
+							$get_member = $this->db->get('clouoid1_olive_master.master_member')->result();
 							foreach ($get_member as $value) { ?>
 							<option value="<?php echo $value->kode_member ?>"><?php echo $value->kode_member ?> - <?php echo $value->nama_member ?></option>
 							<?php }
@@ -243,7 +243,7 @@ td{
 							<option value="">Pilih Layanan</option>
 							<?php 
 							$this->db->where('status',1);
-							$get_layanan = $this->db->get('olive_master.master_layanan')->result();
+							$get_layanan = $this->db->get('clouoid1_olive_master.master_layanan')->result();
 							foreach ($get_layanan as $value) { ?>
 							<option value="<?php echo $value->kode_layanan ?>"><?php echo $value->nama_layanan ?></option>
 							<?php }
@@ -277,7 +277,7 @@ td{
 								<option value="">-- Pilih Perawatan</option>
 								<?php 
 								$this->db->where('status','1');
-								$get_perawatan = $this->db->get('olive_master.master_perawatan')->result();
+								$get_perawatan = $this->db->get('clouoid1_olive_master.master_perawatan')->result();
 								foreach ($get_perawatan as $value) { ?>
 								<option value="<?php echo $value->kode_perawatan ?>"><?php echo $value->nama_perawatan ?></option>
 								<?php }
@@ -288,9 +288,9 @@ td{
 							<select name="" class="form-control select2" id="dokter" style="width:100%">
 								<option value="">-- Pilih Dokter</option>
 								<?php 
-								$this->db->from('olive_master.master_karyawan');
-								$this->db->join('olive_master.master_jabatan','olive_master.master_jabatan.kode_jabatan = olive_master.master_karyawan.kode_jabatan', 'left');
-								$this->db->where('olive_master.master_jabatan.nama_jabatan','Dokter');
+								$this->db->from('clouoid1_olive_master.master_karyawan');
+								$this->db->join('clouoid1_olive_master.master_jabatan','clouoid1_olive_master.master_jabatan.kode_jabatan = clouoid1_olive_master.master_karyawan.kode_jabatan', 'left');
+								$this->db->where('clouoid1_olive_master.master_jabatan.nama_jabatan','Dokter');
 								$get_dokter = $this->db->get()->result();
 								foreach ($get_dokter as $value) { ?>
 								<option value="<?php echo $value->kode_karyawan ?>"><?php echo $value->nama_karyawan ?></option>
@@ -303,7 +303,7 @@ td{
 								<option value="">-- Pilih Layanan</option>
 								<?php 
 								$this->db->where('status','1');
-								$get_layanan = $this->db->get('olive_master.master_layanan_periksa')->result();
+								$get_layanan = $this->db->get('clouoid1_olive_master.master_layanan_periksa')->result();
 								foreach ($get_layanan as $value) { ?>
 								<option value="<?php echo $value->kode_periksa ?>"><?php echo $value->nama_periksa ?></option>
 								<?php }

@@ -42,7 +42,7 @@ class tambah_customer extends MY_Controller {
 		$input = $this->input->post();
 		$input['tanggal_registrasi'] = date('Y-m-d');
 		$input['exp_date_member'] = date('Y-m-d H:i', time() + (60 * 60 * 24 * 730));
-		$insert = $this->db->insert('olive_master.master_member',$input);
+		$insert = $this->db->insert('clouoid1_olive_master.master_member',$input);
 		if ($insert) {
 			$data['response'] = 'sukses';
 		}else{
@@ -54,7 +54,7 @@ class tambah_customer extends MY_Controller {
 
 	public function cek_kode_promo(){
 		$kode_member = $this->input->post('kode_member');
-		$get = $this ->db ->get_where('olive_master.master_member', array('kode_member' =>$kode_member));
+		$get = $this ->db ->get_where('clouoid1_olive_master.master_member', array('kode_member' =>$kode_member));
 		$peringatan = $get->row();
 		if(empty($peringatan)){
 			$data['peringatan']='kosong';
@@ -67,7 +67,7 @@ class tambah_customer extends MY_Controller {
 	}
 	public function hapus_gudang(){
 		$kode_member = $this->input->post('kode_member');
-		$this->db->delete('olive_master.master_member', array('kode_member' => $kode_member ));
+		$this->db->delete('clouoid1_olive_master.master_member', array('kode_member' => $kode_member ));
 
 	}
 	public function update_member()
@@ -75,7 +75,7 @@ class tambah_customer extends MY_Controller {
 		$input = $this->input->post();
 		$input['tanggal_registrasi'] = date('Y-m-d');
 		$input['exp_date_member'] = date('Y-m-d H:i', time() + (60 * 60 * 24 * 730));
-		$insert = $this->db->update('olive_master.master_member',$input,array('kode_member' =>$input['kode_member']));
+		$insert = $this->db->update('clouoid1_olive_master.master_member',$input,array('kode_member' =>$input['kode_member']));
 		if ($insert) {
 			$data['response'] = 'sukses';
 		}else{

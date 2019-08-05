@@ -27,10 +27,10 @@
 					<div class="box-body" id="list_filter">            
 						<div class="sukses" ></div>
 						<?php 
-						$this->db->order_by('olive_cs.transaksi_order_paket.id', 'desc');
+						$this->db->order_by('clouoid1_olive_cs.transaksi_order_paket.id', 'desc');
 						$this->db->where('status', 'proses');
-						$this->db->from('olive_cs.transaksi_order_paket');
-						$this->db->join('olive_master.master_member', 'olive_cs.transaksi_order_paket.kode_member = olive_master.master_member.kode_member', 'left');
+						$this->db->from('clouoid1_olive_cs.transaksi_order_paket');
+						$this->db->join('clouoid1_olive_master.master_member', 'clouoid1_olive_cs.transaksi_order_paket.kode_member = clouoid1_olive_master.master_member.kode_member', 'left');
 						$get_gudang = $this->db->get()->result();
 						
 						?>

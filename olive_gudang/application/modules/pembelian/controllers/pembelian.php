@@ -43,7 +43,7 @@ class pembelian extends MY_Controller {
 
 		if(@$kategori_bahan=='bahan baku'){
 			$this->db->where('status', '1');
-			$this->db->from('olive_master.master_bahan_baku');
+			$this->db->from('clouoid1_olive_master.master_bahan_baku');
 			$get_bahan_baku=$this->db->get()->result();
 			echo "<option value=''>- Pilih -</option>";
 			foreach ($get_bahan_baku as $value) {
@@ -53,7 +53,7 @@ class pembelian extends MY_Controller {
 			}
 		}elseif (@$kategori_bahan=='produk') {
 			$this->db->where('status', '1');
-			$this->db->from('olive_master.master_produk');
+			$this->db->from('clouoid1_olive_master.master_produk');
 			$get_produk=$this->db->get()->result();
 			echo "<option value=''>- Pilih -</option>";
 			foreach ($get_produk as $value) {
@@ -63,7 +63,7 @@ class pembelian extends MY_Controller {
 			}
 		}elseif (@$kategori_bahan=='perlengkapan') {
 			$this->db->where('status', '1');
-			$this->db->from('olive_master.master_perlengkapan');
+			$this->db->from('clouoid1_olive_master.master_perlengkapan');
 			$get_perlengkapan=$this->db->get()->result();
 			echo "<option value=''>- Pilih -</option>";
 			foreach ($get_perlengkapan as $value) {
@@ -72,7 +72,7 @@ class pembelian extends MY_Controller {
 				<?php
 			}
 		}elseif (@$kategori_bahan=='kartu member') {
-			$this->db->from('olive_master.kartu_member');
+			$this->db->from('clouoid1_olive_master.kartu_member');
 			$get_kartu_member=$this->db->get()->row();
 			?>
 			<option value="<?php echo @$get_kartu_member->kode_kartu_member;?>"><?php echo @$get_kartu_member->nama_kartu_member;?></option>
@@ -88,27 +88,27 @@ class pembelian extends MY_Controller {
 		if(@$kategori_bahan=='bahan baku'){
 			$this->db->where('kode_bahan_baku', $kode_bahan);
 			$this->db->where('status', '1');
-			$this->db->from('olive_master.master_bahan_baku');
-			$this->db->join('olive_master.master_satuan', 'olive_master.master_bahan_baku.kode_satuan_stok = olive_master.master_satuan.kode', 'left');
+			$this->db->from('clouoid1_olive_master.master_bahan_baku');
+			$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_bahan_baku.kode_satuan_stok = clouoid1_olive_master.master_satuan.kode', 'left');
 			$get_bahan_baku=$this->db->get()->row();
 			echo json_encode($get_bahan_baku);
 		}elseif (@$kategori_bahan=='produk') {
 			$this->db->where('kode_produk', $kode_bahan);
 			$this->db->where('status', '1');
-			$this->db->from('olive_master.master_produk');
-			$this->db->join('olive_master.master_satuan', 'olive_master.master_produk.kode_satuan_stok = olive_master.master_satuan.kode', 'left');
+			$this->db->from('clouoid1_olive_master.master_produk');
+			$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_produk.kode_satuan_stok = clouoid1_olive_master.master_satuan.kode', 'left');
 			$get_produk=$this->db->get()->row();
 			echo json_encode($get_produk);
 		}elseif (@$kategori_bahan=='perlengkapan') {
 			$this->db->where('kode_perlengkapan', $kode_bahan);
 			$this->db->where('status', '1');
-			$this->db->from('olive_master.master_perlengkapan');
-			$this->db->join('olive_master.master_satuan', 'olive_master.master_perlengkapan.kode_satuan_stok = olive_master.master_satuan.kode', 'left');
+			$this->db->from('clouoid1_olive_master.master_perlengkapan');
+			$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_perlengkapan.kode_satuan_stok = clouoid1_olive_master.master_satuan.kode', 'left');
 			$get_perlengkapan=$this->db->get()->row();
 			echo json_encode($get_perlengkapan);
 		}elseif (@$kategori_bahan=='kartu member') {
 			$this->db->where('kode_kartu_member', $kode_bahan);
-			$this->db->from('olive_master.kartu_member');
+			$this->db->from('clouoid1_olive_master.kartu_member');
 			$get_kartu_member=$this->db->get()->row();
 			echo json_encode($get_kartu_member);
 		}
@@ -150,21 +150,21 @@ class pembelian extends MY_Controller {
 		$this->db->select('nama_bahan_baku');
 		$this->db->select('nama_perlengkapan');
 		$this->db->select('nama_produk');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.id');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.jumlah');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.expired_date');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.harga_satuan');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.jenis_diskon');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.diskon_item');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.subtotal');
-		$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.kategori_bahan');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.id');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.jumlah');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.expired_date');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.harga_satuan');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.jenis_diskon');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.diskon_item');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.subtotal');
+		$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kategori_bahan');
 
-		$this->db->where('olive_gudang.opsi_transaksi_pembelian_temp.id',@$id);
-		$this->db->from('olive_gudang.opsi_transaksi_pembelian_temp');
-		$this->db->join('olive_master.master_bahan_baku', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = olive_master.master_bahan_baku.kode_bahan_baku', 'left');
-		$this->db->join('olive_master.master_produk', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = olive_master.master_produk.kode_produk', 'left');
-		$this->db->join('olive_master.master_perlengkapan', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = olive_master.master_perlengkapan.kode_perlengkapan', 'left');
-		$this->db->join('olive_master.master_satuan', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_satuan = olive_master.master_satuan.kode', 'left');
+		$this->db->where('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.id',@$id);
+		$this->db->from('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp');
+		$this->db->join('clouoid1_olive_master.master_bahan_baku', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = clouoid1_olive_master.master_bahan_baku.kode_bahan_baku', 'left');
+		$this->db->join('clouoid1_olive_master.master_produk', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = clouoid1_olive_master.master_produk.kode_produk', 'left');
+		$this->db->join('clouoid1_olive_master.master_perlengkapan', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = clouoid1_olive_master.master_perlengkapan.kode_perlengkapan', 'left');
+		$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_satuan = clouoid1_olive_master.master_satuan.kode', 'left');
 		$pembelian = $this->db->get();
 		$list_pembelian = $pembelian->row();
 		echo json_encode($list_pembelian);
@@ -238,30 +238,30 @@ class pembelian extends MY_Controller {
 			echo '0|<div class="alert alert-danger">Periksa nilai pembayaran. '.$grand_total.'</div>';  
 		}
 		else{
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.kode_pembelian');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.kategori_bahan');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.jumlah');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.expired_date');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.kode_satuan');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.harga_satuan');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.jenis_diskon');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.diskon_item');
-			$this->db->select('olive_gudang.opsi_transaksi_pembelian_temp.subtotal');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_pembelian');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kategori_bahan');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.jumlah');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.expired_date');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_satuan');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.harga_satuan');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.jenis_diskon');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.diskon_item');
+			$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.subtotal');
 			
-			$this->db->select('olive_master.master_bahan_baku.real_stock as real_stock_bahan_baku');
-			$this->db->select('olive_master.master_produk.real_stock as real_stock_produk');
-			$this->db->select('olive_master.master_perlengkapan.real_stock as real_stock_perlengakapan');
-			$this->db->select('olive_master.kartu_member.real_stock as real_stock_kartu_member');
+			$this->db->select('clouoid1_olive_master.master_bahan_baku.real_stock as real_stock_bahan_baku');
+			$this->db->select('clouoid1_olive_master.master_produk.real_stock as real_stock_produk');
+			$this->db->select('clouoid1_olive_master.master_perlengkapan.real_stock as real_stock_perlengakapan');
+			$this->db->select('clouoid1_olive_master.kartu_member.real_stock as real_stock_kartu_member');
 
 
-			$this->db->where('olive_gudang.opsi_transaksi_pembelian_temp.kode_pembelian',@$kode_pembelian);
-			$this->db->from('olive_gudang.opsi_transaksi_pembelian_temp');
-			$this->db->join('olive_master.master_bahan_baku', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = olive_master.master_bahan_baku.kode_bahan_baku', 'left');
-			$this->db->join('olive_master.master_produk', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = olive_master.master_produk.kode_produk', 'left');
-			$this->db->join('olive_master.master_perlengkapan', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = olive_master.master_perlengkapan.kode_perlengkapan', 'left');
-			$this->db->join('olive_master.kartu_member', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = olive_master.kartu_member.kode_kartu_member', 'left');
-			$this->db->join('olive_master.master_satuan', 'olive_gudang.opsi_transaksi_pembelian_temp.kode_satuan = olive_master.master_satuan.kode', 'left');
+			$this->db->where('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_pembelian',@$kode_pembelian);
+			$this->db->from('clouoid1_olive_gudang.opsi_transaksi_pembelian_temp');
+			$this->db->join('clouoid1_olive_master.master_bahan_baku', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = clouoid1_olive_master.master_bahan_baku.kode_bahan_baku', 'left');
+			$this->db->join('clouoid1_olive_master.master_produk', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = clouoid1_olive_master.master_produk.kode_produk', 'left');
+			$this->db->join('clouoid1_olive_master.master_perlengkapan', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = clouoid1_olive_master.master_perlengkapan.kode_perlengkapan', 'left');
+			$this->db->join('clouoid1_olive_master.kartu_member', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_bahan = clouoid1_olive_master.kartu_member.kode_kartu_member', 'left');
+			$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_gudang.opsi_transaksi_pembelian_temp.kode_satuan = clouoid1_olive_master.master_satuan.kode', 'left');
 			$pembelian_temp = $this->db->get();
 			$list_pembelian_temp = $pembelian_temp->result();
 
@@ -292,13 +292,13 @@ class pembelian extends MY_Controller {
 
 					$data_stok['hpp']=@$item->harga_satuan;
 					$data_stok['real_stock'] = @$item->jumlah  + @$item->real_stock_bahan_baku;
-					$this->db->update('olive_master.master_bahan_baku',$data_stok,array('kode_bahan_baku'=>$item->kode_bahan));
+					$this->db->update('clouoid1_olive_master.master_bahan_baku',$data_stok,array('kode_bahan_baku'=>$item->kode_bahan));
 				}
 				else if($kategori_bahan=='produk'){
 
 					$data_stok['hpp']=$item->harga_satuan;
 					$data_stok['real_stock'] = @$item->jumlah  + @$item->real_stock_produk;
-					$this->db->update('olive_master.master_produk',$data_stok,array('kode_produk'=>$item->kode_bahan));
+					$this->db->update('clouoid1_olive_master.master_produk',$data_stok,array('kode_produk'=>$item->kode_bahan));
 
 				}
 				else if($kategori_bahan=='perlengkapan')
@@ -306,7 +306,7 @@ class pembelian extends MY_Controller {
 
 					$data_stok['hpp']=$item->harga_satuan;
 					$data_stok['real_stock'] = @$item->jumlah  + @$item->real_stock_perlengakapan;
-					$this->db->update('olive_master.master_perlengkapan',$data_stok,array('kode_perlengkapan'=>$item->kode_bahan));
+					$this->db->update('clouoid1_olive_master.master_perlengkapan',$data_stok,array('kode_perlengkapan'=>$item->kode_bahan));
 
 				}
 				else if($kategori_bahan=='kartu member')
@@ -314,7 +314,7 @@ class pembelian extends MY_Controller {
 
 					$data_stok['hpp']=$item->harga_satuan;
 					$data_stok['real_stock'] = @$item->jumlah  + @$item->real_stock_kartu_member;
-					$this->db->update('olive_master.kartu_member',$data_stok,array('kode_kartu_member'=>$item->kode_bahan));
+					$this->db->update('clouoid1_olive_master.kartu_member',$data_stok,array('kode_kartu_member'=>$item->kode_bahan));
 
 				}
 				$stok['jenis_transaksi'] = 'pembelian' ;
@@ -346,9 +346,9 @@ class pembelian extends MY_Controller {
 
 
 				if($input['proses_pembayaran'] == 'cash'){
-					$query_akun = $this->db->get_where('olive_keuangan.keuangan_sub_kategori_akun',array('kode_sub_kategori_akun'=>'2.1.5'))->row();
+					$query_akun = $this->db->get_where('clouoid1_olive_keuangan.keuangan_sub_kategori_akun',array('kode_sub_kategori_akun'=>'2.1.5'))->row();
 				}else if($input['proses_pembayaran'] == 'kredit'){
-					$query_akun = $this->db->get_where('olive_keuangan.keuangan_sub_kategori_akun',array('kode_sub_kategori_akun'=>'2.1.3'))->row();
+					$query_akun = $this->db->get_where('clouoid1_olive_keuangan.keuangan_sub_kategori_akun',array('kode_sub_kategori_akun'=>'2.1.3'))->row();
 				}
 
 				$kode_sub = @$query_akun->kode_sub_kategori_akun;
@@ -430,7 +430,7 @@ class pembelian extends MY_Controller {
 						$data_keu['kode_kategori_keuangan'] = $kode_kategori ;
 						$data_keu['kode_sub_kategori_keuangan'] = $kode_sub ;
 
-						$keuangan = $this->db->insert("olive_keuangan.keuangan_keluar", $data_keu);
+						$keuangan = $this->db->insert("clouoid1_olive_keuangan.keuangan_keluar", $data_keu);
 						$this->simpan_arus_kas('Pengeluaran',$kode_sub,'Pembelian Produk',$grand_total, $tanggal_pembelian);
 
 					}
@@ -444,7 +444,7 @@ class pembelian extends MY_Controller {
 						$data_keu['kode_kategori_keuangan'] = $kode_kategori ;
 						$data_keu['kode_sub_kategori_keuangan'] = $kode_sub ;
 
-						$keuangan = $this->db->insert("olive_keuangan.keuangan_keluar", $data_keu);
+						$keuangan = $this->db->insert("clouoid1_olive_keuangan.keuangan_keluar", $data_keu);
 						$this->simpan_arus_kas('Pengeluaran',$kode_sub,'Pembelian Produk',$grand_total, $tanggal_pembelian);
 
 					}
@@ -458,7 +458,7 @@ class pembelian extends MY_Controller {
 						$data_keu['kode_kategori_keuangan'] = $kode_kategori ;
 						$data_keu['kode_sub_kategori_keuangan'] = $kode_sub ;
 
-						$keuangan = $this->db->insert("olive_keuangan.keuangan_keluar", $data_keu);
+						$keuangan = $this->db->insert("clouoid1_olive_keuangan.keuangan_keluar", $data_keu);
 
 						$data_hutang['kode_transaksi'] = $kode_pembelian ;
 						$data_hutang['kode_supplier'] = @$input['kode_supplier'];

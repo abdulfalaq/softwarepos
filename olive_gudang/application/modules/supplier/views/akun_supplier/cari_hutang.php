@@ -9,7 +9,7 @@ if(!empty($tgl_awal) && !empty($tgl_akhir)){
 }
 $this->db->order_by('id','DESC');
 $this->db->where('kode_supplier',$kode_supplier);
-$get_gudang = $this->db->get('olive_gudang.transaksi_hutang')->result();
+$get_gudang = $this->db->get('clouoid1_olive_gudang.transaksi_hutang')->result();
 
 $no = 0;
 foreach ($get_gudang as $value) { 

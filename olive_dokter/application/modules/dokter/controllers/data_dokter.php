@@ -81,12 +81,12 @@ class data_dokter extends MY_Controller {
 	public function simpan_produk_opsi(){
 		$data = $this->input->post();
 
-		$cek_data = $this->db->get_where('olive_kasir.opsi_transaksi_layanan_temp', array('kode_item' => $data['kode_item'],'kode_transaksi' => $data['kode_transaksi'] ))->row();
+		$cek_data = $this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', array('kode_item' => $data['kode_item'],'kode_transaksi' => $data['kode_transaksi'] ))->row();
 		if (count($cek_data) > 0) {
 			$out['response'] = 'ada';
 		}else{
-			$this->db->from('olive_master.master_produk');
-			$this->db->join('olive_master.master_kategori_produk', 'olive_master.master_kategori_produk.kode_kategori_produk = olive_master.master_produk.kode_kategori_produk','left');
+			$this->db->from('clouoid1_olive_master.master_produk');
+			$this->db->join('clouoid1_olive_master.master_kategori_produk', 'clouoid1_olive_master.master_kategori_produk.kode_kategori_produk = clouoid1_olive_master.master_produk.kode_kategori_produk','left');
 			$this->db->where('kode_produk',$data['kode_item']);
 			$get_produk = $this->db->get()->row();
 
@@ -102,7 +102,7 @@ class data_dokter extends MY_Controller {
 			$data['harga'] 		= $get_produk->harga_jual;
 			$data['jenis_item'] = $get_produk->nama_kategori_produk;
 			$data['subtotal'] 	= $data['qty'] * $get_produk->harga_jual;
-			$insert = $this->db->insert('olive_kasir.opsi_transaksi_layanan_temp', $data);
+			$insert = $this->db->insert('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', $data);
 			if ($insert) {
 				$out['response'] = 'sukses';
 			}else{
@@ -116,11 +116,11 @@ class data_dokter extends MY_Controller {
 	public function simpan_perawatan_opsi(){
 		$data = $this->input->post();
 
-		$cek_data = $this->db->get_where('olive_kasir.opsi_transaksi_layanan_temp', array('kode_item' => $data['kode_item'],'kode_transaksi' => $data['kode_transaksi'] ))->row();
+		$cek_data = $this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', array('kode_item' => $data['kode_item'],'kode_transaksi' => $data['kode_transaksi'] ))->row();
 		if (count($cek_data) > 0) {
 			$out['response'] = 'ada';
 		}else{
-			$this->db->from('olive_master.master_perawatan');
+			$this->db->from('clouoid1_olive_master.master_perawatan');
 			$this->db->where('kode_perawatan', $data['kode_item']);
 			$get_perawatan = $this->db->get_where()->row();
 
@@ -128,7 +128,7 @@ class data_dokter extends MY_Controller {
 			$data['harga'] 		= $get_perawatan->harga_jual;
 			$data['subtotal'] 	= $data['qty'] * $get_perawatan->harga_jual;
 			$data['jenis_item'] = 'Treatment';
-			$insert = $this->db->insert('olive_kasir.opsi_transaksi_layanan_temp', $data);
+			$insert = $this->db->insert('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', $data);
 			if ($insert) {
 				$out['response'] = 'sukses';
 			}else{
@@ -141,7 +141,7 @@ class data_dokter extends MY_Controller {
 
 	public function get_data_opsi(){
 		$data = $this->input->post('id');
-		$get_produk = $this->db->get_where('olive_kasir.opsi_transaksi_layanan_temp', array('id' => $data ))->row();
+		$get_produk = $this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', array('id' => $data ))->row();
 
 		echo json_encode($get_produk);
 	}
@@ -149,12 +149,12 @@ class data_dokter extends MY_Controller {
 	public function update_item_produk(){
 		$data = $this->input->post();
 
-		$get_perawatan = $this->db->get_where('olive_master.master_produk', array('kode_produk' => $data['kode_item'] ))->row();
+		$get_perawatan = $this->db->get_where('clouoid1_olive_master.master_produk', array('kode_produk' => $data['kode_item'] ))->row();
 
 		$data['hpp'] 		= $get_perawatan->hpp;
 		$data['harga'] 		= $get_perawatan->harga_jual;
 		$data['subtotal'] 	= $data['qty'] * $get_perawatan->harga_jual;
-		$update = $this->db->update('olive_kasir.opsi_transaksi_layanan_temp', $data, array('id' => $data['id'] ));
+		$update = $this->db->update('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', $data, array('id' => $data['id'] ));
 		if ($update) {
 			$out['response'] = 'sukses';
 		}else{
@@ -169,12 +169,12 @@ class data_dokter extends MY_Controller {
 		$data = $this->input->post();
 
 		
-		$get_perawatan = $this->db->get_where('olive_kasir.master_perawatan', array('kode_perawatan' => $data['kode_item'] ))->row();
+		$get_perawatan = $this->db->get_where('clouoid1_olive_kasir.master_perawatan', array('kode_perawatan' => $data['kode_item'] ))->row();
 
 		$data['hpp'] 		= $get_perawatan->hpp;
 		$data['harga'] 		= $get_perawatan->harga_jual;
 		$data['subtotal'] 	= $data['qty'] * $get_perawatan->harga_jual;
-		$update = $this->db->update('olive_kasir.opsi_transaksi_layanan_temp', $data, array('id' => $data['id'] ));
+		$update = $this->db->update('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', $data, array('id' => $data['id'] ));
 		if ($update) {
 			$out['response'] = 'sukses';
 		}else{
@@ -188,7 +188,7 @@ class data_dokter extends MY_Controller {
 	public function hapus_opsi_temp(){
 		$id = $this->input->post('id');
 		$this->db->where('id', $id);
-		$this->db->delete('olive_kasir.opsi_transaksi_layanan_temp');
+		$this->db->delete('clouoid1_olive_kasir.opsi_transaksi_layanan_temp');
 		echo $this->db->last_query();
 	}
 
@@ -196,7 +196,7 @@ class data_dokter extends MY_Controller {
 		$data = $this->input->post();
 
 		$get_total = 0;
-		$insert_to_opsi = $this->db->get_where('olive_kasir.opsi_transaksi_layanan_temp', array('kode_transaksi' => $data['kode_transaksi'] ))->result();
+		$insert_to_opsi = $this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', array('kode_transaksi' => $data['kode_transaksi'] ))->result();
 		foreach ($insert_to_opsi as $value) {
 			$insert_opsi['kode_transaksi'] 	= $value->kode_transaksi ;
 			$insert_opsi['jenis_item'] 		= $value->jenis_item ;
@@ -206,7 +206,7 @@ class data_dokter extends MY_Controller {
 			$insert_opsi['harga'] 			= $value->harga ;
 			$insert_opsi['subtotal'] 		= $value->subtotal ;
 
-			$this->db->insert('olive_kasir.opsi_transaksi_layanan', $insert_opsi);
+			$this->db->insert('clouoid1_olive_kasir.opsi_transaksi_layanan', $insert_opsi);
 			$get_total = $insert_opsi['subtotal'] + $get_total;
 		}
 
@@ -215,7 +215,7 @@ class data_dokter extends MY_Controller {
 			$insert_opsi_registrasi['kode_item'] 		= $value->kode_item ;
 			$insert_opsi_registrasi['qty'] 				= $value->qty ;
 
-			$this->db->insert('olive_cs.opsi_transaksi_registrasi', $insert_opsi_registrasi);
+			$this->db->insert('clouoid1_olive_cs.opsi_transaksi_registrasi', $insert_opsi_registrasi);
 		}
 
 		$medik['kode_transaksi'] 		= $data['kode_transaksi'];
@@ -225,7 +225,7 @@ class data_dokter extends MY_Controller {
 		$medik['anamnesa'] 				= $data['anamnesa'];
 		$medik['diagnosa'] 				= $data['diagnosa'];
 		
-		$data_medic = $this->db->insert('olive_kasir.data_rekam_medik', $medik);
+		$data_medic = $this->db->insert('clouoid1_olive_kasir.data_rekam_medik', $medik);
 
 
 		if ($data['kode_layanan'] == '02') {
@@ -243,13 +243,13 @@ class data_dokter extends MY_Controller {
 		$data_utama['total_layanan'] 		= $get_total;
 		$data_utama['grand_total'] 		    = $get_total;
 		
-		$insert_utama = $this->db->insert('olive_kasir.transaksi_layanan', $data_utama);
+		$insert_utama = $this->db->insert('clouoid1_olive_kasir.transaksi_layanan', $data_utama);
 
 		$this->db->update('transaksi_registrasi', $data_update,array('kode_transaksi' => $data['kode_transaksi'] ));
 
-		$delete_temp = $this->db->get_where('olive_kasir.opsi_transaksi_layanan_temp', array('kode_transaksi' => $data['kode_transaksi'] ))->result();
+		$delete_temp = $this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', array('kode_transaksi' => $data['kode_transaksi'] ))->result();
 		foreach ($delete_temp as $value) {
-			$this->db->delete('olive_kasir.opsi_transaksi_layanan_temp', array('id' => $value->id ));
+			$this->db->delete('clouoid1_olive_kasir.opsi_transaksi_layanan_temp', array('id' => $value->id ));
 		}
 
 		if ($insert_utama) {

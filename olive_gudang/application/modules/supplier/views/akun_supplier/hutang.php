@@ -25,7 +25,7 @@
 	<?php 
 	$kode_supplier=$this->uri->segment(4);
 	$this->db->where('kode_supplier',$kode_supplier);
-	$get_gudang2 = $this->db->get('olive_master.master_supplier')->row();
+	$get_gudang2 = $this->db->get('clouoid1_olive_master.master_supplier')->row();
 	?>	
 	<div class="row">
 		<div class="col-sm-12">
@@ -75,7 +75,7 @@
 								$kode_supplier=$this->uri->segment(4);
 								$this->db->order_by('id','DESC');
 								$this->db->where('kode_supplier',$kode_supplier);
-								$get_gudang = $this->db->get('olive_gudang.transaksi_hutang')->result();
+								$get_gudang = $this->db->get('clouoid1_olive_gudang.transaksi_hutang')->result();
 								?>
 								<table id="tabel_daftar" class="table table-bordered table-striped">
 									<tr>

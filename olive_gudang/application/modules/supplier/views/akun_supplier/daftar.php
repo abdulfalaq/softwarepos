@@ -33,7 +33,7 @@
 							<div class="sukses" ></div>
 							<?php 
 							$this->db->order_by('id','DESC');
-							$get_gudang = $this->db->get('olive_master.master_supplier')->result();
+							$get_gudang = $this->db->get('clouoid1_olive_master.master_supplier')->result();
 							?>
 							<table class="table table-striped table-hover table-bordered" id="datatable">
 								<thead>

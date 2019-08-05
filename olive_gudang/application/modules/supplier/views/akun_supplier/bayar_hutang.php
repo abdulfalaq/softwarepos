@@ -23,10 +23,10 @@
 	<div class="clearfix"></div>
 	<?php 
 	$kode_supplier=$this->uri->segment(4);
-	$this->db->where('olive_gudang.transaksi_hutang.kode_supplier',$kode_supplier);
-	$this->db->from('olive_gudang.transaksi_hutang');
-	$this->db->join('olive_gudang.transaksi_pembelian', 'olive_gudang.transaksi_hutang.kode_transaksi = olive_gudang.transaksi_pembelian.kode_pembelian', 'left');
-	$this->db->join('olive_master.master_supplier', 'olive_gudang.transaksi_hutang.kode_supplier = olive_master.master_supplier.kode_supplier', 'left');
+	$this->db->where('clouoid1_olive_gudang.transaksi_hutang.kode_supplier',$kode_supplier);
+	$this->db->from('clouoid1_olive_gudang.transaksi_hutang');
+	$this->db->join('clouoid1_olive_gudang.transaksi_pembelian', 'clouoid1_olive_gudang.transaksi_hutang.kode_transaksi = clouoid1_olive_gudang.transaksi_pembelian.kode_pembelian', 'left');
+	$this->db->join('clouoid1_olive_master.master_supplier', 'clouoid1_olive_gudang.transaksi_hutang.kode_supplier = clouoid1_olive_master.master_supplier.kode_supplier', 'left');
 	$get_hutang = $this->db->get()->row();
 	?>	
 	<div class="row">
@@ -113,21 +113,21 @@
 										$this->db->select('nama_bahan_baku');
 										$this->db->select('nama_perlengkapan');
 										$this->db->select('nama_produk');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.id');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.jumlah');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.expired_date');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.harga_satuan');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.jenis_diskon');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.diskon_item');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.subtotal');
-										$this->db->select('olive_gudang.opsi_transaksi_pembelian.kategori_bahan');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.id');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.jumlah');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.expired_date');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.harga_satuan');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.jenis_diskon');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.diskon_item');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.subtotal');
+										$this->db->select('clouoid1_olive_gudang.opsi_transaksi_pembelian.kategori_bahan');
 
 										$this->db->where('kode_pembelian',@$get_hutang->kode_transaksi);
-										$this->db->from('olive_gudang.opsi_transaksi_pembelian');
-										$this->db->join('olive_master.master_bahan_baku', 'olive_gudang.opsi_transaksi_pembelian.kode_bahan = olive_master.master_bahan_baku.kode_bahan_baku', 'left');
-										$this->db->join('olive_master.master_produk', 'olive_gudang.opsi_transaksi_pembelian.kode_bahan = olive_master.master_produk.kode_produk', 'left');
-										$this->db->join('olive_master.master_perlengkapan', 'olive_gudang.opsi_transaksi_pembelian.kode_bahan = olive_master.master_perlengkapan.kode_perlengkapan', 'left');
-										$this->db->join('olive_master.master_satuan', 'olive_gudang.opsi_transaksi_pembelian.kode_satuan = olive_master.master_satuan.kode', 'left');
+										$this->db->from('clouoid1_olive_gudang.opsi_transaksi_pembelian');
+										$this->db->join('clouoid1_olive_master.master_bahan_baku', 'clouoid1_olive_gudang.opsi_transaksi_pembelian.kode_bahan = clouoid1_olive_master.master_bahan_baku.kode_bahan_baku', 'left');
+										$this->db->join('clouoid1_olive_master.master_produk', 'clouoid1_olive_gudang.opsi_transaksi_pembelian.kode_bahan = clouoid1_olive_master.master_produk.kode_produk', 'left');
+										$this->db->join('clouoid1_olive_master.master_perlengkapan', 'clouoid1_olive_gudang.opsi_transaksi_pembelian.kode_bahan = clouoid1_olive_master.master_perlengkapan.kode_perlengkapan', 'left');
+										$this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_gudang.opsi_transaksi_pembelian.kode_satuan = clouoid1_olive_master.master_satuan.kode', 'left');
 										$pembelian = $this->db->get();
 										$list_pembelian = $pembelian->result();
 										$nomor = 1;  $total = 0;

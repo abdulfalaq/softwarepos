@@ -13,11 +13,11 @@
 		<?php 
 		$data = $this->input->post();
 		$no = 0;
-		$this->db->from('olive_cs.transaksi_registrasi');
-		$this->db->join('olive_master.master_member','master_member.kode_member = olive_cs.transaksi_registrasi.kode_member', 'left');
-		$this->db->where('olive_cs.transaksi_registrasi.tanggal_transaksi >=',$data['tgl_awal']);
-		$this->db->where('olive_cs.transaksi_registrasi.tanggal_transaksi <=',$data['tgl_akhir']);
-		$this->db->where('olive_cs.transaksi_registrasi.kode_layanan',$data['layanan']);
+		$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+		$this->db->join('clouoid1_olive_master.master_member','master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member', 'left');
+		$this->db->where('clouoid1_olive_cs.transaksi_registrasi.tanggal_transaksi >=',$data['tgl_awal']);
+		$this->db->where('clouoid1_olive_cs.transaksi_registrasi.tanggal_transaksi <=',$data['tgl_akhir']);
+		$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_layanan',$data['layanan']);
 		$data_periksa = $this->db->get()->result();
 		foreach ($data_periksa as $value) { $no++; ?>
 		<tr>

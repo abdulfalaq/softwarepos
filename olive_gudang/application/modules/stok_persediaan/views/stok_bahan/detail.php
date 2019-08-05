@@ -64,7 +64,7 @@
 							$no = 1; 
 							$kode = $this->uri->segment(4);
 							$this->db->from('transaksi_stok tr_stok');
-							$this->db->join('olive_master.master_bahan_baku mbb','tr_stok.kode_bahan = mbb.kode_bahan_baku','left');
+							$this->db->join('clouoid1_olive_master.master_bahan_baku mbb','tr_stok.kode_bahan = mbb.kode_bahan_baku','left');
 							$this->db->order_by('tr_stok.id','DESC');
 							$this->db->where('tr_stok.jenis_transaksi','pembelian');
 							$this->db->where('tr_stok.kode_bahan',$kode);

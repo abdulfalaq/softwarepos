@@ -6,22 +6,22 @@
 $bulan=$this->uri->segment(4);
 $tahun=$this->uri->segment(5);
 
-$penjualan = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','kode_kategori_keuangan'=>'1.1.1','bulan'=>$bulan,'tahun'=>$tahun));
+$penjualan = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','kode_kategori_keuangan'=>'1.1.1','bulan'=>$bulan,'tahun'=>$tahun));
 $hasil_penjualan = $penjualan->row();
 
-$register_member = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','kode_kategori_keuangan'=>'1.4.1','bulan'=>$bulan,'tahun'=>$tahun));
+$register_member = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','kode_kategori_keuangan'=>'1.4.1','bulan'=>$bulan,'tahun'=>$tahun));
 $hasil_register_member = $register_member->row();
 
-$pendapatan_lain = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','kode_kategori_keuangan'=>'1.3.1','bulan'=>$bulan,'tahun'=>$tahun));
+$pendapatan_lain = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','kode_kategori_keuangan'=>'1.3.1','bulan'=>$bulan,'tahun'=>$tahun));
 $hasil_pendapatan_lain = $pendapatan_lain->row();
 
-$hpp = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','kode_kategori_keuangan'=>'2.6.2','bulan'=>$bulan,'tahun'=>$tahun));
+$hpp = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','kode_kategori_keuangan'=>'2.6.2','bulan'=>$bulan,'tahun'=>$tahun));
 $hasil_hpp = $hpp->row();
 
-$gaji_karyawan = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','kode_kategori_keuangan'=>'','bulan'=>$bulan,'tahun'=>$tahun));
+$gaji_karyawan = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','kode_kategori_keuangan'=>'','bulan'=>$bulan,'tahun'=>$tahun));
 $hasil_gaji_karyawan = $gaji_karyawan->row();
 
-$operasional = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','kode_kategori_keuangan'=>'2.5.4','bulan'=>$bulan,'tahun'=>$tahun));
+$operasional = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','kode_kategori_keuangan'=>'2.5.4','bulan'=>$bulan,'tahun'=>$tahun));
 $hasil_operasional = $operasional->row();
 
 

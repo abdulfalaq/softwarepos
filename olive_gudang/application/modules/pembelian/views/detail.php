@@ -41,7 +41,7 @@ $get_gudang = $this->db->get('transaksi_pembelian')->row();
 											<select disabled="" class="form-control select2" name="kode_supplier" id="kode_supplier">
 												<option selected="" value="">--Pilih Supplier--</option> 
 												<?php 
-												$get_supplier = $this->db->get('olive_master.master_supplier')->result();
+												$get_supplier = $this->db->get('clouoid1_olive_master.master_supplier')->result();
 												foreach ($get_supplier as  $value) { ?>
 												<option <?php if($get_gudang->kode_supplier==$value->kode_supplier ){echo "selected";} ?> ><?php echo $value->nama_supplier ?></option>
 												<?php } 
@@ -64,8 +64,8 @@ $get_gudang = $this->db->get('transaksi_pembelian')->row();
 							<?php 
 							$kode_pembelian=$this->uri->segment(4);
 							$this->db->from('opsi_transaksi_pembelian tp');
-							$this->db->join('olive_master.master_bahan_baku mbb','mbb.kode_bahan_baku = tp.kode_bahan','left');
-							$this->db->join('olive_master.master_perlengkapan mp','mp.kode_perlengkapan = tp.kode_bahan','left');
+							$this->db->join('clouoid1_olive_master.master_bahan_baku mbb','mbb.kode_bahan_baku = tp.kode_bahan','left');
+							$this->db->join('clouoid1_olive_master.master_perlengkapan mp','mp.kode_perlengkapan = tp.kode_bahan','left');
 							$this->db->where('tp.kode_pembelian',$kode_pembelian);
 							$this->db->order_by('tp.id','DESC');
 							$get_gudang2 = $this->db->get('')->result();

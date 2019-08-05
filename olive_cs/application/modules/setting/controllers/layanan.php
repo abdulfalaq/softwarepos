@@ -47,7 +47,7 @@ class layanan extends MY_Controller {
 	public function simpan()
 	{
 		$data = $this->input->post(); 
-		$get  = $this ->db ->get_where('olive_master.master_layanan_periksa', array('kode_periksa' => $data['kode_periksa']));
+		$get  = $this ->db ->get_where('clouoid1_olive_master.master_layanan_periksa', array('kode_periksa' => $data['kode_periksa']));
 		$peringatan = $get->row();
 		if(!empty($peringatan)){
 			$data['response']='ada';
@@ -117,7 +117,7 @@ class layanan extends MY_Controller {
 	{
 
 		$kode_periksa = $this->input->post('kode_periksa');
-		$get = $this ->db ->get_where('olive_master.master_layanan_periksa', array('kode_periksa' =>$kode_periksa));
+		$get = $this ->db ->get_where('clouoid1_olive_master.master_layanan_periksa', array('kode_periksa' =>$kode_periksa));
 		$peringatan = $get->row();
 		if(empty($peringatan)){
 			$data['peringatan']='kosong';

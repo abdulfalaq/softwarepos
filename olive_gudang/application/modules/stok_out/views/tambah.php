@@ -57,7 +57,7 @@
 									<select class="form-control  opsi_stok_out" name="kode_bahan" id="kode_bahan">
 										<option value="">-- Pilih Bahan --</option>
 										<?php  
-										$get_paket = $this->db->get('olive_master.master_bahan_baku')->result();
+										$get_paket = $this->db->get('clouoid1_olive_master.master_bahan_baku')->result();
 										foreach ($get_paket as $value) {?>
 										<option value="<?php echo $value->kode_bahan_baku ?>"><?php echo $value->nama_bahan_baku ?></option>
 										<?php }
@@ -70,7 +70,7 @@
 									<select class="form-control  opsi_stok_out" name="kode_perlengkapan" id="kode_perlengkapan" onchange="get_perlengkapan()">
 										<option value="">-- Pilih Perlengkapan --</option>
 										<?php  
-										$get_perlengkapan = $this->db->get('olive_master.master_perlengkapan')->result();
+										$get_perlengkapan = $this->db->get('clouoid1_olive_master.master_perlengkapan')->result();
 										foreach ($get_perlengkapan as $value) {?>
 										<option value="<?php echo $value->kode_perlengkapan ?>"><?php echo $value->nama_perlengkapan ?></option>
 										<?php }

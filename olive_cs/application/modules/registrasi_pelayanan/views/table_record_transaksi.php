@@ -1,10 +1,10 @@
 
 <?php
 $kode_member=$this->uri->segment(4);
-$this->db->from('olive_kasir.data_record_anggota');
-$this->db->where('olive_kasir.data_record_anggota.kode_member', @$kode_member);
-$this->db->join('olive_master.master_produk', 'olive_kasir.data_record_anggota.kode_item = master_produk.kode_produk', 'left');
-$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_kasir.data_record_anggota.kode_item','left');
+$this->db->from('clouoid1_olive_kasir.data_record_anggota');
+$this->db->where('clouoid1_olive_kasir.data_record_anggota.kode_member', @$kode_member);
+$this->db->join('clouoid1_olive_master.master_produk', 'clouoid1_olive_kasir.data_record_anggota.kode_item = master_produk.kode_produk', 'left');
+$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_kasir.data_record_anggota.kode_item','left');
 $data_record = $this->db->get()->result();
 foreach ($data_record as $data) {
 	?>

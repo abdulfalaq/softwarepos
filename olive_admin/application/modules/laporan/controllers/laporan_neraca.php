@@ -46,14 +46,14 @@ class laporan_neraca extends MY_Controller {
 			
 			$insert_aktiva['tahun']=date('Y');
 
-			$get_neraca_aktiva 	= $this->db->get_where('olive_keuangan.laporan_neraca',array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
+			$get_neraca_aktiva 	= $this->db->get_where('clouoid1_olive_keuangan.laporan_neraca',array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
 			$neraca_aktiva  = $get_neraca_aktiva->row();
 			if(!empty($neraca_aktiva)){
 
 				$update_neraca_aktiva['nominal']=$value[0];
-				$this->db->update('olive_keuangan.laporan_neraca',$update_neraca_aktiva,array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
+				$this->db->update('clouoid1_olive_keuangan.laporan_neraca',$update_neraca_aktiva,array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
 			}else{
-				$this->db->insert('olive_keuangan.laporan_neraca',$insert_aktiva);
+				$this->db->insert('clouoid1_olive_keuangan.laporan_neraca',$insert_aktiva);
 			}
 		}
 		
@@ -67,14 +67,14 @@ class laporan_neraca extends MY_Controller {
 			
 			$insert_pasiva['tahun']=date('Y');
 			
-			$get_neraca_pasiva 	= $this->db->get_where('olive_keuangan.laporan_neraca',array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
+			$get_neraca_pasiva 	= $this->db->get_where('clouoid1_olive_keuangan.laporan_neraca',array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
 			$neraca_pasiva  = $get_neraca_pasiva->row();
 			if(!empty($neraca_pasiva)){
 
 				$update_neraca_pasiva['nominal']=$value[0];
-				$this->db->update('olive_keuangan.laporan_neraca',$update_neraca_pasiva,array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
+				$this->db->update('clouoid1_olive_keuangan.laporan_neraca',$update_neraca_pasiva,array('nama_akun' =>$value[1],'bulan'=>date('m'),'tahun'=>date('Y')));
 			}else{
-				$this->db->insert('olive_keuangan.laporan_neraca',$insert_pasiva);
+				$this->db->insert('clouoid1_olive_keuangan.laporan_neraca',$insert_pasiva);
 			}
 		}
 		

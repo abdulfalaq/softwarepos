@@ -44,7 +44,7 @@ class order_paket extends MY_Controller {
 	{
 		$data = $this->input->post();
 
-		$treatment = $this->db->get_where('olive_master.master_perawatan', array('kode_perawatan' => $data['kode_treatment']));
+		$treatment = $this->db->get_where('clouoid1_olive_master.master_perawatan', array('kode_perawatan' => $data['kode_treatment']));
 		$hasil_treatment = $treatment->row();
 		echo json_encode($hasil_treatment);
 	}
@@ -53,7 +53,7 @@ class order_paket extends MY_Controller {
 	{
 		$data = $this->input->post();
 
-		$paket = $this->db->get_where('olive_master.master_paket', array('kode_paket' => $data['kode_paket']));
+		$paket = $this->db->get_where('clouoid1_olive_master.master_paket', array('kode_paket' => $data['kode_paket']));
 		$hasil_paket = $paket->row();
 		echo json_encode($hasil_paket);
 	}
@@ -77,7 +77,7 @@ class order_paket extends MY_Controller {
 
 
 		if($jenis_reservasi == 'Paket'){
-			$master_paket 	= $this->db->get_where("olive_master.master_paket", array("kode_paket"=>$kode_paket))->row();
+			$master_paket 	= $this->db->get_where("clouoid1_olive_master.master_paket", array("kode_paket"=>$kode_paket))->row();
 
 			$data['kode_transaksi'] = $kode_transaksi;
 			$data['jenis_item'] = $jenis_reservasi;
@@ -89,7 +89,7 @@ class order_paket extends MY_Controller {
 
 			$this->db->insert("opsi_transaksi_order_paket_temp",$data);
 		}else{
-			$master_perawatan = $this->db->get_where("olive_master.master_perawatan", array("kode_perawatan"=>$kode_treatment))->row();
+			$master_perawatan = $this->db->get_where("clouoid1_olive_master.master_perawatan", array("kode_perawatan"=>$kode_treatment))->row();
 
 			$data['kode_transaksi'] = $kode_transaksi;
 			$data['jenis_item'] = $jenis_reservasi;
@@ -131,8 +131,8 @@ class order_paket extends MY_Controller {
 		$this->db->select('prw.nama_perawatan');
 		$this->db->select('opsi.id,jenis_item');
 		$this->db->from('opsi_transaksi_order_paket_temp opsi');
-		$this->db->join('olive_master.master_paket pkt', 'opsi.kode_item = pkt.kode_paket', 'left');
-		$this->db->join('olive_master.master_perawatan prw', 'opsi.kode_item = prw.kode_perawatan', 'left');
+		$this->db->join('clouoid1_olive_master.master_paket pkt', 'opsi.kode_item = pkt.kode_paket', 'left');
+		$this->db->join('clouoid1_olive_master.master_perawatan prw', 'opsi.kode_item = prw.kode_perawatan', 'left');
 		$get_temp = $this->db->get();
 		// echo $this->db->last_query();
 		$temp['result'] 	= $get_temp->result();
@@ -169,12 +169,12 @@ class order_paket extends MY_Controller {
 
 	public function print_invoice($kode_transaksi)
 	{
-		$setting = $this->db->get('olive_master.master_setting');
+		$setting = $this->db->get('clouoid1_olive_master.master_setting');
 		$hasil_setting = $setting->row();
 
-		$this->db->from('olive_cs.transaksi_order_paket');
-		$this->db->join('olive_master.master_member','olive_master.master_member.kode_member = olive_cs.transaksi_order_paket.kode_member','left');
-		$this->db->where('olive_cs.transaksi_order_paket.kode_transaksi',$kode_transaksi);
+		$this->db->from('clouoid1_olive_cs.transaksi_order_paket');
+		$this->db->join('clouoid1_olive_master.master_member','clouoid1_olive_master.master_member.kode_member = clouoid1_olive_cs.transaksi_order_paket.kode_member','left');
+		$this->db->where('clouoid1_olive_cs.transaksi_order_paket.kode_transaksi',$kode_transaksi);
 		$hasil_transaksi = $this->db->get()->row();
 		
 		$printTestText  = align_center(62,'KARTU PERAWATAN')."\n";
@@ -189,10 +189,10 @@ class order_paket extends MY_Controller {
 		$printTestText .= repeat_value(62,'_')."\n";
 
 
-		$this->db->from('olive_cs.opsi_transaksi_order_paket');
-		$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_order_paket.kode_item','left');
-		$this->db->join('olive_master.master_produk','olive_master.master_produk.kode_produk = olive_cs.opsi_transaksi_order_paket.kode_item','left');
-		$this->db->where('olive_cs.opsi_transaksi_order_paket.kode_transaksi',$kode_transaksi);
+		$this->db->from('clouoid1_olive_cs.opsi_transaksi_order_paket');
+		$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_order_paket.kode_item','left');
+		$this->db->join('clouoid1_olive_master.master_produk','clouoid1_olive_master.master_produk.kode_produk = clouoid1_olive_cs.opsi_transaksi_order_paket.kode_item','left');
+		$this->db->where('clouoid1_olive_cs.opsi_transaksi_order_paket.kode_transaksi',$kode_transaksi);
 		$opsi_transaksi = $this->db->get();
 		$hasil_opsi_transaksi = $opsi_transaksi->result();
 		foreach ($hasil_opsi_transaksi as $value) {

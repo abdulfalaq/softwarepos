@@ -45,7 +45,7 @@
 							<tbody id="cari_transaksi">
 								<?php 
 								$no=0;
-								$this->db->from('olive_master.master_member');
+								$this->db->from('clouoid1_olive_master.master_member');
 								$this->db->where('tanggal_registrasi', date('Y-m-d'));
 								$this->db->order_by('id','DESC');
 								$get_data = $this->db->get()->result();

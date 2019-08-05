@@ -42,18 +42,18 @@ class penggajian extends MY_Controller {
 		$kode_karyawan=$this->input->post('kode_karyawan');
 		$this->db->select('kode_karyawan');
 		$this->db->select('gaji');
-		$this->db->select('olive_master.master_jabatan.kode_jabatan');
-		$this->db->select('olive_master.master_jabatan.nama_jabatan');
+		$this->db->select('clouoid1_olive_master.master_jabatan.kode_jabatan');
+		$this->db->select('clouoid1_olive_master.master_jabatan.nama_jabatan');
 		$this->db->where('kode_karyawan', $kode_karyawan);
-		$this->db->from('olive_master.master_karyawan');
-		$this->db->join('olive_master.master_jabatan', 'olive_master.master_karyawan.kode_jabatan = olive_master.master_jabatan.kode_jabatan', 'left');
+		$this->db->from('clouoid1_olive_master.master_karyawan');
+		$this->db->join('clouoid1_olive_master.master_jabatan', 'clouoid1_olive_master.master_karyawan.kode_jabatan = clouoid1_olive_master.master_jabatan.kode_jabatan', 'left');
 		$data_karyawan=$this->db->get()->row_array();
 
 		if(@$data_karyawan['kode_jabatan']=='J_0001'){
 			$this->db->where('kode_karyawan', @$data_karyawan['kode_karyawan']);
 			$this->db->select('total_withdraw');
 			$this->db->like('tanggal_transaksi',date('Y-m'));
-			$get_insentif=$this->db->get('olive_keuangan.insentif_terapis')->row();
+			$get_insentif=$this->db->get('clouoid1_olive_keuangan.insentif_terapis')->row();
 			$data_karyawan['total_withdraw']=$get_insentif->total_withdraw;
 			
 		}
@@ -65,7 +65,7 @@ class penggajian extends MY_Controller {
 		$this->db->where('kode_karyawan', $kode_karyawan);
 		$this->db->order_by('tanggal_transaksi', 'desc');
 		$this->db->like('tanggal_transaksi',date('Y-m'));
-		$get_insentif=$this->db->get('olive_keuangan.insentif_terapis')->result();
+		$get_insentif=$this->db->get('clouoid1_olive_keuangan.insentif_terapis')->result();
 		$no=1;
 		foreach ($get_insentif as $value) {
 			?>
@@ -94,9 +94,9 @@ class penggajian extends MY_Controller {
 	public function simpan_penggajian()
 	{
 		$post = $this->input->post();
-		$this->db->insert('olive_keuangan.transaksi_penggajian', $post);
+		$this->db->insert('clouoid1_olive_keuangan.transaksi_penggajian', $post);
 
-		$get_akun = $this->db->get_where('olive_keuangan.keuangan_sub_kategori_akun',array('kode_sub_kategori_akun'=>'2.2.1'));
+		$get_akun = $this->db->get_where('clouoid1_olive_keuangan.keuangan_sub_kategori_akun',array('kode_sub_kategori_akun'=>'2.2.1'));
 		$hasil = $get_akun->row();
 
 		$get_id_petugas = $this->session->userdata('astrosession');
@@ -109,12 +109,12 @@ class penggajian extends MY_Controller {
 		$data['kode_sub_kategori_keuangan'] = $hasil->kode_sub_kategori_akun ;
 		$data['nominal'] = $post['total_gaji'];
 		$data['kode_referensi'] = $post['kode_transaksi'];
-		$masuk = $this->db->insert("olive_keuangan.keuangan_keluar", $data);
+		$masuk = $this->db->insert("clouoid1_olive_keuangan.keuangan_keluar", $data);
 
 		$status['status']='selesai';
 		$this->db->where('kode_karyawan', @$post['kode_karyawan']);
 		$this->db->like('tanggal_transaksi',date('Y-m'));
-		$this->db->update('olive_keuangan.insentif_terapis', $status);
+		$this->db->update('clouoid1_olive_keuangan.insentif_terapis', $status);
 
 		$this->simpan_arus_kas('Pengeluaran',$hasil->kode_sub_kategori_akun,'Gaji Karyawan',$data['nominal']);
 		$this->simpan_laba_rugi('Pengeluaran',$hasil->kode_sub_kategori_akun,'Gaji Karyawan',$data['nominal']);
@@ -124,11 +124,11 @@ class penggajian extends MY_Controller {
 		$bulan=date('m',strtotime($tanggal));
 		$tahun=date('Y',strtotime($tanggal));
 
-		$get_laporan_arus_kas   = $this->db->get_where('olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+		$get_laporan_arus_kas   = $this->db->get_where('clouoid1_olive_keuangan.laporan_arus_kas',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		$hasil_laporan_arus_kas  = $get_laporan_arus_kas->row();
 		if(!empty($hasil_laporan_arus_kas)){
 			$update_arus_kas['nominal']=$hasil_laporan_arus_kas->nominal +$nominal;
-			$this->db->update('olive_keuangan.laporan_arus_kas',$update_arus_kas,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+			$this->db->update('clouoid1_olive_keuangan.laporan_arus_kas',$update_arus_kas,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		}else{
 
 			$insert_arus_kas['jenis_keuangan']=$jenis_keuangan;
@@ -138,7 +138,7 @@ class penggajian extends MY_Controller {
 			$insert_arus_kas['tanggal']=$tanggal;
 			$insert_arus_kas['bulan']=$bulan;
 			$insert_arus_kas['tahun']=$tahun;
-			$this->db->insert('olive_keuangan.laporan_arus_kas',$insert_arus_kas);
+			$this->db->insert('clouoid1_olive_keuangan.laporan_arus_kas',$insert_arus_kas);
 		}
 
 	}
@@ -148,11 +148,11 @@ class penggajian extends MY_Controller {
 		$bulan=date('m',strtotime($tanggal));
 		$tahun=date('Y',strtotime($tanggal));
 
-		$get_laporan_laba_rugi   = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+		$get_laporan_laba_rugi   = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		$hasil_laporan_laba_rugi  = $get_laporan_laba_rugi->row();
 		if(!empty($hasil_laporan_laba_rugi)){
 			$update_laba_rugi['nominal']=$hasil_laporan_laba_rugi->nominal +$nominal;
-			$this->db->update('olive_keuangan.laporan_laba_rugi',$update_laba_rugi,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
+			$this->db->update('clouoid1_olive_keuangan.laporan_laba_rugi',$update_laba_rugi,array('jenis_keuangan' =>$jenis_keuangan,'kode_kategori_keuangan'=>$kode_kategori_keuangan,'bulan'=>$bulan,'tahun'=>$tahun));
 		}else{
 
 			$insert_laba_rugi['jenis_keuangan']=$jenis_keuangan;
@@ -162,7 +162,7 @@ class penggajian extends MY_Controller {
 			$insert_laba_rugi['tanggal']=$tanggal;
 			$insert_laba_rugi['bulan']=$bulan;
 			$insert_laba_rugi['tahun']=$tahun;
-			$this->db->insert('olive_keuangan.laporan_laba_rugi',$insert_laba_rugi);
+			$this->db->insert('clouoid1_olive_keuangan.laporan_laba_rugi',$insert_laba_rugi);
 		}
 
 	}

@@ -113,7 +113,7 @@ td{
 								<?php
 								$this->db->select('kode_member, nama_member');
 								$this->db->where('status_member', '1');
-								$this->db->from('olive_master.master_member');
+								$this->db->from('clouoid1_olive_master.master_member');
 								$get_member=$this->db->get()->result();
 								foreach ($get_member as $member) {
 									?>
@@ -168,7 +168,7 @@ td{
 									<?php
 									$this->db->select('kode_produk, nama_produk');
 									$this->db->where('status', '1');
-									$this->db->from('olive_master.master_produk');
+									$this->db->from('clouoid1_olive_master.master_produk');
 									$get_produk=$this->db->get()->result();
 									foreach ($get_produk as $produk) {
 										?>
@@ -204,10 +204,10 @@ td{
 									<option value="">--Pilih Terapis--</option>
 									<?php
 									$this->db->select('kode_karyawan, nama_karyawan');
-									$this->db->where('olive_master.master_jabatan.kode_jabatan', 'J_0001');
-									$this->db->where('olive_master.master_karyawan.status_karyawan', '1');
-									$this->db->from('olive_master.master_karyawan');
-									$this->db->join('olive_master.master_jabatan', 'olive_master.master_karyawan.kode_jabatan = olive_master.master_jabatan.kode_jabatan', 'left');
+									$this->db->where('clouoid1_olive_master.master_jabatan.kode_jabatan', 'J_0001');
+									$this->db->where('clouoid1_olive_master.master_karyawan.status_karyawan', '1');
+									$this->db->from('clouoid1_olive_master.master_karyawan');
+									$this->db->join('clouoid1_olive_master.master_jabatan', 'clouoid1_olive_master.master_karyawan.kode_jabatan = clouoid1_olive_master.master_jabatan.kode_jabatan', 'left');
 
 									$get_terapis=$this->db->get()->result();
 									foreach ($get_terapis as $terapis) {
@@ -341,7 +341,7 @@ td{
 							$this->db->where('status', '1');
 							$this->db->where('tanggal_awal <=',date('Y-m-d'));
 							$this->db->where('tanggal_akhir >=',date('Y-m-d'));
-							$this->db->from('olive_master.master_promo');
+							$this->db->from('clouoid1_olive_master.master_promo');
 							$get_promo=$this->db->get()->result();
 							foreach ($get_promo as $promo) {
 								?>
@@ -366,7 +366,7 @@ td{
 							$this->db->where('status', '1');
 							$this->db->where('tanggal_awal <=',date('Y-m-d'));
 							$this->db->where('tanggal_akhir >=',date('Y-m-d'));
-							$this->db->from('olive_master.master_merchant');
+							$this->db->from('clouoid1_olive_master.master_merchant');
 							$get_merchant=$this->db->get()->result();
 							foreach ($get_merchant as $merchant) {
 								?>

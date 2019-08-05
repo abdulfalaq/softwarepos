@@ -44,9 +44,9 @@ class perawatan extends MY_Controller {
         ;
         $kode_perawatan=$this->uri->segment(4);
 
-        $this->db->delete('olive_master.opsi_master_perawatan_temp', array('kode_perawatan' => $kode_perawatan ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_perawatan_temp', array('kode_perawatan' => $kode_perawatan ));
 
-        $get_ayam = $this->db->get_where('olive_master.opsi_master_perawatan',array('kode_perawatan' => $kode_perawatan))->result();
+        $get_ayam = $this->db->get_where('clouoid1_olive_master.opsi_master_perawatan',array('kode_perawatan' => $kode_perawatan))->result();
         foreach ($get_ayam as  $value) {
             $opsi['kode_perawatan']            =  $value->kode_perawatan;
             $opsi['jenis']                     =  $value->jenis;
@@ -56,7 +56,7 @@ class perawatan extends MY_Controller {
             $opsi['satuan']                    =  $value->satuan;
             $opsi['hpp']                       =  $value->hpp;
 
-            $this->db->insert('olive_master.opsi_master_perawatan_temp', $opsi);
+            $this->db->insert('clouoid1_olive_master.opsi_master_perawatan_temp', $opsi);
         }
 
     }
@@ -105,8 +105,8 @@ class perawatan extends MY_Controller {
     public function update_perawatan()
     {
         $data = $this->input->post();
-        $this->db->delete('olive_master.opsi_master_perawatan',array('kode_perawatan' => $data['kode_perawatan']));
-        $get_ayam = $this->db->get_where('olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']))->result();
+        $this->db->delete('clouoid1_olive_master.opsi_master_perawatan',array('kode_perawatan' => $data['kode_perawatan']));
+        $get_ayam = $this->db->get_where('clouoid1_olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']))->result();
 
         foreach ($get_ayam as $value) { 
             $opsi['kode_perawatan']            =  $value->kode_perawatan;
@@ -117,7 +117,7 @@ class perawatan extends MY_Controller {
             $opsi['satuan']                    =  $value->satuan;
             $opsi['hpp']                       =  $value->hpp;
 
-            $this->db->insert('olive_master.opsi_master_perawatan', $opsi);
+            $this->db->insert('clouoid1_olive_master.opsi_master_perawatan', $opsi);
 
         }
 
@@ -130,9 +130,9 @@ class perawatan extends MY_Controller {
         $masuk['redeem_poin']               =  $data['redeem_poin'];
 
         $this->db->where('kode_perawatan', $data['kode_perawatan']);
-        $insert = $this->db->update('olive_master.master_perawatan', $masuk);
+        $insert = $this->db->update('clouoid1_olive_master.master_perawatan', $masuk);
 
-        $this->db->delete('olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']));
+        $this->db->delete('clouoid1_olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']));
         if ($insert) {
             $data['response'] = 'sukses';
         }else{
@@ -145,7 +145,7 @@ class perawatan extends MY_Controller {
     public function simpan_perawatan()
     {
         $data = $this->input->post();
-        $get_ayam = $this->db->get_where('olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']))->result();
+        $get_ayam = $this->db->get_where('clouoid1_olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']))->result();
 
         foreach ($get_ayam as  $value) {
             $opsi['kode_perawatan']            =  $value->kode_perawatan;
@@ -156,7 +156,7 @@ class perawatan extends MY_Controller {
             $opsi['satuan']                    =  $value->satuan;
             $opsi['hpp']                       =  $value->hpp;
 
-            $this->db->insert('olive_master.opsi_master_perawatan', $opsi);
+            $this->db->insert('clouoid1_olive_master.opsi_master_perawatan', $opsi);
         }
 
         $masuk['kode_perawatan']            =  $data['kode_perawatan'];
@@ -166,9 +166,9 @@ class perawatan extends MY_Controller {
         $masuk['insentif_terapi']           =  $data['insentif_terapi'];
         $masuk['status']                    =  $data['status'];
         $masuk['redeem_poin']               =  $data['redeem_poin'];
-        $insert = $this->db->insert('olive_master.master_perawatan', $masuk);
+        $insert = $this->db->insert('clouoid1_olive_master.master_perawatan', $masuk);
 
-        $insert = $this->db->delete('olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']));
+        $insert = $this->db->delete('clouoid1_olive_master.opsi_master_perawatan_temp',array('kode_perawatan' => $data['kode_perawatan']));
         if ($insert) {
             $data['response'] = 'sukses';
         }else{
@@ -182,7 +182,7 @@ class perawatan extends MY_Controller {
 
         $update = $this->input->post();
         $this->db->where('id', $update['id']);
-        $insert = $this->db->update('olive_master.opsi_master_perawatan_temp', $update);
+        $insert = $this->db->update('clouoid1_olive_master.opsi_master_perawatan_temp', $update);
         if ($insert) {
             $data['response'] = 'sukses';
         }else{
@@ -196,8 +196,8 @@ class perawatan extends MY_Controller {
     {
         $kode_bahan = $this->input->post('kode_bahan');
 
-        $this->db->from('olive_master.master_bahan_baku');
-        $this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.master_bahan_baku.kode_satuan_stok');
+        $this->db->from('clouoid1_olive_master.master_bahan_baku');
+        $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.master_bahan_baku.kode_satuan_stok');
         $this->db->where('kode_bahan_baku', $kode_bahan);
         $cari_bahan = $this->db->get();
         $hasil_cari = $cari_bahan->row();
@@ -209,8 +209,8 @@ class perawatan extends MY_Controller {
     {
         $kode_perlengkapan = $this->input->post('kode_perlengkapan');
 
-        $this->db->from('olive_master.master_perlengkapan');
-        $this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.master_perlengkapan.kode_satuan_stok');
+        $this->db->from('clouoid1_olive_master.master_perlengkapan');
+        $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.master_perlengkapan.kode_satuan_stok');
         $this->db->where('kode_perlengkapan', $kode_perlengkapan);
         $cari_bahan = $this->db->get();
         $hasil_cari = $cari_bahan->row();
@@ -248,10 +248,10 @@ class perawatan extends MY_Controller {
     public function get_temp_perawatan(){
 
         $id = $this->input->post('id');
-        $this->db->select('*,olive_master.opsi_master_perawatan_temp.id as id_temp');
-        $this->db->from('olive_master.opsi_master_perawatan_temp');
-        $this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.opsi_master_perawatan_temp.satuan', 'left');
-        $this->db->where('olive_master.opsi_master_perawatan_temp.id', $id);
+        $this->db->select('*,clouoid1_olive_master.opsi_master_perawatan_temp.id as id_temp');
+        $this->db->from('clouoid1_olive_master.opsi_master_perawatan_temp');
+        $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.opsi_master_perawatan_temp.satuan', 'left');
+        $this->db->where('clouoid1_olive_master.opsi_master_perawatan_temp.id', $id);
         $pembelian = $this->db->get();
         $hasil_pembelian = $pembelian->row();
         echo json_encode($hasil_pembelian);
@@ -260,35 +260,35 @@ class perawatan extends MY_Controller {
 
         $id = $this->input->post('id');
 
-        $this->db->from('olive_master.opsi_master_perawatan');
-        $this->db->join('olive_master.master_satuan', 'olive_master.master_satuan.kode = olive_master.opsi_master_perawatan.satuan', 'left');
-        $this->db->where('olive_master.opsi_master_perawatan.id', $id);
+        $this->db->from('clouoid1_olive_master.opsi_master_perawatan');
+        $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_master.master_satuan.kode = clouoid1_olive_master.opsi_master_perawatan.satuan', 'left');
+        $this->db->where('clouoid1_olive_master.opsi_master_perawatan.id', $id);
         $pembelian = $this->db->get();
         $hasil_pembelian = $pembelian->row();
         echo json_encode($hasil_pembelian);
     }
     public function hapus_temporari(){
         $id = $this->input->post('id');
-        $this->db->delete('olive_master.opsi_master_perawatan_temp', array('id' => $id ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_perawatan_temp', array('id' => $id ));
 
     }
     public function hapus_all_temporari(){
         $kode_perawatan = $this->input->post('kode_perawatan');
-        $this->db->delete('olive_master.opsi_master_perawatan_temp', array('kode_perawatan' => $kode_perawatan ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_perawatan_temp', array('kode_perawatan' => $kode_perawatan ));
 
     }
     public function hapus_perawatan(){
         $kode_perawatan = $this->input->post('kode_perawatan');
-        $this->db->delete('olive_master.master_perawatan', array('kode_perawatan' => $kode_perawatan ));
+        $this->db->delete('clouoid1_olive_master.master_perawatan', array('kode_perawatan' => $kode_perawatan ));
 
         $kode_perawatan = $this->input->post('kode_perawatan');
-        $this->db->delete('olive_master.opsi_master_perawatan', array('kode_perawatan' => $kode_perawatan ));
+        $this->db->delete('clouoid1_olive_master.opsi_master_perawatan', array('kode_perawatan' => $kode_perawatan ));
 
     }
 
     public function cek_kode_promo(){
         $kode_perawatan = $this->input->post('kode_perawatan');
-        $get = $this ->db ->get_where('olive_master.opsi_master_perawatan', array('kode_perawatan' =>$kode_perawatan));
+        $get = $this ->db ->get_where('clouoid1_olive_master.opsi_master_perawatan', array('kode_perawatan' =>$kode_perawatan));
         $peringatan = $get->row();
         if(empty($peringatan)){
             $data['peringatan']='kosong';

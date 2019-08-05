@@ -1,11 +1,11 @@
 <?php 
 $no = 0;
 $kode = $this->uri->segment(4);
-$this->db->select('olive_kasir.opsi_transaksi_layanan_temp.id, qty');
-$this->db->select('olive_master.master_produk.nama_produk');
-$this->db->from('olive_kasir.opsi_transaksi_layanan_temp');
-$this->db->join('olive_master.master_produk','olive_master.master_produk.kode_produk = olive_kasir.opsi_transaksi_layanan_temp.kode_item','right');
-$this->db->where('olive_kasir.opsi_transaksi_layanan_temp.kode_transaksi', $kode);
+$this->db->select('clouoid1_olive_kasir.opsi_transaksi_layanan_temp.id, qty');
+$this->db->select('clouoid1_olive_master.master_produk.nama_produk');
+$this->db->from('clouoid1_olive_kasir.opsi_transaksi_layanan_temp');
+$this->db->join('clouoid1_olive_master.master_produk','clouoid1_olive_master.master_produk.kode_produk = clouoid1_olive_kasir.opsi_transaksi_layanan_temp.kode_item','right');
+$this->db->where('clouoid1_olive_kasir.opsi_transaksi_layanan_temp.kode_transaksi', $kode);
 $produk = $this->db->get()->result();
 foreach ($produk as $value) { $no++;?>
 <tr>

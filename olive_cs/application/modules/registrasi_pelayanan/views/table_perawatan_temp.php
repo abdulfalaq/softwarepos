@@ -2,11 +2,11 @@
 $no=0;
 $kode = $this->uri->segment(3);
 
-$this->db->select('olive_cs.opsi_transaksi_registrasi_temp.id');
-$this->db->select('olive_master.master_perawatan.nama_perawatan');
-$this->db->from('olive_cs.opsi_transaksi_registrasi_temp');
-$this->db->where('olive_cs.opsi_transaksi_registrasi_temp.kode_transaksi', $kode);
-$this->db->join('olive_master.master_perawatan', 'olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_registrasi_temp.kode_item','left');
+$this->db->select('clouoid1_olive_cs.opsi_transaksi_registrasi_temp.id');
+$this->db->select('clouoid1_olive_master.master_perawatan.nama_perawatan');
+$this->db->from('clouoid1_olive_cs.opsi_transaksi_registrasi_temp');
+$this->db->where('clouoid1_olive_cs.opsi_transaksi_registrasi_temp.kode_transaksi', $kode);
+$this->db->join('clouoid1_olive_master.master_perawatan', 'clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_registrasi_temp.kode_item','left');
 $get_data = $this->db->get()->result()
 ?>
 

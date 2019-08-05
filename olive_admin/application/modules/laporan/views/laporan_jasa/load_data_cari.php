@@ -14,24 +14,24 @@
     <?php
     $data = $this->input->post(); 
     $this->db->group_by('kode_terapis');
-    $this->db->join('olive_master.master_karyawan','olive_master.master_karyawan.kode_karyawan = olive_kasir.opsi_transaksi_layanan.kode_terapis','left');
-    $get_terapis = $this->db->get_where('olive_kasir.opsi_transaksi_layanan',array('kode_terapis !=' => ''));
+    $this->db->join('clouoid1_olive_master.master_karyawan','clouoid1_olive_master.master_karyawan.kode_karyawan = clouoid1_olive_kasir.opsi_transaksi_layanan.kode_terapis','left');
+    $get_terapis = $this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan',array('kode_terapis !=' => ''));
     $hasil_terapis = $get_terapis->result();
     $no=1;
     foreach ($hasil_terapis as $value) {
 
-      $this->db->group_by('olive_kasir.opsi_transaksi_layanan.kode_item');
-      $this->db->select_sum('olive_kasir.opsi_transaksi_layanan.qty');
-      $this->db->select_sum('olive_keuangan.insentif_terapis.total_withdraw');
-      $this->db->select('olive_master.master_perawatan.nama_perawatan');
-      $this->db->select('olive_master.master_perawatan.insentif_terapi');
-      $this->db->where('olive_kasir.opsi_transaksi_layanan.kode_terapis',$value->kode_terapis);
-      $this->db->where('olive_keuangan.insentif_terapis.tanggal_transaksi >=',$data['tgl_awal']);
-      $this->db->where('olive_keuangan.insentif_terapis.tanggal_transaksi <=',$data['tgl_akhir']);
+      $this->db->group_by('clouoid1_olive_kasir.opsi_transaksi_layanan.kode_item');
+      $this->db->select_sum('clouoid1_olive_kasir.opsi_transaksi_layanan.qty');
+      $this->db->select_sum('clouoid1_olive_keuangan.insentif_terapis.total_withdraw');
+      $this->db->select('clouoid1_olive_master.master_perawatan.nama_perawatan');
+      $this->db->select('clouoid1_olive_master.master_perawatan.insentif_terapi');
+      $this->db->where('clouoid1_olive_kasir.opsi_transaksi_layanan.kode_terapis',$value->kode_terapis);
+      $this->db->where('clouoid1_olive_keuangan.insentif_terapis.tanggal_transaksi >=',$data['tgl_awal']);
+      $this->db->where('clouoid1_olive_keuangan.insentif_terapis.tanggal_transaksi <=',$data['tgl_akhir']);
 
-      $this->db->from('olive_kasir.opsi_transaksi_layanan');
-      $this->db->join('olive_master.master_perawatan', 'olive_kasir.opsi_transaksi_layanan.kode_item = olive_master.master_perawatan.kode_perawatan', 'left');
-      $this->db->join('olive_keuangan.insentif_terapis', 'olive_keuangan.insentif_terapis.kode_transaksi = olive_kasir.opsi_transaksi_layanan.kode_transaksi', 'left');
+      $this->db->from('clouoid1_olive_kasir.opsi_transaksi_layanan');
+      $this->db->join('clouoid1_olive_master.master_perawatan', 'clouoid1_olive_kasir.opsi_transaksi_layanan.kode_item = clouoid1_olive_master.master_perawatan.kode_perawatan', 'left');
+      $this->db->join('clouoid1_olive_keuangan.insentif_terapis', 'clouoid1_olive_keuangan.insentif_terapis.kode_transaksi = clouoid1_olive_kasir.opsi_transaksi_layanan.kode_transaksi', 'left');
       $get_treatment= $this->db->get();
       $hasil_treatment = $get_treatment->result();
       $list=1;

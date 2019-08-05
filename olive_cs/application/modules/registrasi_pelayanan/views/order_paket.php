@@ -127,7 +127,7 @@ td, th, tr{
 										<select  class="form-control select2" id="kode_member" onchange="get_member_name()">
 											<option value="">--Pilih Customer--</option>
 											<?php
-											$member = $this->db->get_where('olive_master.master_member',array('status_member' => '1'));
+											$member = $this->db->get_where('clouoid1_olive_master.master_member',array('status_member' => '1'));
 											$member = $member->result();
 											?>
 											<?php foreach($member as $daftar){ ?>
@@ -163,7 +163,7 @@ td, th, tr{
 													<select name="kode_paket" id="kode_paket" disabled class="form-control select2">
 														<option value="">--Pilih Paket</option>
 														<?php
-														$get_paket = $this->db->get('olive_master.master_paket')->result();
+														$get_paket = $this->db->get('clouoid1_olive_master.master_paket')->result();
 														foreach ($get_paket as $paket) {
 															?>
 															<option value="<?php echo $paket->kode_paket; ?>"><?php echo $paket->nama_paket; ?></option>
@@ -176,7 +176,7 @@ td, th, tr{
 													<select name="kode_treatment" id="kode_treatment" class="form-control select2" style="width:100%">
 														<option value="">--Pilih Treatment</option>
 														<?php
-														$get_perawatan = $this->db->get('olive_master.master_perawatan')->result();
+														$get_perawatan = $this->db->get('clouoid1_olive_master.master_perawatan')->result();
 														foreach ($get_perawatan as $perawatan) {
 															?>
 															<option value="<?php echo $perawatan->kode_perawatan; ?>"><?php echo $perawatan->nama_perawatan; ?></option>
@@ -275,9 +275,9 @@ td, th, tr{
 								<tbody>
 									<?php 
 									$no=0;
-									$this->db->from('olive_cs.transaksi_reservasi');
-									$this->db->join('olive_master.master_member','master_member.kode_member = olive_cs.transaksi_reservasi.kode_member', 'left');
-									$this->db->where('olive_cs.transaksi_reservasi.status','menunggu');
+									$this->db->from('clouoid1_olive_cs.transaksi_reservasi');
+									$this->db->join('clouoid1_olive_master.master_member','master_member.kode_member = clouoid1_olive_cs.transaksi_reservasi.kode_member', 'left');
+									$this->db->where('clouoid1_olive_cs.transaksi_reservasi.status','menunggu');
 									$get_gudang = $this->db->get()->result();
 									foreach ($get_gudang as $value) { $no++;?>
 									<tr>

@@ -21,8 +21,8 @@
 	<div class="clearfix"></div>
 	<?php 
 	$id=$this->uri->segment(4);
-	$this->db->from('olive_master.master_user user');
-	$this->db->join('olive_master.master_jabatan jabatan','jabatan.kode_jabatan = user.jabatan','left');
+	$this->db->from('clouoid1_olive_master.master_user user');
+	$this->db->join('clouoid1_olive_master.master_jabatan jabatan','jabatan.kode_jabatan = user.jabatan','left');
 	$this->db->where('user.kode_karyawan',$id);
 	$get_user = $this->db->get()->row();
 	?>

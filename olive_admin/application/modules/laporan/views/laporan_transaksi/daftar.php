@@ -53,34 +53,34 @@
 							<br>
 							<?php
 							$this->db->select_sum('grand_total');
-							$get_transaksi_tunai=$this->db->get_where('olive_kasir.transaksi_layanan',array('jenis_transaksi' =>'tunai'));
+							$get_transaksi_tunai=$this->db->get_where('clouoid1_olive_kasir.transaksi_layanan',array('jenis_transaksi' =>'tunai'));
 							$hasil_transaksi_tunai=$get_transaksi_tunai->row();
 
 							$this->db->select_sum('grand_total');
-							$get_transaksi_debit=$this->db->get_where('olive_kasir.transaksi_layanan',array('jenis_transaksi' =>'debit'));
+							$get_transaksi_debit=$this->db->get_where('clouoid1_olive_kasir.transaksi_layanan',array('jenis_transaksi' =>'debit'));
 							$hasil_transaksi_debit=$get_transaksi_debit->row();
 
 							$this->db->select_sum('grand_total');
-							$get_transaksi_cc=$this->db->get_where('olive_kasir.transaksi_layanan',array('jenis_transaksi' =>'kredit'));
+							$get_transaksi_cc=$this->db->get_where('clouoid1_olive_kasir.transaksi_layanan',array('jenis_transaksi' =>'kredit'));
 							$hasil_transaksi_cc=$get_transaksi_cc->row();
 
 							$total_transaksi=$hasil_transaksi_tunai->grand_total + $hasil_transaksi_debit->grand_total +$hasil_transaksi_cc->grand_total;
 
 							$this->db->select_sum('subtotal');
-							$get_omset_treatment=$this->db->get_where('olive_kasir.opsi_transaksi_layanan',array('jenis_item' =>'treatment'));
+							$get_omset_treatment=$this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan',array('jenis_item' =>'treatment'));
 							$hasil_omset_treatment=$get_omset_treatment->row();
 
 							$this->db->select_sum('subtotal');
 							$this->db->where('jenis_item !=', 'Treatment');
 							$this->db->where('jenis_item !=', 'kartu member');
-							$get_omset_produk=$this->db->get('olive_kasir.opsi_transaksi_layanan');
+							$get_omset_produk=$this->db->get('clouoid1_olive_kasir.opsi_transaksi_layanan');
 							$hasil_omset_produk=$get_omset_produk->row();
 
 							$this->db->select_sum('subtotal');
-							$get_omset_member=$this->db->get_where('olive_kasir.opsi_transaksi_layanan',array('jenis_item' =>'kartu member'));
+							$get_omset_member=$this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan',array('jenis_item' =>'kartu member'));
 							$hasil_omset_member=$get_omset_member->row();
 
-							$get_opsi_layanan=$this->db->get_where('olive_kasir.opsi_transaksi_layanan',array('jenis_diskon !=' =>''));
+							$get_opsi_layanan=$this->db->get_where('clouoid1_olive_kasir.opsi_transaksi_layanan',array('jenis_diskon !=' =>''));
 							$hasil_opsi_layanan=$get_opsi_layanan->result();
 							$total_diskon=0;
 							foreach ($hasil_opsi_layanan as $opsi) {
@@ -161,7 +161,7 @@
 												$this->db->group_by('kode_transaksi');
 												$this->db->select('kode_transaksi');
 												$this->db->select_sum('subtotal');
-												$get_batal=$this->db->get('olive_kasir.opsi_transaksi_batal');
+												$get_batal=$this->db->get('clouoid1_olive_kasir.opsi_transaksi_batal');
 												$hasil_batal=$get_batal->result();
 												$no=1;
 												foreach ($hasil_batal as $value) {

@@ -45,7 +45,7 @@ $get_gudang = $this->db2->get('master_karyawan')->result();
 									<select   class="form-control stok select2" name="kode_jabatan" name="kode_jabatan" required="">
 										<option value="">--Pilih Nama Jabatan--</option>
 										<?php 
-										$ambil_data = $this->db->get('olive_master.master_jabatan');
+										$ambil_data = $this->db->get('clouoid1_olive_master.master_jabatan');
 										$hasil_ambil_data = $ambil_data->result();
 										foreach ($hasil_ambil_data as $value) {
 											?>

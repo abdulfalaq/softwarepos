@@ -20,9 +20,9 @@
  <?php 
   $kode_retur=$this->uri->segment(4);
   $this->db->where('kode_retur',$kode_retur);
-  $this->db->from('olive_gudang.transaksi_retur');
-  $this->db->join('olive_gudang.transaksi_pembelian', 'olive_gudang.transaksi_retur.kode_pembelian = olive_gudang.transaksi_pembelian.kode_pembelian', 'left');
-  $this->db->join('olive_master.master_supplier', 'olive_gudang.transaksi_retur.kode_supplier = olive_master.master_supplier.kode_supplier', 'left');
+  $this->db->from('clouoid1_olive_gudang.transaksi_retur');
+  $this->db->join('clouoid1_olive_gudang.transaksi_pembelian', 'clouoid1_olive_gudang.transaksi_retur.kode_pembelian = clouoid1_olive_gudang.transaksi_pembelian.kode_pembelian', 'left');
+  $this->db->join('clouoid1_olive_master.master_supplier', 'clouoid1_olive_gudang.transaksi_retur.kode_supplier = clouoid1_olive_master.master_supplier.kode_supplier', 'left');
   $get_retur = $this->db->get()->row();
   ?>
   <div class="row">
@@ -69,17 +69,17 @@
           $this->db->select('nama_bahan_baku');
           $this->db->select('nama_perlengkapan');
           $this->db->select('nama_produk');
-          $this->db->select('olive_gudang.opsi_transaksi_retur.id');
-          $this->db->select('olive_gudang.opsi_transaksi_retur.jumlah');
-          $this->db->select('olive_gudang.opsi_transaksi_retur.harga_satuan');
-          $this->db->select('olive_gudang.opsi_transaksi_retur.subtotal');
-          $this->db->select('olive_gudang.opsi_transaksi_retur.kategori_bahan');
+          $this->db->select('clouoid1_olive_gudang.opsi_transaksi_retur.id');
+          $this->db->select('clouoid1_olive_gudang.opsi_transaksi_retur.jumlah');
+          $this->db->select('clouoid1_olive_gudang.opsi_transaksi_retur.harga_satuan');
+          $this->db->select('clouoid1_olive_gudang.opsi_transaksi_retur.subtotal');
+          $this->db->select('clouoid1_olive_gudang.opsi_transaksi_retur.kategori_bahan');
 
-          $this->db->from('olive_gudang.opsi_transaksi_retur');
-          $this->db->join('olive_master.master_bahan_baku', 'olive_gudang.opsi_transaksi_retur.kode_bahan = olive_master.master_bahan_baku.kode_bahan_baku', 'left');
-          $this->db->join('olive_master.master_perlengkapan', 'olive_gudang.opsi_transaksi_retur.kode_bahan = olive_master.master_perlengkapan.kode_perlengkapan', 'left');
-          $this->db->join('olive_master.master_produk', 'olive_gudang.opsi_transaksi_retur.kode_bahan = olive_master.master_produk.kode_produk', 'left');
-          $this->db->join('olive_master.master_satuan', 'olive_gudang.opsi_transaksi_retur.kode_satuan = olive_master.master_satuan.kode', 'left');
+          $this->db->from('clouoid1_olive_gudang.opsi_transaksi_retur');
+          $this->db->join('clouoid1_olive_master.master_bahan_baku', 'clouoid1_olive_gudang.opsi_transaksi_retur.kode_bahan = clouoid1_olive_master.master_bahan_baku.kode_bahan_baku', 'left');
+          $this->db->join('clouoid1_olive_master.master_perlengkapan', 'clouoid1_olive_gudang.opsi_transaksi_retur.kode_bahan = clouoid1_olive_master.master_perlengkapan.kode_perlengkapan', 'left');
+          $this->db->join('clouoid1_olive_master.master_produk', 'clouoid1_olive_gudang.opsi_transaksi_retur.kode_bahan = clouoid1_olive_master.master_produk.kode_produk', 'left');
+          $this->db->join('clouoid1_olive_master.master_satuan', 'clouoid1_olive_gudang.opsi_transaksi_retur.kode_satuan = clouoid1_olive_master.master_satuan.kode', 'left');
           $get_temp=$this->db->get()->result();
           ?>
           <div id="list_retur_pembelian">

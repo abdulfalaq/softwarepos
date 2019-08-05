@@ -3,21 +3,21 @@ $tgl_awal=$this->input->post('tgl_awal');
 $tgl_akhir=$this->input->post('tgl_akhir');
 
 if(!empty($tgl_awal) || !empty($tgl_akhir)){
-	$this->db->where('olive_kasir.transaksi_layanan.tanggal_transaksi >=',@$tgl_awal);
-	$this->db->where('olive_kasir.transaksi_layanan.tanggal_transaksi <=',@$tgl_akhir);
+	$this->db->where('clouoid1_olive_kasir.transaksi_layanan.tanggal_transaksi >=',@$tgl_awal);
+	$this->db->where('clouoid1_olive_kasir.transaksi_layanan.tanggal_transaksi <=',@$tgl_akhir);
 }else{
-	$this->db->where('olive_kasir.transaksi_layanan.tanggal_transaksi',date('Y-m-d'));
+	$this->db->where('clouoid1_olive_kasir.transaksi_layanan.tanggal_transaksi',date('Y-m-d'));
 }
-$this->db->select('olive_kasir.transaksi_layanan.kode_transaksi');
-$this->db->select('olive_kasir.transaksi_layanan.tanggal_transaksi');
-$this->db->select('olive_kasir.transaksi_layanan.grand_total');
-$this->db->select('olive_master.master_member.nama_member');
-$this->db->select('olive_master.master_layanan.nama_layanan');
+$this->db->select('clouoid1_olive_kasir.transaksi_layanan.kode_transaksi');
+$this->db->select('clouoid1_olive_kasir.transaksi_layanan.tanggal_transaksi');
+$this->db->select('clouoid1_olive_kasir.transaksi_layanan.grand_total');
+$this->db->select('clouoid1_olive_master.master_member.nama_member');
+$this->db->select('clouoid1_olive_master.master_layanan.nama_layanan');
 
-$this->db->where('olive_kasir.transaksi_layanan.status','proses');
-$this->db->from('olive_kasir.transaksi_layanan');
-$this->db->join('olive_master.master_member', 'olive_kasir.transaksi_layanan.kode_member = olive_master.master_member.kode_member', 'left');
-$this->db->join('olive_master.master_layanan', 'olive_kasir.transaksi_layanan.kode_layanan = olive_master.master_layanan.kode_layanan', 'left');
+$this->db->where('clouoid1_olive_kasir.transaksi_layanan.status','proses');
+$this->db->from('clouoid1_olive_kasir.transaksi_layanan');
+$this->db->join('clouoid1_olive_master.master_member', 'clouoid1_olive_kasir.transaksi_layanan.kode_member = clouoid1_olive_master.master_member.kode_member', 'left');
+$this->db->join('clouoid1_olive_master.master_layanan', 'clouoid1_olive_kasir.transaksi_layanan.kode_layanan = clouoid1_olive_master.master_layanan.kode_layanan', 'left');
 $get_list=$this->db->get()->result();
 $no=1;
 foreach ($get_list as $lsit) {

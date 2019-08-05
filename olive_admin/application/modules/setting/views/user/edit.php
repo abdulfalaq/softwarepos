@@ -34,8 +34,8 @@
 								<?php
 								$uri = $this->uri->segment(4);
 								if(!empty($uri)){
-									$this->db->from('olive_master.master_user user');
-									$this->db->join('olive_master.master_jabatan jabatan','jabatan.kode_jabatan = user.jabatan','left');
+									$this->db->from('clouoid1_olive_master.master_user user');
+									$this->db->join('clouoid1_olive_master.master_jabatan jabatan','jabatan.kode_jabatan = user.jabatan','left');
 									$this->db->where('user.kode_karyawan',$uri);
 									$data = $this->db->get();
 									$hasil_data = $data->row(); 

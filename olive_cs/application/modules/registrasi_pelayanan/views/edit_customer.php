@@ -101,7 +101,7 @@ td{
 <?php 
 
 $this->db->order_by('id','DESC');
-$get_gudang = $this->db->get('olive_master.master_member')->result();
+$get_gudang = $this->db->get('clouoid1_olive_master.master_member')->result();
 
 ?>
 </style>
@@ -113,7 +113,7 @@ $get_gudang = $this->db->get('olive_master.master_member')->result();
 <?php 
 $kode_member=$this->uri->segment(4);
 $this->db->where('kode_member',$kode_member);
-$get_kategori = $this->db->get('olive_master.master_member')->row();
+$get_kategori = $this->db->get('clouoid1_olive_master.master_member')->row();
 ?>
 <div class="container">
 	<div class="row">

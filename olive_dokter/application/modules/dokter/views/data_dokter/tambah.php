@@ -40,11 +40,11 @@ textarea.form-control {
 	<div class="clearfix"></div>
 	<?php 
 	$kode = $this->uri->segment(4);
-	$this->db->from('olive_cs.transaksi_registrasi');
-	$this->db->join('olive_master.master_member','olive_master.master_member.kode_member = olive_cs.transaksi_registrasi.kode_member','left');
-	$this->db->join('olive_master.master_karyawan','olive_master.master_karyawan.kode_karyawan = olive_cs.transaksi_registrasi.kode_dokter','left');
-	$this->db->join('olive_master.master_layanan','olive_master.master_layanan.kode_layanan = olive_cs.transaksi_registrasi.kode_layanan','left');
-	$this->db->where('olive_cs.transaksi_registrasi.kode_transaksi',$kode);
+	$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+	$this->db->join('clouoid1_olive_master.master_member','clouoid1_olive_master.master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member','left');
+	$this->db->join('clouoid1_olive_master.master_karyawan','clouoid1_olive_master.master_karyawan.kode_karyawan = clouoid1_olive_cs.transaksi_registrasi.kode_dokter','left');
+	$this->db->join('clouoid1_olive_master.master_layanan','clouoid1_olive_master.master_layanan.kode_layanan = clouoid1_olive_cs.transaksi_registrasi.kode_layanan','left');
+	$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_transaksi',$kode);
 	$get_data = $this->db->get()->row();
 	?>
 
@@ -121,7 +121,7 @@ textarea.form-control {
 																	<select id="kode_perawatan" class="form-control select2" >
 																		<option value="">Pilih Treatment</option>
 																		<?php
-																		$this->db->from('olive_master.master_perawatan');
+																		$this->db->from('clouoid1_olive_master.master_perawatan');
 																		$get_treastment = $this->db->get()->result();
 																		foreach ($get_treastment as $value) { ?>
 																		<option value="<?php echo $value->kode_perawatan ?>"><?php echo $value->nama_perawatan ?></option>
@@ -190,8 +190,8 @@ textarea.form-control {
 																	<select id="kode_produk" name="kode_produk" class="form-control select2" >
 																		<option value="">Pilih Produk</option>
 																		<?php
-																		$this->db->from('olive_master.master_produk');
-																		$this->db->join('olive_master.master_kategori_produk','olive_master.master_kategori_produk.kode_kategori_produk = master_produk.kode_kategori_produk','left');
+																		$this->db->from('clouoid1_olive_master.master_produk');
+																		$this->db->join('clouoid1_olive_master.master_kategori_produk','clouoid1_olive_master.master_kategori_produk.kode_kategori_produk = master_produk.kode_kategori_produk','left');
 																		$get_produk = $this->db->get()->result();
 																		foreach ($get_produk as $value) { ?>
 																		<option value="<?php echo $value->kode_produk ?>"><?php echo $value->nama_produk ?></option>
@@ -263,11 +263,11 @@ textarea.form-control {
 															</thead>
 															<tbody>
 																<?php
-																$this->db->from('olive_kasir.data_record_anggota');
-																$this->db->where('olive_kasir.data_record_anggota.kode_member',$get_data->kode_member);
-																$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_kasir.data_record_anggota.kode_item','left');
-																$this->db->join('olive_master.master_produk','olive_master.master_produk.kode_produk = olive_kasir.data_record_anggota.kode_item','left');
-																$this->db->order_by('olive_kasir.data_record_anggota.id','DESC');
+																$this->db->from('clouoid1_olive_kasir.data_record_anggota');
+																$this->db->where('clouoid1_olive_kasir.data_record_anggota.kode_member',$get_data->kode_member);
+																$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_kasir.data_record_anggota.kode_item','left');
+																$this->db->join('clouoid1_olive_master.master_produk','clouoid1_olive_master.master_produk.kode_produk = clouoid1_olive_kasir.data_record_anggota.kode_item','left');
+																$this->db->order_by('clouoid1_olive_kasir.data_record_anggota.id','DESC');
 																$get_medik = $this->db->get()->result();
 																foreach ($get_medik as  $value) { ?>
 																<tr>
@@ -310,10 +310,10 @@ textarea.form-control {
 															<tbody>
 																<tr>
 																	<?php
-																	$this->db->from('olive_kasir.data_rekam_medik');
-																	$this->db->join('olive_master.master_karyawan','olive_master.master_karyawan.kode_karyawan = olive_kasir.data_rekam_medik.kode_dokter','left');
-																	$this->db->where('olive_kasir.data_rekam_medik.kode_member',$get_data->kode_member);
-																	$this->db->order_by('olive_kasir.data_rekam_medik.id','DESC');
+																	$this->db->from('clouoid1_olive_kasir.data_rekam_medik');
+																	$this->db->join('clouoid1_olive_master.master_karyawan','clouoid1_olive_master.master_karyawan.kode_karyawan = clouoid1_olive_kasir.data_rekam_medik.kode_dokter','left');
+																	$this->db->where('clouoid1_olive_kasir.data_rekam_medik.kode_member',$get_data->kode_member);
+																	$this->db->order_by('clouoid1_olive_kasir.data_rekam_medik.id','DESC');
 																	$get_medik = $this->db->get()->result();
 																	foreach ($get_medik as  $value) { ?>
 																	<tr>

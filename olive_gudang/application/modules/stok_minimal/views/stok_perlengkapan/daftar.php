@@ -1,8 +1,8 @@
 <?php 
-$this->db->order_by('olive_master.master_perlengkapan.id','DESC');
+$this->db->order_by('clouoid1_olive_master.master_perlengkapan.id','DESC');
 $this->db->where('stok_minimal >= real_stock');
-$this->db->from('olive_master.master_perlengkapan');
-$this->db->join('olive_master.master_satuan','olive_master.master_perlengkapan.kode_satuan_stok = olive_master.master_satuan.kode','left');
+$this->db->from('clouoid1_olive_master.master_perlengkapan');
+$this->db->join('clouoid1_olive_master.master_satuan','clouoid1_olive_master.master_perlengkapan.kode_satuan_stok = clouoid1_olive_master.master_satuan.kode','left');
 $get_gudang = $this->db->get()->result();
 ?>
 <!-- back button -->

@@ -91,7 +91,7 @@ class promo extends MY_Controller {
     }
     public function cek_kode_promo(){ 
         $kode_promo = $this->input->post('kode_promo');
-        $get = $this ->db ->get_where('olive_master.master_promo', array('kode_promo' =>$kode_promo));
+        $get = $this ->db ->get_where('clouoid1_olive_master.master_promo', array('kode_promo' =>$kode_promo));
         $peringatan = $get->row();
         if(empty($peringatan)){
             $data['peringatan']='kosong';

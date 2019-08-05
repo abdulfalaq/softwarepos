@@ -11,24 +11,24 @@
 		$bulan_sebelumnya=date('m',strtotime($tgl_sebelumnya));
 		$tahun_sebelumnya=date('Y',strtotime($tgl_sebelumnya));
 
-		$modal_awal = $this->db->get_where('olive_keuangan.laporan_neraca',array('nama_akun' =>'Modal','kategori_keuangan' =>'Pasiva','bulan'=>$bulan_sebelumnya,'tahun'=>$tahun_sebelumnya));
+		$modal_awal = $this->db->get_where('clouoid1_olive_keuangan.laporan_neraca',array('nama_akun' =>'Modal','kategori_keuangan' =>'Pasiva','bulan'=>$bulan_sebelumnya,'tahun'=>$tahun_sebelumnya));
 		$hasil_modal_awal = $modal_awal->row();
 
 		if(!empty($hasil_modal_awal)){
 			$nominal_modal_awal=$hasil_modal_awal->nominal;
 
 		}else{
-			$saldo_awal = $this->db->get_where('olive_master.setting_saldo_awal',array('bulan'=>date('m'),'tahun'=>date('Y')));
+			$saldo_awal = $this->db->get_where('clouoid1_olive_master.setting_saldo_awal',array('bulan'=>date('m'),'tahun'=>date('Y')));
 			$hasil_saldo_awal = $saldo_awal->row();
 			$nominal_modal_awal=@$hasil_saldo_awal->persediaan_awal +  @$hasil_saldo_awal->kas_awal;
 		}
 
 		$this->db->select_sum('nominal');
-		$pemasukan = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','bulan'=>date('m'),'tahun'=>date('Y')));
+		$pemasukan = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pemasukan','bulan'=>date('m'),'tahun'=>date('Y')));
 		$hasil_pemasukan = $pemasukan->row();
 
 		$this->db->select_sum('nominal');
-		$pengeluaran = $this->db->get_where('olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','bulan'=>date('m'),'tahun'=>date('Y')));
+		$pengeluaran = $this->db->get_where('clouoid1_olive_keuangan.laporan_laba_rugi',array('jenis_keuangan' =>'Pengeluaran','bulan'=>date('m'),'tahun'=>date('Y')));
 		$hasil_pengeluaran = $pengeluaran->row();
 
 		if($hasil_pemasukan->nominal >= $hasil_pengeluaran->nominal){

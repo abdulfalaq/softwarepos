@@ -46,7 +46,7 @@
 									<select name="kode_rak" id="kode_rak" class="form-control" required="">
 										<option value="">-- Pilih Rak --</option>
 										<?php  
-										$get_rak = $this->db->get('olive_master.master_rak')->result();
+										$get_rak = $this->db->get('clouoid1_olive_master.master_rak')->result();
 										foreach ($get_rak as $value) {?>
 											<option value="<?php echo $value->kode_rak ?>"><?php echo $value->nama_rak ?></option>
 											<?php }

@@ -17,7 +17,7 @@
       $this->db->where('MONTH(tanggal_transaksi)', $bulan);
       $this->db->where('YEAR(tanggal_transaksi)', $tahun);  
       $this->db->group_by('kode_member');
-      $get_member = $this->db->get('olive_kasir.transaksi_layanan')->result();
+      $get_member = $this->db->get('clouoid1_olive_kasir.transaksi_layanan')->result();
       $no = 0;
       foreach ($get_member as $value) { $no++;
         $tanggal_kedua = date('Y-m-d',strtotime('+1 months', strtotime($value->tanggal_transaksi)));
@@ -28,7 +28,7 @@
         $this->db->where('YEAR(tanggal_transaksi)', $tahun_kedua);  
         $this->db->where('kode_member', $value->kode_member);
         $this->db->group_by('kode_member');
-        $get_member_kedua = $this->db->get('olive_kasir.transaksi_layanan')->row();
+        $get_member_kedua = $this->db->get('clouoid1_olive_kasir.transaksi_layanan')->row();
 
         if (count($get_member_kedua) > 0) {
           $tanggal_ketiga = date('Y-m-d',strtotime('+1 months', strtotime($get_member_kedua->tanggal_transaksi)));
@@ -36,12 +36,12 @@
           $bulan_ketiga = date('m',strtotime($tanggal_ketiga));
           $tahun_ketiga = date('Y',strtotime($tanggal_ketiga));
 
-          $this->db->from('olive_kasir.transaksi_layanan');
-          $this->db->join('olive_master.master_member','olive_master.master_member.kode_member = olive_kasir.transaksi_layanan.kode_member','left');
-          $this->db->where('MONTH(olive_kasir.transaksi_layanan.tanggal_transaksi)', $bulan_ketiga);
-          $this->db->where('YEAR(olive_kasir.transaksi_layanan.tanggal_transaksi)', $tahun_ketiga);  
-          $this->db->where('olive_kasir.transaksi_layanan.kode_member', $get_member_kedua->kode_member);
-          $this->db->group_by('olive_kasir.transaksi_layanan.kode_member');
+          $this->db->from('clouoid1_olive_kasir.transaksi_layanan');
+          $this->db->join('clouoid1_olive_master.master_member','clouoid1_olive_master.master_member.kode_member = clouoid1_olive_kasir.transaksi_layanan.kode_member','left');
+          $this->db->where('MONTH(clouoid1_olive_kasir.transaksi_layanan.tanggal_transaksi)', $bulan_ketiga);
+          $this->db->where('YEAR(clouoid1_olive_kasir.transaksi_layanan.tanggal_transaksi)', $tahun_ketiga);  
+          $this->db->where('clouoid1_olive_kasir.transaksi_layanan.kode_member', $get_member_kedua->kode_member);
+          $this->db->group_by('clouoid1_olive_kasir.transaksi_layanan.kode_member');
           $get_member_ketiga = $this->db->get()->row();
 
           if (count($get_member_ketiga) > 0) { ?>

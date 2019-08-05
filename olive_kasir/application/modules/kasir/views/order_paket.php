@@ -98,10 +98,10 @@
 					@$kode_reservasi=$this->uri->segment(4);
 					if(!empty($kode_reservasi)){
 						$this->db->where('kode_transaksi', $kode_reservasi);
-						$get_opsi=$this->db->get('olive_cs.opsi_transaksi_order_paket')->row();
+						$get_opsi=$this->db->get('clouoid1_olive_cs.opsi_transaksi_order_paket')->row();
 
 						$this->db->where('kode_transaksi', $kode_reservasi);
-						$get_transaksi=$this->db->get('olive_cs.transaksi_order_paket')->row();
+						$get_transaksi=$this->db->get('clouoid1_olive_cs.transaksi_order_paket')->row();
 						
 					}
 					?>
@@ -123,7 +123,7 @@
 							<select  class="form-control select2" id="kode_member" onchange="get_data_member()">
 								<option value="">--Pilih Customer--</option>
 								<?php
-								$member = $this->db->get_where('olive_master.master_member',array('status_member' => '1'));
+								$member = $this->db->get_where('clouoid1_olive_master.master_member',array('status_member' => '1'));
 								$member = $member->result();
 								foreach($member as $daftar){ ?>
 									<option <?php if(@$get_transaksi->kode_member==$daftar->kode_member){echo "selected";}?> value="<?php echo $daftar->kode_member ?>"><?php echo $daftar->kode_member ?> - <?php echo $daftar->nama_member ?></option>
@@ -155,7 +155,7 @@
 										<select id="kode_paket" disabled class="form-control select2 data_kasir">
 											<option value="">--Pilih Paket</option>
 											<?php
-											$get_paket = $this->db->get('olive_master.master_paket')->result();
+											$get_paket = $this->db->get('clouoid1_olive_master.master_paket')->result();
 											foreach ($get_paket as $paket) {
 												?>
 												<option value="<?php echo $paket->kode_paket; ?>"><?php echo $paket->nama_paket; ?></option>
@@ -168,7 +168,7 @@
 										<select id="kode_treatment" class="form-control select2 data_kasir" style="width:100%">
 											<option value="">--Pilih Treatment</option>
 											<?php
-											$get_perawatan = $this->db->get('olive_master.master_perawatan')->result();
+											$get_perawatan = $this->db->get('clouoid1_olive_master.master_perawatan')->result();
 											foreach ($get_perawatan as $perawatan) {
 												?>
 												<option value="<?php echo $perawatan->kode_perawatan; ?>"><?php echo $perawatan->nama_perawatan; ?></option>
@@ -304,7 +304,7 @@
 								$this->db->where('status', '1');
 								$this->db->where('tanggal_awal <=',date('Y-m-d'));
 								$this->db->where('tanggal_akhir >=',date('Y-m-d'));
-								$this->db->from('olive_master.master_promo');
+								$this->db->from('clouoid1_olive_master.master_promo');
 								$get_promo=$this->db->get()->result();
 								foreach ($get_promo as $promo) {
 									?>
@@ -329,7 +329,7 @@
 								$this->db->where('status', '1');
 								$this->db->where('tanggal_awal <=',date('Y-m-d'));
 								$this->db->where('tanggal_akhir >=',date('Y-m-d'));
-								$this->db->from('olive_master.master_merchant');
+								$this->db->from('clouoid1_olive_master.master_merchant');
 								$get_merchant=$this->db->get()->result();
 								foreach ($get_merchant as $merchant) {
 									?>

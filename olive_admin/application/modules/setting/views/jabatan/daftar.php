@@ -31,7 +31,7 @@
 				<div class="panel-body">
 					<?php 
 					$this->db->order_by('id','DESC');
-					$get_gudang = $this->db->get('olive_master.master_jabatan')->result();
+					$get_gudang = $this->db->get('clouoid1_olive_master.master_jabatan')->result();
 					?>
 					<table id="datatable" class="table table-striped table-bordered">
 						<thead>

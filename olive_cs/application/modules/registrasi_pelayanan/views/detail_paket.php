@@ -27,9 +27,9 @@
 					<div class="sukses" ></div>
 					<?php 
 					$id=$this->uri->segment(4);
-					$this->db->from('olive_cs.transaksi_reservasi');
-					$this->db->join('olive_master.master_member','master_member.kode_member = olive_cs.transaksi_reservasi.kode_member', 'left');
-					$this->db->where('olive_cs.transaksi_reservasi.kode_reservasi',$id);
+					$this->db->from('clouoid1_olive_cs.transaksi_reservasi');
+					$this->db->join('clouoid1_olive_master.master_member','master_member.kode_member = clouoid1_olive_cs.transaksi_reservasi.kode_member', 'left');
+					$this->db->where('clouoid1_olive_cs.transaksi_reservasi.kode_reservasi',$id);
 					$get_gudang = $this->db->get()->row();
 					?>
 					<form id="data_form" action="" method="post">
@@ -66,10 +66,10 @@
 							<div class="box-body">
 								<?php
 								$id=$this->uri->segment(4);
-								$this->db->from('olive_cs.opsi_transaksi_reservasi');
-								$this->db->join('olive_master.master_perawatan','master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_reservasi.kode_item', 'left');
-								$this->db->join('olive_master.master_produk','master_produk.kode_produk = olive_cs.opsi_transaksi_reservasi.kode_item', 'left');
-								$this->db->where('olive_cs.opsi_transaksi_reservasi.kode_reservasi',$id);
+								$this->db->from('clouoid1_olive_cs.opsi_transaksi_reservasi');
+								$this->db->join('clouoid1_olive_master.master_perawatan','master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_reservasi.kode_item', 'left');
+								$this->db->join('clouoid1_olive_master.master_produk','master_produk.kode_produk = clouoid1_olive_cs.opsi_transaksi_reservasi.kode_item', 'left');
+								$this->db->where('clouoid1_olive_cs.opsi_transaksi_reservasi.kode_reservasi',$id);
 								$get_gudang = $this->db->get()->result();
 								?>
 								<table id="datatable" class="table table-bordered table-striped">

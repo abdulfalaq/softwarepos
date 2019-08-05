@@ -39,8 +39,8 @@
 						<tbody>    
 							<?php 
 							$no = 0;
-							$this->db->from('olive_master.master_produk mp');
-							$this->db->join('olive_master.master_satuan m_s','m_s.kode = mp.kode_satuan_stok','left');
+							$this->db->from('clouoid1_olive_master.master_produk mp');
+							$this->db->join('clouoid1_olive_master.master_satuan m_s','m_s.kode = mp.kode_satuan_stok','left');
 							$this->db->order_by('mp.id','DESC');
 							$get_gudang = $this->db->get()->result();
 							foreach ($get_gudang as $value) { 

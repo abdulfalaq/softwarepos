@@ -2,15 +2,15 @@
 $layanan = $this->uri->segment(3);
 $no = 0;
 
-$this->db->select('olive_cs.transaksi_registrasi.kode_layanan,olive_cs.transaksi_registrasi.status,tanggal_transaksi,kode_transaksi');
-$this->db->select('olive_master.master_member.nama_member,');
-$this->db->select('olive_master.master_layanan.nama_layanan');
-$this->db->from('olive_cs.transaksi_registrasi');
-$this->db->join('olive_master.master_member','master_member.kode_member = olive_cs.transaksi_registrasi.kode_member', 'left');
-$this->db->join('olive_master.master_layanan','master_layanan.kode_layanan = olive_cs.transaksi_registrasi.kode_layanan', 'left');
-$this->db->where('olive_cs.transaksi_registrasi.tanggal_transaksi',date('Y-m-d'));
-$this->db->where('olive_cs.transaksi_registrasi.kode_layanan',$layanan);
-$this->db->order_by('olive_cs.transaksi_registrasi.id','DESC	');
+$this->db->select('clouoid1_olive_cs.transaksi_registrasi.kode_layanan,clouoid1_olive_cs.transaksi_registrasi.status,tanggal_transaksi,kode_transaksi');
+$this->db->select('clouoid1_olive_master.master_member.nama_member,');
+$this->db->select('clouoid1_olive_master.master_layanan.nama_layanan');
+$this->db->from('clouoid1_olive_cs.transaksi_registrasi');
+$this->db->join('clouoid1_olive_master.master_member','master_member.kode_member = clouoid1_olive_cs.transaksi_registrasi.kode_member', 'left');
+$this->db->join('clouoid1_olive_master.master_layanan','master_layanan.kode_layanan = clouoid1_olive_cs.transaksi_registrasi.kode_layanan', 'left');
+$this->db->where('clouoid1_olive_cs.transaksi_registrasi.tanggal_transaksi',date('Y-m-d'));
+$this->db->where('clouoid1_olive_cs.transaksi_registrasi.kode_layanan',$layanan);
+$this->db->order_by('clouoid1_olive_cs.transaksi_registrasi.id','DESC	');
 $data_periksa = $this->db->get()->result();
 ?>
 <div class="panel panel-default">

@@ -35,16 +35,16 @@ class ambil_paket extends MY_Controller {
 
 
 		$kode_layanan_paket = 'PKT_'.date('ymdhis');
-		$this->db->select('olive_cs.opsi_transaksi_reservasi.id');
-		$this->db->select('olive_master.master_perawatan.hpp hpp_perawatan');
-		$this->db->select('olive_master.master_perawatan.harga_jual harga_perawatan');
-		$this->db->select('olive_master.master_produk.hpp hpp_produk');
-		$this->db->select('olive_master.master_produk.harga_jual harga_produk');
-		$this->db->select('olive_cs.opsi_transaksi_reservasi.jenis_item,kode_item,qty_diambil');
-		$this->db->from('olive_cs.opsi_transaksi_reservasi');
-		$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = olive_cs.opsi_transaksi_reservasi.kode_item','left');
-		$this->db->join('olive_master.master_produk','olive_master.master_produk.kode_produk = olive_cs.opsi_transaksi_reservasi.kode_item','left');
-		$this->db->where('olive_cs.opsi_transaksi_reservasi.kode_reservasi', $data['kode_reservasi']);
+		$this->db->select('clouoid1_olive_cs.opsi_transaksi_reservasi.id');
+		$this->db->select('clouoid1_olive_master.master_perawatan.hpp hpp_perawatan');
+		$this->db->select('clouoid1_olive_master.master_perawatan.harga_jual harga_perawatan');
+		$this->db->select('clouoid1_olive_master.master_produk.hpp hpp_produk');
+		$this->db->select('clouoid1_olive_master.master_produk.harga_jual harga_produk');
+		$this->db->select('clouoid1_olive_cs.opsi_transaksi_reservasi.jenis_item,kode_item,qty_diambil');
+		$this->db->from('clouoid1_olive_cs.opsi_transaksi_reservasi');
+		$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = clouoid1_olive_cs.opsi_transaksi_reservasi.kode_item','left');
+		$this->db->join('clouoid1_olive_master.master_produk','clouoid1_olive_master.master_produk.kode_produk = clouoid1_olive_cs.opsi_transaksi_reservasi.kode_item','left');
+		$this->db->where('clouoid1_olive_cs.opsi_transaksi_reservasi.kode_reservasi', $data['kode_reservasi']);
 		$data_transaksi = $this->db->get()->result();
 		foreach ($data_transaksi as $value) {	
 			$input_kasir['kode_transaksi'] 	= $kode_layanan_paket;
@@ -62,7 +62,7 @@ class ambil_paket extends MY_Controller {
 			}
 			$subtotal						= @$data['qty_diambil_'.$value->id] * $input_kasir['harga'];
 			$get_total 						= $get_total + $subtotal; 
-			$insert_opsi_layanan            = $this->db->insert('olive_kasir.opsi_transaksi_layanan', $input_kasir);
+			$insert_opsi_layanan            = $this->db->insert('clouoid1_olive_kasir.opsi_transaksi_layanan', $input_kasir);
 		}
 
 		$get_opsi = $this->db->get_where('opsi_transaksi_reservasi', array('kode_reservasi' => $data['kode_reservasi'],'status' => 'proses' ))->result();
@@ -78,7 +78,7 @@ class ambil_paket extends MY_Controller {
 			$update_opsi['status'] 		= $status;
 
 			$this->db->where('id',$value->id);
-			$this->db->update('olive_cs.opsi_transaksi_reservasi', $update_opsi);
+			$this->db->update('clouoid1_olive_cs.opsi_transaksi_reservasi', $update_opsi);
 		}
 
 		$data_utama['kode_transaksi'] 		= $kode_layanan_paket;
@@ -89,7 +89,7 @@ class ambil_paket extends MY_Controller {
 		$data_utama['jam_penjualan']	    = date('h:i:s');
 		$data_utama['status'] 				= 'proses';
 		
-		$insert_utama = $this->db->insert('olive_kasir.transaksi_layanan', $data_utama);
+		$insert_utama = $this->db->insert('clouoid1_olive_kasir.transaksi_layanan', $data_utama);
 		if ($insert_utama) {
 			$out['response'] = 'sukses';
 		}else{
@@ -102,11 +102,11 @@ class ambil_paket extends MY_Controller {
 
 	public function print_invoice($kode_layanan_paket)
 	{
-		$setting = $this->db->get('olive_master.master_setting');
+		$setting = $this->db->get('clouoid1_olive_master.master_setting');
 		$hasil_setting = $setting->row();
 
-		$this->db->from('olive_kasir.transaksi_layanan layanan');
-		$this->db->join('olive_master.master_member member','member.kode_member = layanan.kode_member','left');
+		$this->db->from('clouoid1_olive_kasir.transaksi_layanan layanan');
+		$this->db->join('clouoid1_olive_master.master_member member','member.kode_member = layanan.kode_member','left');
 		$this->db->where('layanan.kode_transaksi',$kode_layanan_paket);
 		$hasil_transaksi = $this->db->get()->row();
 		
@@ -121,9 +121,9 @@ class ambil_paket extends MY_Controller {
 		$printTestText .= "\n".align_left(48,'Jenis Perawatan')."  ".align_right(10,'Terapis')."\n";
 		$printTestText .= repeat_value(62,'_')."\n";
 
-		$this->db->from('olive_kasir.opsi_transaksi_layanan layanan');
-		$this->db->join('olive_master.master_perawatan','olive_master.master_perawatan.kode_perawatan = layanan.kode_item','left');
-		$this->db->join('olive_master.master_produk','olive_master.master_produk.kode_produk = layanan.kode_item','left');
+		$this->db->from('clouoid1_olive_kasir.opsi_transaksi_layanan layanan');
+		$this->db->join('clouoid1_olive_master.master_perawatan','clouoid1_olive_master.master_perawatan.kode_perawatan = layanan.kode_item','left');
+		$this->db->join('clouoid1_olive_master.master_produk','clouoid1_olive_master.master_produk.kode_produk = layanan.kode_item','left');
 		$this->db->where('layanan.kode_transaksi',$kode_layanan_paket);
 		$opsi_transaksi = $this->db->get();
 		$hasil_opsi_transaksi = $opsi_transaksi->result();

@@ -55,12 +55,12 @@
 				$this->db->group_by('kode_transaksi');
 				$this->db->select('kode_transaksi');
 				$this->db->select_sum('subtotal');
-				$get_batal=$this->db->get('olive_kasir.opsi_transaksi_batal');
+				$get_batal=$this->db->get('clouoid1_olive_kasir.opsi_transaksi_batal');
 				if (!empty($tgl_awal)) {
-					$this->db->where('olive_kasir.opsi_transaksi_batal.tanggal_transaksi >=',$tgl_awal);
+					$this->db->where('clouoid1_olive_kasir.opsi_transaksi_batal.tanggal_transaksi >=',$tgl_awal);
 				}
 				if (!empty($tgl_akhir)) {
-					$this->db->where('olive_kasir.opsi_transaksi_batal.tanggal_transaksi <=',$tgl_akhir);
+					$this->db->where('clouoid1_olive_kasir.opsi_transaksi_batal.tanggal_transaksi <=',$tgl_akhir);
 				}
 				$hasil_batal=$get_batal->result();
 				$no=1;
